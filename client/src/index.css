@@ -22,92 +22,101 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-display: "Fredoka", sans-serif;
-  --font-body: "Nunito", sans-serif;
-  --font-hand: "Patrick Hand", cursive;
-
+  --font-display: "Outfit", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 }
 
 :root {
-  /* Magical Storybook Theme */
-  --background: 48 100% 96%; /* Creamy paper background */
-  --foreground: 260 20% 20%; /* Soft dark purple text */
+  /* Magical Bedtime Theme */
+  --background: 222 47% 11%; /* #0f172a - Slate 900 */
+  --foreground: 210 40% 98%; /* Slate 50 */
 
-  --card: 0 0% 100%;
-  --card-foreground: 260 20% 20%;
+  --card: 222 47% 11%;
+  --card-foreground: 210 40% 98%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 260 20% 20%;
+  --popover: 222 47% 11%;
+  --popover-foreground: 210 40% 98%;
 
-  --primary: 265 80% 60%; /* Magical Purple */
-  --primary-foreground: 0 0% 100%;
+  --primary: 250 100% 70%; /* Soft bright purple */
+  --primary-foreground: 210 40% 98%;
 
-  --secondary: 35 90% 65%; /* Golden Sunshine */
-  --secondary-foreground: 20 60% 20%;
+  --secondary: 217 91% 60%; /* Blue */
+  --secondary-foreground: 222 47% 11%;
 
-  --muted: 260 10% 92%;
-  --muted-foreground: 260 10% 50%;
+  --muted: 217 33% 17%; /* Slate 800 */
+  --muted-foreground: 215 20% 65%; /* Slate 400 */
 
-  --accent: 180 60% 85%; /* Soft Sky Blue */
-  --accent-foreground: 200 60% 20%;
+  --accent: 280 100% 70%; /* Pink/Purple */
+  --accent-foreground: 210 40% 98%;
 
   --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive-foreground: 210 40% 98%;
 
-  --border: 260 15% 90%;
-  --input: 260 15% 90%;
-  --ring: 265 80% 60%;
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 250 100% 70%;
 
-  --radius: 1.5rem; /* Extra rounded for friendliness */
-}
-
-/* Custom whimsical scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--primary) / 0.3);
-  border-radius: 20px;
-  border: 3px solid hsl(var(--background));
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(var(--primary) / 0.5);
+  --radius: 1rem;
 }
 
 body {
   font-family: var(--font-body);
-  background-image: 
-    radial-gradient(circle at 10% 20%, hsl(var(--accent) / 0.2) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, hsl(var(--secondary) / 0.2) 0%, transparent 20%);
-  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
 }
 
-.font-hand {
-  font-family: var(--font-hand);
+/* Custom whimsical scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.5);
 }
 
-/* Floating Animation */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+.text-glow {
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+/* Star field animation container */
+.star-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 100%, #1e293b 0%, #0f172a 100%);
 }
 
-.animate-float-delayed {
-  animation: float 7s ease-in-out 1s infinite;
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes twinkle {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: var(--opacity); transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
 }

@@ -4,27 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
 
-    <meta property="og:title" content="WonderTales - Magical Stories for Kids" />
-    <meta property="og:description" content="A beautiful collection of interactive stories for preschoolers and toddlers." />
+    <meta property="og:title" content="Christopher & Benjamin's Storybook" />
+    <meta property="og:description" content="Magical bedtime stories for brave brothers." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/opengraph.png" />
+    <meta property="og:image" content="/pwa-512x512.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="WonderTales" />
-    <meta name="twitter:description" content="Fun and wise stories for little ones." />
+    <meta name="twitter:title" content="Christopher & Benjamin's Storybook" />
+    <meta name="twitter:description" content="Magical bedtime stories for brave brothers." />
 
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#9333ea" />
+    <meta name="theme-color" content="#0f172a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="WonderTales" />
+    <meta name="apple-mobile-web-app-title" content="Storybook" />
     <link rel="apple-touch-icon" href="/pwa-192x192.png" />
     <link rel="manifest" href="/manifest.json" />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Importing playful and readable fonts for kids -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <!-- Modern, clean fonts (Outfit + DM Sans) as requested by user's design -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
@@ -34,7 +34,7 @@
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
             .then((registration) => {
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+              console.log('ServiceWorker registration successful');
             }, (err) => {
               console.log('ServiceWorker registration failed: ', err);
             });
