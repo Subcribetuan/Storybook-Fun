@@ -3,10 +3,67 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, Variants }
 import { Star, Moon, BookOpen, ChevronRight, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, Wand2, PartyPopper, Search, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { stories } from "@/lib/stories";
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
 import { useToast } from "@/hooks/use-toast";
+
+// --- Read Tracking (localStorage) ---
+const STORAGE_KEY = "wondertales-read-stories";
+
+function getReadStories(): Set<number> {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return new Set();
+    return new Set(JSON.parse(raw) as number[]);
+  } catch {
+    return new Set();
+  }
+}
+
+function markStoryRead(id: number) {
+  const read = getReadStories();
+  read.add(id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(read)));
+}
+
+function toggleStoryRead(id: number): boolean {
+  const read = getReadStories();
+  if (read.has(id)) {
+    read.delete(id);
+  } else {
+    read.add(id);
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(read)));
+  return read.has(id);
+}
+
+function useReadStories() {
+  const [readSet, setReadSet] = useState<Set<number>>(() => getReadStories());
+
+  const refresh = useCallback(() => setReadSet(getReadStories()), []);
+
+  const markRead = useCallback((id: number) => {
+    markStoryRead(id);
+    refresh();
+  }, [refresh]);
+
+  const toggle = useCallback((id: number) => {
+    toggleStoryRead(id);
+    refresh();
+  }, [refresh]);
+
+  // Sync across tabs
+  useEffect(() => {
+    const handler = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY) refresh();
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
+  }, [refresh]);
+
+  return { readSet, markRead, toggle, refresh };
+}
 
 // --- Types ---
 interface Story {
@@ -88,7 +145,7 @@ function FloatingElement({ children, delay = 0, duration = 4, yOffset = 10, xOff
   );
 }
 
-function StoryBookCard({ story, onClick, index }: { story: Story, onClick: () => void, index: number }) {
+function StoryBookCard({ story, onClick, index, isRead, onToggleRead }: { story: Story; onClick: () => void; index: number; isRead?: boolean; onToggleRead?: () => void }) {
   // Soft warm pastels that harmonize with #FFFBF0 cream background
   const pastels = [
     { bg: "bg-[#FFEDE1]", accent: "text-[#E8956A]", ring: "ring-[#FFDDCC]" }, // warm peach
@@ -120,8 +177,21 @@ function StoryBookCard({ story, onClick, index }: { story: Story, onClick: () =>
         {/* Soft inner glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/20 pointer-events-none" />
 
+        {/* Read Badge */}
+        {isRead && (
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className="absolute top-2 right-2 md:top-3 md:right-3 z-10"
+          >
+            <div className="w-6 h-6 md:w-8 md:h-8 bg-emerald-400 rounded-full flex items-center justify-center shadow-md ring-2 ring-white">
+              <Check size={14} className="text-white md:w-5 md:h-5" />
+            </div>
+          </motion.div>
+        )}
+
         {/* Emoji */}
-        <div className="flex items-center justify-center pt-6 md:pt-10">
+        <div className={cn("flex items-center justify-center pt-6 md:pt-10", isRead && "opacity-70")}>
           <motion.span
             whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.15 }}
             transition={{ type: "spring", stiffness: 200 }}
@@ -133,7 +203,7 @@ function StoryBookCard({ story, onClick, index }: { story: Story, onClick: () =>
 
         {/* Content */}
         <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5">
-          <h3 className="text-xs md:text-base font-display font-bold text-slate-700 leading-snug line-clamp-2 mb-0.5 md:mb-1">
+          <h3 className={cn("text-xs md:text-base font-display font-bold leading-snug line-clamp-2 mb-0.5 md:mb-1", isRead ? "text-slate-500" : "text-slate-700")}>
             {story.title}
           </h3>
           <div className="flex items-center gap-1.5">
@@ -153,7 +223,7 @@ const categoryMeta: Record<string, { icon: typeof Moon; label: string }> = {
   breathing: { icon: Heart, label: "Breathing" },
 };
 
-function CategoryRow({ category, categoryStories, onStoryClick }: { category: string; categoryStories: Story[]; onStoryClick: (id: number) => void }) {
+function CategoryRow({ category, categoryStories, onStoryClick, readSet, onToggleRead }: { category: string; categoryStories: Story[]; onStoryClick: (id: number) => void; readSet: Set<number>; onToggleRead: (id: number) => void }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -200,7 +270,7 @@ function CategoryRow({ category, categoryStories, onStoryClick }: { category: st
       >
         {categoryStories.map((story, i) => (
           <div key={story.id} className="snap-start shrink-0 w-[130px] md:w-[280px]">
-            <StoryBookCard story={story} index={i} onClick={() => onStoryClick(story.id)} />
+            <StoryBookCard story={story} index={i} onClick={() => onStoryClick(story.id)} isRead={readSet.has(story.id)} onToggleRead={() => onToggleRead(story.id)} />
           </div>
         ))}
       </div>
@@ -208,9 +278,13 @@ function CategoryRow({ category, categoryStories, onStoryClick }: { category: st
   );
 }
 
+type FilterMode = "all" | "new" | "read";
+
 function Home() {
   const [, setLocation] = useLocation();
   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState<FilterMode>("all");
+  const { readSet, toggle } = useReadStories();
   const { toast } = useToast();
 
   const handleMagic = () => {
@@ -300,6 +374,66 @@ function Home() {
           )}
         </div>
 
+        {/* Progress Bar */}
+        {readSet.size > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-md mx-auto mb-6 md:mb-10"
+          >
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 md:p-5 shadow-sm border border-amber-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-bold text-slate-600 flex items-center gap-2">
+                  <BookOpen size={16} className="text-amber-500" />
+                  Reading Progress
+                </span>
+                <span className="text-sm font-bold text-amber-600">
+                  {readSet.size} / {stories.length} stories
+                </span>
+              </div>
+              <div className="h-3 w-full bg-amber-100 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-amber-400 to-orange-400 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${(readSet.size / stories.length) * 100}%` }}
+                  transition={{ type: "spring", stiffness: 50, damping: 15 }}
+                />
+              </div>
+              {readSet.size === stories.length && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-xs text-amber-600 font-bold mt-2 text-center"
+                >
+                  You've read every story! What a superstar!
+                </motion.p>
+              )}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Filter Bar */}
+        <div className="flex items-center justify-center gap-2 mb-6 md:mb-10">
+          {([
+            { key: "all" as FilterMode, label: "All Stories", count: stories.length },
+            { key: "new" as FilterMode, label: "New", count: stories.length - readSet.size },
+            { key: "read" as FilterMode, label: "Read", count: readSet.size },
+          ]).map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={cn(
+                "px-4 py-2 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-bold transition-all",
+                filter === f.key
+                  ? "bg-amber-500 text-white shadow-md"
+                  : "bg-white/80 text-slate-500 hover:bg-white hover:text-slate-700 border border-amber-100"
+              )}
+            >
+              {f.label} ({f.count})
+            </button>
+          ))}
+        </div>
+
         {/* Search Results or Category Rows */}
         {searchFiltered ? (
           <div>
@@ -308,20 +442,37 @@ function Home() {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 pb-32">
               {searchFiltered.map((story, i) => (
-                <StoryBookCard key={story.id} story={story} index={i} onClick={() => setLocation(`/story/${story.id}`)} />
+                <StoryBookCard key={story.id} story={story} index={i} onClick={() => setLocation(`/story/${story.id}`)} isRead={readSet.has(story.id)} onToggleRead={() => toggle(story.id)} />
               ))}
             </div>
           </div>
         ) : (
           <div className="pb-20">
-            {categories.map((cat) => (
-              <CategoryRow
-                key={cat}
-                category={cat}
-                categoryStories={stories.filter((s) => s.category === cat)}
-                onStoryClick={(id) => setLocation(`/story/${id}`)}
-              />
-            ))}
+            {categories.map((cat) => {
+              const catStories = stories.filter((s) => s.category === cat);
+              const filtered = filter === "all" ? catStories
+                : filter === "new" ? catStories.filter((s) => !readSet.has(s.id))
+                : catStories.filter((s) => readSet.has(s.id));
+              if (filtered.length === 0) return null;
+              return (
+                <CategoryRow
+                  key={cat}
+                  category={cat}
+                  categoryStories={filtered}
+                  onStoryClick={(id) => setLocation(`/story/${id}`)}
+                  readSet={readSet}
+                  onToggleRead={toggle}
+                />
+              );
+            })}
+            {filter !== "all" && stories.every((s) => filter === "new" ? readSet.has(s.id) : !readSet.has(s.id)) && (
+              <div className="text-center py-16">
+                <p className="text-4xl mb-4">{filter === "new" ? "🎉" : "📚"}</p>
+                <p className="text-lg text-slate-500 font-body">
+                  {filter === "new" ? "You've read all the stories! Amazing!" : "No stories read yet. Pick one to start!"}
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -402,7 +553,7 @@ function StoryReader({ params }: { params: { id: string } }) {
   const [direction, setDirection] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const { toast } = useToast();
-  
+
   const totalPages = story?.pages.length || 0;
 
   if (!story) return null;
@@ -412,6 +563,8 @@ function StoryReader({ params }: { params: { id: string } }) {
       setDirection(1);
       setPage(p => p + 1);
     } else {
+      // Auto-mark as read when finishing the story
+      markStoryRead(story.id);
       setIsComplete(true);
     }
   };
