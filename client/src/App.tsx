@@ -1,6 +1,6 @@
 import { Switch, Route, useLocation } from "wouter";
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, Variants } from "framer-motion";
-import { Star, Moon, BookOpen, ChevronRight, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, Wand2, PartyPopper, Search, ChevronLeft } from "lucide-react";
+import { Star, Moon, BookOpen, ChevronRight, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, Wand2, PartyPopper, Search, ChevronLeft, Lock, LogOut, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { stories } from "@/lib/stories";
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
@@ -63,6 +63,129 @@ function useReadStories() {
   }, [refresh]);
 
   return { readSet, markRead, toggle, refresh };
+}
+
+// --- Auth (simple password gate) ---
+const AUTH_KEY = "wondertales-authed";
+// SHA-256 hash of the password "wondertales" — change by hashing your new password
+const PASSWORD_HASH = "80fb5999e77d26d5ab31d35771244bd7ced1fcfc9ec93f0461018b973693f11f";
+
+async function hashPassword(password: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const buffer = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function isAuthed(): boolean {
+  return localStorage.getItem(AUTH_KEY) === "true";
+}
+
+function setAuthed(value: boolean) {
+  if (value) {
+    localStorage.setItem(AUTH_KEY, "true");
+  } else {
+    localStorage.removeItem(AUTH_KEY);
+  }
+}
+
+function PasswordGate({ onSuccess }: { onSuccess: () => void }) {
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(false);
+    const hash = await hashPassword(password.trim());
+    if (hash === PASSWORD_HASH) {
+      setAuthed(true);
+      onSuccess();
+    } else {
+      setError(true);
+      setPassword("");
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="min-h-[100dvh] bg-[#FFFBF0] flex flex-col items-center justify-center p-6 relative overflow-hidden selection:bg-amber-200 selection:text-amber-900">
+      {/* Background decor */}
+      <div className="absolute top-20 left-10 text-yellow-400/40 pointer-events-none">
+        <FloatingElement delay={0} duration={6}><Star size={48} fill="currentColor" /></FloatingElement>
+      </div>
+      <div className="absolute top-32 right-16 text-amber-300/40 pointer-events-none">
+        <FloatingElement delay={1} duration={7}><Moon size={64} fill="currentColor" /></FloatingElement>
+      </div>
+      <div className="absolute bottom-32 left-16 text-orange-300/40 pointer-events-none">
+        <FloatingElement delay={2} duration={8}><Heart size={40} fill="currentColor" /></FloatingElement>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="w-full max-w-sm"
+      >
+        {/* Lock icon */}
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center shadow-sm">
+            <Lock className="w-10 h-10 text-amber-500" />
+          </div>
+        </div>
+
+        <h1 className="text-2xl md:text-3xl font-display font-extrabold text-slate-800 text-center mb-2">
+          Welcome Back!
+        </h1>
+        <p className="text-sm text-slate-500 font-body text-center mb-8">
+          Enter the magic password to open the storybook
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => { setPassword(e.target.value); setError(false); }}
+              placeholder="Magic password..."
+              autoFocus
+              className={cn(
+                "w-full px-5 py-4 bg-white/80 backdrop-blur-md rounded-2xl border-2 focus:outline-none shadow-sm text-base font-body text-slate-700 placeholder:text-slate-400 pr-12 transition-colors",
+                error ? "border-red-300 focus:border-red-400" : "border-amber-100 focus:border-amber-400"
+              )}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
+
+          {error && (
+            <motion.p
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-sm text-red-500 font-bold text-center"
+            >
+              Oops! That's not the magic word. Try again!
+            </motion.p>
+          )}
+
+          <Button
+            type="submit"
+            disabled={loading || !password.trim()}
+            className="w-full rounded-2xl h-14 text-lg font-bold shadow-lg bg-amber-500 hover:bg-amber-600 transition-all disabled:opacity-50"
+          >
+            {loading ? "Checking..." : "Open the Storybook"}
+          </Button>
+        </form>
+      </motion.div>
+    </div>
+  );
 }
 
 // --- Types ---
@@ -335,6 +458,15 @@ function Home() {
       <div className="absolute bottom-40 left-20 text-orange-300/60 pointer-events-none">
         <FloatingElement delay={2} duration={8} yOffset={-20}><Heart size={56} fill="currentColor" /></FloatingElement>
       </div>
+
+      {/* Logout Button */}
+      <button
+        onClick={() => { setAuthed(false); window.location.reload(); }}
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-20 p-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-amber-100 shadow-sm hover:shadow-md hover:bg-white transition-all group"
+        title="Lock storybook"
+      >
+        <LogOut size={18} className="text-slate-400 group-hover:text-amber-500 transition-colors" />
+      </button>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-6 md:py-16">
         {/* Header */}
@@ -766,6 +898,12 @@ function StoryReader({ params }: { params: { id: string } }) {
 }
 
 function App() {
+  const [authed, setAuthed] = useState(() => isAuthed());
+
+  if (!authed) {
+    return <PasswordGate onSuccess={() => setAuthed(true)} />;
+  }
+
   return (
     <>
       <MagicCursor />
