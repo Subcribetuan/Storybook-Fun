@@ -17,8 +17,31 @@ export interface DbStory {
   updated_at: string;
 }
 
+// Auto-split a long page into ~150-word chunks at paragraph boundaries
+function splitLongPage(text: string): string[] {
+  // Normalize: treat single newlines as paragraph breaks too (join with \n\n)
+  const paragraphs = text.split(/\n+/).filter(p => p.trim());
+  if (paragraphs.length <= 1 && text.split(/\s+/).filter(Boolean).length <= 150) return [text];
+  const pages: string[] = [];
+  let current = "";
+  for (const para of paragraphs) {
+    const currentWords = current.split(/\s+/).filter(Boolean).length;
+    const paraWords = para.split(/\s+/).filter(Boolean).length;
+    if (current && currentWords + paraWords > 150) {
+      pages.push(current.trim());
+      current = para;
+    } else {
+      current = current ? current + "\n\n" + para : para;
+    }
+  }
+  if (current.trim()) pages.push(current.trim());
+  return pages;
+}
+
 // Convert DB story to app story format (matching the hardcoded story shape)
 export function dbStoryToAppStory(s: DbStory) {
+  // Auto-split any pages that are too long
+  const splitPages = s.pages.flatMap(p => splitLongPage(p.text).map(t => ({ text: t })));
   return {
     id: s.id + 10000, // Offset IDs to avoid collision with hardcoded stories
     title: s.title,
@@ -26,7 +49,7 @@ export function dbStoryToAppStory(s: DbStory) {
     readTime: s.read_time,
     emoji: s.emoji,
     color: s.color,
-    pages: s.pages,
+    pages: splitPages,
     isCustom: true,
     dbId: s.id,
   };

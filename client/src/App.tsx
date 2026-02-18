@@ -1,6 +1,6 @@
 import { Switch, Route, useLocation } from "wouter";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, Variants } from "framer-motion";
-import { Star, Moon, BookOpen, ChevronRight, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, Wand2, PartyPopper, Search, ChevronLeft, Lock, LogOut, Eye, EyeOff, Plus, Trash2, Save } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform, Variants } from "framer-motion";
+import { Star, Moon, BookOpen, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, PartyPopper, Search, Lock, LogOut, Eye, EyeOff, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { stories as builtInStories } from "@/lib/stories";
 import { useState, useEffect, useMemo, useRef, useCallback, createContext, useContext } from "react";
@@ -222,61 +222,11 @@ interface Story {
   emoji: string;
   color: string;
   pages: { text: string }[];
+  isCustom?: boolean;
+  dbId?: number;
 }
 
 // --- Components ---
-
-function MagicCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isPointer, setIsPointer] = useState(false);
-  
-  // Smooth spring animation for cursor
-  const springX = useSpring(0, { stiffness: 500, damping: 28 });
-  const springY = useSpring(0, { stiffness: 500, damping: 28 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      springX.set(e.clientX - 16);
-      springY.set(e.clientY - 16);
-      
-      const target = e.target as HTMLElement;
-      // Check if hovering over clickable elements
-      const clickable = target.closest('button, a, .cursor-pointer');
-      setIsPointer(!!clickable);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [springX, springY]);
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] hidden md:block"
-      style={{ x: springX, y: springY }}
-    >
-      <motion.div
-        animate={{ scale: isPointer ? 1.5 : 1, rotate: isPointer ? 45 : 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      >
-        <Wand2 
-          className={cn(
-            "w-8 h-8 transition-colors duration-300 drop-shadow-lg", 
-            isPointer ? "text-yellow-400 fill-yellow-200" : "text-primary/80 fill-primary/20"
-          )} 
-        />
-      </motion.div>
-      {isPointer && (
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0, opacity: 0 }}
-          className="absolute -top-2 -right-2"
-        >
-          <Sparkles className="w-4 h-4 text-yellow-300 fill-yellow-100 animate-spin-slow" />
-        </motion.div>
-      )}
-    </motion.div>
-  );
-}
 
 function FloatingElement({ children, delay = 0, duration = 4, yOffset = 10, xOffset = 0 }: any) {
   return (
@@ -293,7 +243,7 @@ function FloatingElement({ children, delay = 0, duration = 4, yOffset = 10, xOff
   );
 }
 
-function StoryBookCard({ story, onClick, index, isRead, onToggleRead }: { story: Story; onClick: () => void; index: number; isRead?: boolean; onToggleRead?: () => void }) {
+function StoryBookCard({ story, onClick, index, isRead, onToggleRead, onDelete }: { story: Story; onClick: () => void; index: number; isRead?: boolean; onToggleRead?: () => void; onDelete?: () => void }) {
   // Soft warm pastels that harmonize with #FFFBF0 cream background
   const pastels = [
     { bg: "bg-[#FFEDE1]", accent: "text-[#E8956A]", ring: "ring-[#FFDDCC]" }, // warm peach
@@ -324,6 +274,17 @@ function StoryBookCard({ story, onClick, index, isRead, onToggleRead }: { story:
       )}>
         {/* Soft inner glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/20 pointer-events-none" />
+
+        {/* Delete Button (custom stories only) */}
+        {onDelete && (
+          <button
+            onClick={(e) => { e.stopPropagation(); onDelete(); }}
+            className="absolute top-2 left-2 md:top-3 md:left-3 z-10 w-6 h-6 md:w-8 md:h-8 bg-red-400 hover:bg-red-500 rounded-full flex items-center justify-center shadow-md ring-2 ring-white transition-colors md:opacity-0 md:group-hover:opacity-100"
+            title="Delete story"
+          >
+            <Trash2 size={12} className="text-white md:w-4 md:h-4" />
+          </button>
+        )}
 
         {/* Read Badge */}
         {isRead && (
@@ -371,67 +332,13 @@ const categoryMeta: Record<string, { icon: typeof Moon; label: string }> = {
   breathing: { icon: Heart, label: "Breathing" },
 };
 
-function CategoryRow({ category, categoryStories, onStoryClick, readSet, onToggleRead }: { category: string; categoryStories: Story[]; onStoryClick: (id: number) => void; readSet: Set<number>; onToggleRead: (id: number) => void }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const meta = categoryMeta[category];
-  const Icon = meta?.icon;
-
-  const checkScroll = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  };
-
-  const scroll = (dir: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const amount = el.clientWidth * 0.7;
-    el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
-  };
-
-  return (
-    <div className="mb-4 md:mb-10">
-      <div className="flex items-center gap-2 mb-3 md:mb-4 px-1">
-        {Icon && <Icon size={20} className="text-amber-400" />}
-        <h2 className="text-lg md:text-2xl font-display font-bold text-slate-700">{meta?.label || category}</h2>
-        <span className="text-xs md:text-sm text-slate-400 font-bold ml-1">({categoryStories.length})</span>
-
-        {/* Desktop scroll arrows */}
-        <div className="hidden md:flex items-center gap-1 ml-auto">
-          <button onClick={() => scroll("left")} disabled={!canScrollLeft} className={cn("p-2 rounded-full transition-all", canScrollLeft ? "bg-white shadow-md hover:shadow-lg text-slate-600" : "text-slate-300 cursor-default")}>
-            <ChevronLeft size={18} />
-          </button>
-          <button onClick={() => scroll("right")} disabled={!canScrollRight} className={cn("p-2 rounded-full transition-all", canScrollRight ? "bg-white shadow-md hover:shadow-lg text-slate-600" : "text-slate-300 cursor-default")}>
-            <ChevronRight size={18} />
-          </button>
-        </div>
-      </div>
-
-      <div
-        ref={scrollRef}
-        onScroll={checkScroll}
-        className="flex gap-3 md:gap-6 overflow-x-auto pb-3 scrollbar-hide snap-x snap-mandatory -mx-6 px-6"
-        style={{ WebkitOverflowScrolling: "touch" }}
-      >
-        {categoryStories.map((story, i) => (
-          <div key={story.id} className="snap-start shrink-0 w-[130px] md:w-[280px]">
-            <StoryBookCard story={story} index={i} onClick={() => onStoryClick(story.id)} isRead={readSet.has(story.id)} onToggleRead={() => onToggleRead(story.id)} />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 type FilterMode = "all" | "new" | "read";
 
 function Home() {
   const [, setLocation] = useLocation();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<FilterMode>("all");
+  const [selectedCat, setSelectedCat] = useState<string>("all");
   const { readSet, toggle } = useReadStories();
   const { toast } = useToast();
   const { stories, refreshCustom } = useAllStories();
@@ -462,6 +369,18 @@ function Home() {
     stories.forEach((s) => { if (!cats.includes(s.category)) cats.push(s.category); });
     return cats;
   }, [stories]);
+
+  const handleDeleteStory = async (story: Story) => {
+    if (!story.isCustom || !story.dbId) return;
+    if (!confirm(`Delete "${story.title}"?`)) return;
+    try {
+      await deleteStory(story.dbId);
+      refreshCustom();
+      toast({ title: "Story deleted", description: `"${story.title}" has been removed.` });
+    } catch (e) {
+      toast({ title: "Error deleting story", description: String(e) });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#FFFBF0] relative overflow-x-clip selection:bg-amber-200 selection:text-amber-900">
@@ -570,67 +489,105 @@ function Home() {
           </motion.div>
         )}
 
-        {/* Filter Bar — sticky on scroll */}
-        <div className="sticky top-0 z-30 flex items-center justify-center gap-2 mb-6 md:mb-10 py-3 -mx-6 px-6 bg-[#FFFBF0]/90 backdrop-blur-md">
-          {([
-            { key: "all" as FilterMode, label: "All Stories", count: stories.length },
-            { key: "new" as FilterMode, label: "New", count: stories.length - readSet.size },
-            { key: "read" as FilterMode, label: "Read", count: readSet.size },
-          ]).map((f) => (
+        {/* Sticky Filter Bar — category tabs + read/new filter */}
+        <div className="sticky top-0 z-30 py-3 -mx-6 px-6 bg-[#FFFBF0]/90 backdrop-blur-md space-y-2 mb-6 md:mb-10">
+          {/* Category Tabs */}
+          <div className="flex items-center justify-center gap-2 overflow-x-auto scrollbar-hide">
             <button
-              key={f.key}
-              onClick={() => setFilter(f.key)}
+              onClick={() => setSelectedCat("all")}
               className={cn(
-                "px-4 py-2 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-bold transition-all",
-                filter === f.key
+                "px-4 py-2 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-bold transition-all shrink-0",
+                selectedCat === "all"
                   ? "bg-amber-500 text-white shadow-md"
                   : "bg-white/80 text-slate-500 hover:bg-white hover:text-slate-700 border border-amber-100"
               )}
             >
-              {f.label} ({f.count})
+              All ({stories.length})
             </button>
-          ))}
+            {categories.map((cat) => {
+              const meta = categoryMeta[cat];
+              const Icon = meta?.icon;
+              const count = stories.filter((s) => s.category === cat).length;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCat(cat)}
+                  className={cn(
+                    "px-4 py-2 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-bold transition-all shrink-0 inline-flex items-center gap-1.5",
+                    selectedCat === cat
+                      ? "bg-amber-500 text-white shadow-md"
+                      : "bg-white/80 text-slate-500 hover:bg-white hover:text-slate-700 border border-amber-100"
+                  )}
+                >
+                  {Icon && <Icon size={14} />}
+                  {meta?.label || cat} ({count})
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Read / New Filter */}
+          <div className="flex items-center justify-center gap-2">
+            {([
+              { key: "all" as FilterMode, label: "All" },
+              { key: "new" as FilterMode, label: "New" },
+              { key: "read" as FilterMode, label: "Read" },
+            ]).map((f) => (
+              <button
+                key={f.key}
+                onClick={() => setFilter(f.key)}
+                className={cn(
+                  "px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[11px] md:text-xs font-bold transition-all",
+                  filter === f.key
+                    ? "bg-slate-700 text-white shadow-sm"
+                    : "bg-white/60 text-slate-400 hover:bg-white hover:text-slate-600 border border-slate-200"
+                )}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Search Results or Category Rows */}
+        {/* Stories Grid */}
         {searchFiltered ? (
           <div>
             <h2 className="text-lg font-display font-bold text-slate-600 mb-4">
               {searchFiltered.length} result{searchFiltered.length !== 1 ? "s" : ""} for "{search}"
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 pb-32">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5 pb-32">
               {searchFiltered.map((story, i) => (
-                <StoryBookCard key={story.id} story={story} index={i} onClick={() => setLocation(`/story/${story.id}`)} isRead={readSet.has(story.id)} onToggleRead={() => toggle(story.id)} />
+                <StoryBookCard key={story.id} story={story} index={i} onClick={() => setLocation(`/story/${story.id}`)} isRead={readSet.has(story.id)} onToggleRead={() => toggle(story.id)} onDelete={story.isCustom ? () => handleDeleteStory(story) : undefined} />
               ))}
             </div>
           </div>
         ) : (
           <div className="pb-20">
-            {categories.map((cat) => {
-              const catStories = stories.filter((s) => s.category === cat);
-              const filtered = filter === "all" ? catStories
-                : filter === "new" ? catStories.filter((s) => !readSet.has(s.id))
-                : catStories.filter((s) => readSet.has(s.id));
-              if (filtered.length === 0) return null;
+            {(() => {
+              const catFiltered = selectedCat === "all" ? stories : stories.filter((s) => s.category === selectedCat);
+              const displayed = filter === "all" ? catFiltered
+                : filter === "new" ? catFiltered.filter((s) => !readSet.has(s.id))
+                : catFiltered.filter((s) => readSet.has(s.id));
+
+              if (displayed.length === 0) {
+                return (
+                  <div className="text-center py-16">
+                    <p className="text-4xl mb-4">{filter === "read" ? "📚" : "🎉"}</p>
+                    <p className="text-lg text-slate-500 font-body">
+                      {filter === "read" ? "No stories read yet. Pick one to start!" : filter === "new" ? "You've read all the stories! Amazing!" : "No stories in this category yet."}
+                    </p>
+                  </div>
+                );
+              }
+
               return (
-                <CategoryRow
-                  key={cat}
-                  category={cat}
-                  categoryStories={filtered}
-                  onStoryClick={(id) => setLocation(`/story/${id}`)}
-                  readSet={readSet}
-                  onToggleRead={toggle}
-                />
+                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5">
+                  {displayed.map((story, i) => (
+                    <StoryBookCard key={story.id} story={story} index={i} onClick={() => setLocation(`/story/${story.id}`)} isRead={readSet.has(story.id)} onToggleRead={() => toggle(story.id)} onDelete={story.isCustom ? () => handleDeleteStory(story) : undefined} />
+                  ))}
+                </div>
               );
-            })}
-            {filter !== "all" && stories.every((s) => filter === "new" ? readSet.has(s.id) : !readSet.has(s.id)) && (
-              <div className="text-center py-16">
-                <p className="text-4xl mb-4">{filter === "new" ? "🎉" : "📚"}</p>
-                <p className="text-lg text-slate-500 font-body">
-                  {filter === "new" ? "You've read all the stories! Amazing!" : "No stories read yet. Pick one to start!"}
-                </p>
-              </div>
-            )}
+            })()}
           </div>
         )}
       </div>
@@ -751,6 +708,12 @@ function StoryReader({ params }: { params: { id: string } }) {
     });
   };
 
+  // Scroll to top on page change
+  const textScrollRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    textScrollRef.current?.scrollTo(0, 0);
+  }, [page]);
+
   // Swipe gesture support
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
@@ -775,8 +738,8 @@ function StoryReader({ params }: { params: { id: string } }) {
   const currentPage = story.pages[page];
   const progress = ((page + 1) / totalPages) * 100;
 
-  // Format Text
-  const formattedText = currentPage.text.split('\n\n').map((paragraph, i) => {
+  // Format Text — split on any newline(s) for paragraph spacing
+  const formattedText = currentPage.text.split(/\n+/).filter(p => p.trim()).map((paragraph, i) => {
     const isDialogue = paragraph.trim().startsWith('"');
     const isSoundEffect = paragraph === paragraph.toUpperCase() && paragraph.length < 50;
 
@@ -903,7 +866,7 @@ function StoryReader({ params }: { params: { id: string } }) {
               <div className="text-6xl drop-shadow-md">{story.emoji}</div>
             </div>
 
-            <div className="flex-1 p-8 md:p-16 overflow-y-auto custom-scrollbar relative overflow-x-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+            <div ref={textScrollRef} className="flex-1 p-8 md:p-16 overflow-y-auto custom-scrollbar relative overflow-x-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
                {/* Paper Texture Overlay */}
                <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply" style={{ backgroundImage: `url('/paper-texture.png')` }} />
 
@@ -988,20 +951,38 @@ function StoryEditor() {
   const [category, setCategory] = useState("bedtime");
   const [emoji, setEmoji] = useState("📖");
   const [color, setColor] = useState("from-purple-500 to-pink-600");
-  const [pages, setPages] = useState<string[]>([""]);
+  const [storyText, setStoryText] = useState("");
   const [saving, setSaving] = useState(false);
 
-  const addPage = () => setPages([...pages, ""]);
-  const removePage = (i: number) => setPages(pages.filter((_, idx) => idx !== i));
-  const updatePage = (i: number, text: string) => setPages(pages.map((p, idx) => idx === i ? text : p));
+  // Auto-split text into pages (~150 words each, split at paragraph boundaries)
+  const splitIntoPages = (text: string) => {
+    const paragraphs = text.split(/\n\n+/).filter(p => p.trim());
+    if (paragraphs.length === 0) return [];
+    const pages: string[] = [];
+    let current = "";
+    for (const para of paragraphs) {
+      const currentWords = current.split(/\s+/).filter(Boolean).length;
+      const paraWords = para.split(/\s+/).filter(Boolean).length;
+      if (current && currentWords + paraWords > 150) {
+        pages.push(current.trim());
+        current = para;
+      } else {
+        current = current ? current + "\n\n" + para : para;
+      }
+    }
+    if (current.trim()) pages.push(current.trim());
+    return pages;
+  };
 
-  const canSave = title.trim() && pages.some(p => p.trim());
+  const previewPages = splitIntoPages(storyText);
+  const canSave = title.trim() && storyText.trim();
 
   const handleSave = async () => {
     if (!canSave) return;
     setSaving(true);
     try {
-      const totalWords = pages.join(" ").split(/\s+/).length;
+      const pages = splitIntoPages(storyText);
+      const totalWords = storyText.split(/\s+/).filter(Boolean).length;
       const readTime = `${Math.max(1, Math.round(totalWords / 200))} min`;
 
       await createStory({
@@ -1010,7 +991,7 @@ function StoryEditor() {
         read_time: readTime,
         emoji,
         color,
-        pages: pages.filter(p => p.trim()).map(p => ({ text: p.trim() })),
+        pages: pages.map(p => ({ text: p })),
       });
       refreshCustom();
       toast({ title: "Story saved!", description: "Your new story is now in the library." });
@@ -1105,37 +1086,22 @@ function StoryEditor() {
             </div>
           </div>
 
-          {/* Pages */}
+          {/* Story Text */}
           <div>
-            <label className="block text-sm font-bold text-slate-600 mb-2">Story Pages</label>
-            <p className="text-xs text-slate-400 mb-3">Each page is one screen in the reader. Use blank lines between paragraphs.</p>
-            <div className="space-y-4">
-              {pages.map((text, i) => (
-                <div key={i} className="relative">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-bold text-slate-400">Page {i + 1}</span>
-                    {pages.length > 1 && (
-                      <button onClick={() => removePage(i)} className="text-red-400 hover:text-red-600 transition-colors">
-                        <Trash2 size={14} />
-                      </button>
-                    )}
-                  </div>
-                  <textarea
-                    value={text}
-                    onChange={e => updatePage(i, e.target.value)}
-                    placeholder={i === 0 ? "Once upon a time..." : "Continue the story..."}
-                    rows={5}
-                    className="w-full px-4 py-3 bg-white rounded-xl border-2 border-amber-100 focus:border-amber-400 focus:outline-none text-sm font-body text-slate-700 placeholder:text-slate-400 resize-y"
-                  />
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={addPage}
-              className="mt-3 flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors"
-            >
-              <Plus size={16} /> Add another page
-            </button>
+            <label className="block text-sm font-bold text-slate-600 mb-2">Story Text</label>
+            <p className="text-xs text-slate-400 mb-3">Paste or type your entire story. Use blank lines between paragraphs — it will be auto-split into pages (~150 words each).</p>
+            <textarea
+              value={storyText}
+              onChange={e => setStoryText(e.target.value)}
+              placeholder="Once upon a time..."
+              rows={12}
+              className="w-full px-4 py-3 bg-white rounded-xl border-2 border-amber-100 focus:border-amber-400 focus:outline-none text-sm font-body text-slate-700 placeholder:text-slate-400 resize-y"
+            />
+            {previewPages.length > 0 && (
+              <p className="mt-2 text-xs text-slate-400 font-bold">
+                Will be split into {previewPages.length} page{previewPages.length !== 1 ? "s" : ""}
+              </p>
+            )}
           </div>
 
           {/* Preview */}
@@ -1190,7 +1156,6 @@ function App() {
 
   return (
     <AllStoriesContext.Provider value={{ stories: allStories, refreshCustom: loadCustom }}>
-      <MagicCursor />
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/story/:id" component={StoryReader} />
