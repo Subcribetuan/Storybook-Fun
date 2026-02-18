@@ -38,7 +38,7 @@ export const stories = [
   {
     id: 3,
     title: "Paw Patrol and the Dream Patrol",
-    category: "bedtime",
+    category: "paw-patrol",
     readTime: "5 min",
     emoji: "🐾",
     color: "from-blue-500 to-red-500",
@@ -54,7 +54,7 @@ export const stories = [
   {
     id: 4,
     title: "Midnight Monster Truck Race",
-    category: "adventure",
+    category: "paw-patrol",
     readTime: "3 min",
     emoji: "🏁",
     color: "from-orange-500 to-yellow-500",
@@ -69,7 +69,7 @@ export const stories = [
   {
     id: 5,
     title: "Mission to the Moon",
-    category: "adventure",
+    category: "paw-patrol",
     readTime: "3 min",
     emoji: "🚀",
     color: "from-blue-600 to-indigo-700",
@@ -114,7 +114,7 @@ export const stories = [
   {
     id: 8,
     title: "Paw Patrol Splashy Pool Day",
-    category: "swimming",
+    category: "paw-patrol",
     readTime: "3 min",
     emoji: "💦",
     color: "from-sky-400 to-blue-600",

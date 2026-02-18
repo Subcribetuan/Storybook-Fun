@@ -67,8 +67,8 @@ function useReadStories() {
 
 // --- Auth (simple password gate) ---
 const AUTH_KEY = "wondertales-authed";
-// SHA-256 hash of the password "wondertales" — change by hashing your new password
-const PASSWORD_HASH = "80fb5999e77d26d5ab31d35771244bd7ced1fcfc9ec93f0461018b973693f11f";
+// SHA-256 hash of the password — change by hashing your new password
+const PASSWORD_HASH = "3cdf50e92f3d0967ce56132bba8432c0dac2034429ea108f5dac90a3d49db584";
 
 async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();
@@ -78,14 +78,19 @@ async function hashPassword(password: string): Promise<string> {
 }
 
 function isAuthed(): boolean {
-  return localStorage.getItem(AUTH_KEY) === "true";
+  return localStorage.getItem(AUTH_KEY) === "true" || sessionStorage.getItem(AUTH_KEY) === "true";
 }
 
-function setAuthed(value: boolean) {
+function setAuthed(value: boolean, remember = false) {
   if (value) {
-    localStorage.setItem(AUTH_KEY, "true");
+    if (remember) {
+      localStorage.setItem(AUTH_KEY, "true");
+    } else {
+      sessionStorage.setItem(AUTH_KEY, "true");
+    }
   } else {
     localStorage.removeItem(AUTH_KEY);
+    sessionStorage.removeItem(AUTH_KEY);
   }
 }
 
@@ -94,6 +99,7 @@ function PasswordGate({ onSuccess }: { onSuccess: () => void }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [remember, setRemember] = useState(true);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,7 +107,7 @@ function PasswordGate({ onSuccess }: { onSuccess: () => void }) {
     setError(false);
     const hash = await hashPassword(password.trim());
     if (hash === PASSWORD_HASH) {
-      setAuthed(true);
+      setAuthed(true, remember);
       onSuccess();
     } else {
       setError(true);
@@ -164,6 +170,16 @@ function PasswordGate({ onSuccess }: { onSuccess: () => void }) {
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
+
+          <label className="flex items-center gap-2 cursor-pointer select-none px-1">
+            <input
+              type="checkbox"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+              className="w-4 h-4 rounded border-amber-300 text-amber-500 accent-amber-500 cursor-pointer"
+            />
+            <span className="text-sm text-slate-500 font-body">Remember me</span>
+          </label>
 
           {error && (
             <motion.p
@@ -341,7 +357,7 @@ function StoryBookCard({ story, onClick, index, isRead, onToggleRead }: { story:
 
 const categoryMeta: Record<string, { icon: typeof Moon; label: string }> = {
   bedtime: { icon: Moon, label: "Bedtime" },
-  adventure: { icon: Sparkles, label: "Adventure" },
+  "paw-patrol": { icon: Star, label: "Paw Patrol" },
   swimming: { icon: Cloud, label: "Swimming" },
   breathing: { icon: Heart, label: "Breathing" },
 };
