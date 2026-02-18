@@ -454,15 +454,15 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFFBF0] relative overflow-hidden selection:bg-amber-200 selection:text-amber-900">
+    <div className="min-h-screen bg-[#FFFBF0] relative overflow-x-hidden selection:bg-amber-200 selection:text-amber-900">
       {/* Background Map Image */}
       <div
-        className="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply transition-opacity duration-1000"
+        className="fixed inset-0 opacity-15 pointer-events-none mix-blend-multiply transition-opacity duration-1000"
         style={{ backgroundImage: `url('/map-bg.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       />
 
       {/* Animated Background Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FFFBF0] pointer-events-none" />
+      <div className="fixed inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FFFBF0] pointer-events-none" />
 
       {/* Floating Decor */}
       <div className="absolute top-20 left-10 text-yellow-400/60 pointer-events-none">
