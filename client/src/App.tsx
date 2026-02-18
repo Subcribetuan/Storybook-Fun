@@ -299,16 +299,28 @@ function StoryBookCard({ story, onClick, index, isRead, onToggleRead, onDelete }
           </motion.div>
         )}
 
-        {/* Emoji */}
-        <div className={cn("flex items-center justify-center pt-6 md:pt-10", isRead && "opacity-70")}>
-          <motion.span
-            whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.15 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className="text-4xl md:text-6xl drop-shadow-sm select-none"
-          >
-            {story.emoji}
-          </motion.span>
-        </div>
+        {/* Emojis */}
+        {(() => {
+          const emojis = story.emoji.split(" ").filter(Boolean);
+          const positions = [
+            "relative z-10 text-4xl md:text-6xl",
+            "absolute -top-1 -right-3 md:-top-2 md:-right-5 z-0 text-xl md:text-3xl opacity-80 rotate-12",
+            "absolute -bottom-1 -left-3 md:-bottom-2 md:-left-5 z-0 text-xl md:text-3xl opacity-80 -rotate-12",
+          ];
+          return (
+            <div className={cn("flex items-center justify-center pt-6 md:pt-10", isRead && "opacity-70")}>
+              <motion.div
+                whileHover={{ scale: 1.12 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="relative select-none"
+              >
+                {emojis.map((e, i) => (
+                  <span key={i} className={positions[i] || positions[0]}>{e}</span>
+                ))}
+              </motion.div>
+            </div>
+          );
+        })()}
 
         {/* Content */}
         <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5">
@@ -842,7 +854,7 @@ function StoryReader({ params }: { params: { id: string } }) {
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
                 className="text-[12rem] mb-8 filter drop-shadow-2xl"
               >
-                {story.emoji}
+                {story.emoji.split(" ")[0]}
               </motion.div>
               <motion.h2
                 key={story.title}
@@ -863,7 +875,7 @@ function StoryReader({ params }: { params: { id: string } }) {
           <div className="flex-1 bg-[#FFFBF0] relative flex flex-col h-full">
             {/* Mobile Header (Emoji) */}
             <div className="md:hidden p-6 pb-0 flex justify-center">
-              <div className="text-6xl drop-shadow-md">{story.emoji}</div>
+              <div className="text-6xl drop-shadow-md">{story.emoji.split(" ")[0]}</div>
             </div>
 
             <div ref={textScrollRef} className="flex-1 p-8 md:p-16 overflow-y-auto custom-scrollbar relative overflow-x-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
@@ -949,7 +961,7 @@ function StoryEditor() {
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("bedtime");
-  const [emoji, setEmoji] = useState("📖");
+  const [emojis, setEmojis] = useState<string[]>(["📖"]);
   const [color, setColor] = useState("from-purple-500 to-pink-600");
   const [storyText, setStoryText] = useState("");
   const [saving, setSaving] = useState(false);
@@ -975,7 +987,7 @@ function StoryEditor() {
   };
 
   const previewPages = splitIntoPages(storyText);
-  const canSave = title.trim() && storyText.trim();
+  const canSave = title.trim() && storyText.trim() && emojis.length > 0;
 
   const handleSave = async () => {
     if (!canSave) return;
@@ -989,7 +1001,7 @@ function StoryEditor() {
         title: title.trim(),
         category,
         read_time: readTime,
-        emoji,
+        emoji: emojis.join(" "),
         color,
         pages: pages.map(p => ({ text: p })),
       });
@@ -1048,17 +1060,31 @@ function StoryEditor() {
             </div>
           </div>
 
-          {/* Emoji Picker */}
+          {/* Emoji Picker (up to 3) */}
           <div>
-            <label className="block text-sm font-bold text-slate-600 mb-2">Cover Emoji</label>
+            <label className="block text-sm font-bold text-slate-600 mb-2">Cover Emojis <span className="text-xs font-normal text-slate-400">(pick up to 3)</span></label>
+            {emojis.length > 0 && (
+              <div className="flex gap-2 mb-3">
+                {emojis.map((e, i) => (
+                  <button key={i} onClick={() => setEmojis(emojis.filter((_, j) => j !== i))} className="w-11 h-11 rounded-xl text-xl bg-amber-100 ring-2 ring-amber-400 flex items-center justify-center relative group">
+                    {e}
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-400 rounded-full text-[10px] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">x</span>
+                  </button>
+                ))}
+              </div>
+            )}
             <div className="flex flex-wrap gap-2">
               {EMOJI_OPTIONS.map(e => (
                 <button
                   key={e}
-                  onClick={() => setEmoji(e)}
+                  onClick={() => {
+                    if (emojis.includes(e)) setEmojis(emojis.filter(x => x !== e));
+                    else if (emojis.length < 3) setEmojis([...emojis, e]);
+                  }}
                   className={cn(
                     "w-11 h-11 rounded-xl text-xl flex items-center justify-center transition-all",
-                    emoji === e ? "bg-amber-100 ring-2 ring-amber-400 scale-110" : "bg-white border border-slate-200 hover:bg-slate-50"
+                    emojis.includes(e) ? "bg-amber-100 ring-2 ring-amber-400 scale-110" : "bg-white border border-slate-200 hover:bg-slate-50",
+                    emojis.length >= 3 && !emojis.includes(e) && "opacity-40 cursor-not-allowed"
                   )}
                 >
                   {e}
@@ -1110,7 +1136,7 @@ function StoryEditor() {
               <label className="block text-sm font-bold text-slate-600 mb-2">Preview</label>
               <div className="w-36">
                 <div className={cn("aspect-[3/4] rounded-2xl bg-gradient-to-br flex flex-col items-center justify-center p-3 text-white shadow-lg", color)}>
-                  <span className="text-4xl mb-2">{emoji}</span>
+                  <span className="text-4xl mb-2">{emojis.join(" ")}</span>
                   <span className="text-xs font-bold text-center leading-tight line-clamp-2">{title}</span>
                 </div>
               </div>

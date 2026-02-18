@@ -4,7 +4,7 @@ export const stories = [
     title: "The Brave Brothers and the Blanket Fort of Stars",
     category: "bedtime",
     readTime: "5 min",
-    emoji: "🌙",
+    emoji: "🌙 ✨ 🏰",
     color: "from-indigo-500 to-purple-600",
     pages: [
       { text: `Once upon a time, in a cozy house on a quiet street, there lived two brothers.\n\nThe big brother was named Christopher. He was strong and brave, and he loved to explore.\n\nThe little brother was named Benjamin. He was curious and silly, and he loved to follow Christopher everywhere.` },
@@ -23,7 +23,7 @@ export const stories = [
     title: "The Secret Door Under the Bed",
     category: "bedtime",
     readTime: "5 min",
-    emoji: "✨",
+    emoji: "✨ 🚪 🔮",
     color: "from-purple-500 to-pink-600",
     pages: [
       { text: `On the third night in their big bed, something funny happened.\n\nBenjamin dropped his stuffed animal, and it rolled right under the bed.\n\n"Uh oh," said Benjamin.\n\nChristopher leaned over the side and looked underneath. It was dark down there. A little dusty. A little shadowy.\n\nBut then he saw something he had never seen before.\n\nA tiny door.` },
@@ -40,7 +40,7 @@ export const stories = [
     title: "Paw Patrol and the Dream Patrol",
     category: "paw-patrol",
     readTime: "5 min",
-    emoji: "🐾",
+    emoji: "🐾 ⭐ 🌙",
     color: "from-blue-500 to-red-500",
     pages: [
       { text: `Ryder had a problem. The pups couldn't sleep.\n\n"I keep hearing noises," said Chase. "These paws uphold the laws — and right now the law says I need to check this room AGAIN."\n\n"My bed feels too big," said Marshall, buried under blankets. "I'm NOT fired up. I'm fired DOWN."\n\n"I miss everyone," said Skye. "This pup's gotta fly — because being in the air makes me feel better."\n\n"It's too dark, dude," said Zuma, wearing goggles indoors.\n\n"Rubble's got tummy trouble on the double," said Rubble, stress-eating.\n\nRocky hid in a pillow fort. "Don't lose it, reuse it — I'm not coming out."` },
@@ -56,7 +56,7 @@ export const stories = [
     title: "Midnight Monster Truck Race",
     category: "paw-patrol",
     readTime: "3 min",
-    emoji: "🏁",
+    emoji: "🏁 🔥 💨",
     color: "from-orange-500 to-yellow-500",
     pages: [
       { text: `Christopher and Benjamin were in bed when they heard it.\n\nVROOM. VROOM. VROOOOM.\n\nSEVEN MONSTER TRUCKS in the front yard. Wheels taller than Daddy.\n\nRyder on top of the biggest one.\n\n"HEY! YOU TWO! GET DOWN HERE! WE'VE GOT A RACE TO WIN!"\n\nA zip line shot through the window. They grabbed on — WHEEEEE! — and landed next to Ryder.\n\n"PAW PATROL — LET'S ROLL!"\n\nVROOOOOOM!` },
@@ -71,7 +71,7 @@ export const stories = [
     title: "Mission to the Moon",
     category: "paw-patrol",
     readTime: "3 min",
-    emoji: "🚀",
+    emoji: "🚀 🐾 🌕",
     color: "from-blue-600 to-indigo-700",
     pages: [
       { text: `Benjamin was counting stars when one moved.\n\nIt wasn't a star. A spaceship. Paw prints on the side.\n\nRyder walked down the ramp in a space helmet.\n\n"Suit up, boys. We're going to the moon."\n\nInside the ship: "Christopher — co-pilot. Benjamin — chief button-pusher."\n\nA whole panel of colorful buttons.\n\n"Can I push one NOW?"\n\n"Not yet," said Ryder, grinning. "But soon."` },
@@ -86,7 +86,7 @@ export const stories = [
     title: "The Brave Breathing Mission",
     category: "breathing",
     readTime: "4 min",
-    emoji: "💨",
+    emoji: "💨 🎈 🦋",
     color: "from-teal-400 to-emerald-500",
     pages: [
       { text: `"I don't WANT to go to sleep," said Christopher, arms crossed.\n\nBenjamin's lip wobbled. "My tummy feels bad."\n\n"Like butterflies?" asked Rubble.\n\n"Mean butterflies."\n\n"I get those too! Every time it thunders."\n\n"Really?"\n\n"Every single time, dude," said Zuma. "He hides under my hovercraft."\n\n"ZUMA! That was a SECRET!"\n\nBenjamin giggled.` },
@@ -101,7 +101,7 @@ export const stories = [
     title: "The Fish Who Was Scared of Water",
     category: "swimming",
     readTime: "3 min",
-    emoji: "🐟",
+    emoji: "🐟 🌊 💙",
     color: "from-cyan-400 to-blue-500",
     pages: [
       { text: `Christopher was at the pool edge. Not going in. Nope.\n\nBenjamin on his lap. DOUBLE nope.\n\nA tiny blue fish popped out. Shaking. Wobble wobble wobble.\n\n"HELLO! HELP! I'm in WATER and I DON'T LIKE IT!"\n\n"But you're a FISH," said Benjamin.\n\n"I KNOW! My name is Finley and I'm a fish scared of water. PLEASE can I sit up there?"\n\nHe flopped out — SPLAT.\n\n"Much better. Dry. I like dry."` },
@@ -116,7 +116,7 @@ export const stories = [
     title: "Paw Patrol Splashy Pool Day",
     category: "paw-patrol",
     readTime: "3 min",
-    emoji: "💦",
+    emoji: "💦 🐾 🏊",
     color: "from-sky-400 to-blue-600",
     pages: [
       { text: `"I don't wanna go swimming," said Christopher.\n"Me NEITHER," said Benjamin.\n\n"DUDES!" Zuma popped out of their BATHTUB. Goggles on.\n\nMarshall ran in — slipped — BONK. "I'm good!"\n\nChase: "The swimming case."\n\nRubble waddled in with a rubber duck and pool noodles. "I brought snacks too."\n\n"You can't eat snacks in the pool."\n\n"...I brought snacks too," said Rubble sadly.` },
@@ -130,7 +130,7 @@ export const stories = [
     title: "Benjamin and Rubble's Snuggly Night",
     category: "bedtime",
     readTime: "3 min",
-    emoji: "🧸",
+    emoji: "🧸 🐾 💛",
     color: "from-orange-400 to-red-500",
     pages: [
       { text: `Benjamin was in bed. Eyes wide wide wide open.\n\nScratch scratch scratch.\n\nBOING — Rubble jumped on the bed!\n\n"I came for SNUGGLES!" Wag wag wag wag wag. Pillow knocked off.\n\n"You're SILLY!"\n\nSO warm. SO fluffy. SO squishy.\n\nBenjamin poked his tummy. "That tickles!" Poked again. "HEY!" One more. "OKAY OKAY!"\n\n"One more?" "...Okay." Poke. "Hee hee hee!"` },
@@ -145,7 +145,7 @@ export const stories = [
     title: "The Night Ryder Needed Help",
     category: "bedtime",
     readTime: "4 min",
-    emoji: "🛡️",
+    emoji: "🛡️ 💪 ❤️",
     color: "from-violet-600 to-indigo-600",
     pages: [
       { text: `Everyone thinks Ryder never gets scared.\n\nChristopher used to think that too.\n\nUntil the night Ryder showed up alone.\n\nNo pups. No trucks. Just Ryder on the edge of the bed.\n\n"This isn't a pup mission. I needed to talk to someone. And I thought of you."\n\n"Me?"\n\n"You're the only one who'd get it."` },
@@ -160,7 +160,7 @@ export const stories = [
     title: "The Morning Chase Wouldn't Let Go",
     category: "bedtime",
     readTime: "5 min",
-    emoji: "🐾",
+    emoji: "🐾 🌅 🤗",
     color: "from-amber-400 to-orange-500",
     pages: [
       { text: `Chase had to go to Pup School.\n\nEvery pup went. Marshall went. Skye went. Rubble went. Every morning, Ryder drove them to the big red building and said goodbye and they ran inside.\n\nEvery pup except Chase.\n\nChase was holding onto Ryder's leg.\n\nNot a little bit. A LOT. Both paws wrapped around. Face buried in Ryder's knee. Not moving.\n\n"Chase," said Ryder. "It's time, buddy."\n\n"No."\n\n"The other pups are already inside."\n\n"I don't care."\n\n"You like Pup School. You told me yesterday you liked it."\n\n"I like it when I'm THERE. I don't like the part where you LEAVE."` },
@@ -177,7 +177,7 @@ export const stories = [
     title: "The Cloud That Couldn't Sleep",
     category: "bedtime",
     readTime: "5 min",
-    emoji: "☁️",
+    emoji: "☁️ 😴 🌟",
     color: "from-sky-400 to-indigo-400",
     pages: [
       { text: `The window was open just a little bit. Just enough for the breeze to come in.\n\nBut tonight something else came in too.\n\nA cloud. A small one. About the size of a pillow. It floated through the gap and landed — POOF — on the end of Benjamin's bed.\n\nBenjamin sat up.\n\n"Christopher. There's a cloud on my bed."\n\n"Go to sleep, Benjamin."\n\n"There's a CLOUD on my BED."\n\nChristopher looked. There was, in fact, a cloud on Benjamin's bed.\n\n"...Oh."` },
@@ -195,7 +195,7 @@ export const stories = [
     title: "The Monster Who Was Scared of Boys",
     category: "bedtime",
     readTime: "5 min",
-    emoji: "👾",
+    emoji: "👾 😱 🫣",
     color: "from-emerald-400 to-teal-500",
     pages: [
       { text: `There was a monster under the bed.\n\nHis name was Gloop. He was green. He had seven eyes. And he was absolutely, completely, one hundred percent TERRIFIED of children.\n\n"Don't move," Gloop whispered to himself. "They're RIGHT ABOVE ME. Two of them. TWO. Oh this is bad. This is very very bad."` },
@@ -213,7 +213,7 @@ export const stories = [
     title: "The Night the Moon Came Down",
     category: "bedtime",
     readTime: "5 min",
-    emoji: "🌕",
+    emoji: "🌕 🌠 💫",
     color: "from-amber-300 to-yellow-500",
     pages: [
       { text: `Christopher couldn't sleep. He was lying in bed looking out the window at the moon.\n\nThe moon was big tonight. Really big. Bigger than normal.\n\n"Benjamin. Look at the moon."\n\nBenjamin looked.\n\n"It's big," said Benjamin.\n\n"Yeah."\n\nThey watched it. And then something happened that has never happened before in the whole entire history of the world.\n\nThe moon moved.\n\nNot slowly, the way the moon normally moves. FAST. It dropped. Down, down, down through the sky like a ball falling off a table. And it landed — THOOMPH — right in their backyard.\n\nThe whole room went bright. Golden bright. Like morning but softer.` },
