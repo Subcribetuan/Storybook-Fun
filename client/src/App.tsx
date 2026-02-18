@@ -454,7 +454,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFFBF0] relative overflow-x-hidden selection:bg-amber-200 selection:text-amber-900">
+    <div className="min-h-screen bg-[#FFFBF0] relative overflow-x-clip selection:bg-amber-200 selection:text-amber-900">
       {/* Background Map Image */}
       <div
         className="fixed inset-0 opacity-15 pointer-events-none mix-blend-multiply transition-opacity duration-1000"
