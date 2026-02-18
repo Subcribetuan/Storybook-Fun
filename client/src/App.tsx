@@ -560,8 +560,8 @@ function Home() {
           </motion.div>
         )}
 
-        {/* Filter Bar */}
-        <div className="flex items-center justify-center gap-2 mb-6 md:mb-10">
+        {/* Filter Bar — sticky on scroll */}
+        <div className="sticky top-0 z-30 flex items-center justify-center gap-2 mb-6 md:mb-10 py-3 -mx-6 px-6 bg-[#FFFBF0]/90 backdrop-blur-md">
           {([
             { key: "all" as FilterMode, label: "All Stories", count: stories.length },
             { key: "new" as FilterMode, label: "New", count: stories.length - readSet.size },
@@ -673,24 +673,21 @@ function StoryComplete({ onRestart }: { onRestart: () => void }) {
 
 const pageVariants: Variants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 100 : -100,
+    x: direction > 0 ? 60 : -60,
     opacity: 0,
-    scale: 0.95,
-    rotateY: direction > 0 ? 5 : -5
+    scale: 0.98,
   }),
   center: {
     zIndex: 1,
     x: 0,
     opacity: 1,
     scale: 1,
-    rotateY: 0
   },
   exit: (direction: number) => ({
     zIndex: 0,
-    x: direction < 0 ? 100 : -100,
+    x: direction < 0 ? 60 : -60,
     opacity: 0,
-    scale: 0.95,
-    rotateY: direction < 0 ? 5 : -5
+    scale: 0.98,
   })
 };
 
@@ -731,6 +728,27 @@ function StoryReader({ params }: { params: { id: string } }) {
       duration: 2000,
     });
   };
+
+  // Swipe gesture support
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const isSwiping = useRef(false);
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    isSwiping.current = false;
+  }, []);
+
+  const onTouchEnd = useCallback((e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = e.changedTouches[0].clientY - touchStartY.current;
+    // Only count as swipe if horizontal movement > 50px and more horizontal than vertical
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      if (dx < 0) handleNext();
+      else handlePrev();
+    }
+  }, [page, totalPages]);
 
   const currentPage = story.pages[page];
   const progress = ((page + 1) / totalPages) * 100;
@@ -806,6 +824,16 @@ function StoryReader({ params }: { params: { id: string } }) {
         >
           {isComplete && <StoryComplete onRestart={() => { setIsComplete(false); setPage(0); }} />}
 
+          {/* Mobile Progress Bar — thin bar at top of card */}
+          <div className="md:hidden absolute top-0 left-0 right-0 h-1 bg-slate-200/50 z-40">
+            <motion.div
+              className={cn("h-full bg-gradient-to-r", story.color)}
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ type: "spring", stiffness: 80, damping: 20 }}
+            />
+          </div>
+
           {/* Book Spine Center */}
           <div className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-gradient-to-r from-gray-300 to-gray-100 z-30 hidden md:block shadow-inner" />
 
@@ -853,7 +881,7 @@ function StoryReader({ params }: { params: { id: string } }) {
               <div className="text-6xl drop-shadow-md">{story.emoji}</div>
             </div>
 
-            <div className="flex-1 p-8 md:p-16 overflow-y-auto custom-scrollbar relative overflow-x-hidden">
+            <div className="flex-1 p-8 md:p-16 overflow-y-auto custom-scrollbar relative overflow-x-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
                {/* Paper Texture Overlay */}
                <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply" style={{ backgroundImage: `url('/paper-texture.png')` }} />
 
@@ -866,8 +894,9 @@ function StoryReader({ params }: { params: { id: string } }) {
                    animate="center"
                    exit="exit"
                    transition={{
-                     x: { type: "spring", stiffness: 300, damping: 30 },
-                     opacity: { duration: 0.2 }
+                     x: { type: "spring", stiffness: 400, damping: 35 },
+                     opacity: { duration: 0.15 },
+                     scale: { duration: 0.2 }
                    }}
                    className="relative z-10 min-h-full flex flex-col justify-center origin-left"
                  >
