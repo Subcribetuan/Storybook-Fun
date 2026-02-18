@@ -135,7 +135,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .book-cover:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     inset 4px 0 10px rgba(0,0,0,0.1),
     10px 15px 25px rgba(0,0,0,0.2);
+}
+
+/* Hide horizontal scrollbar for carousel rows */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

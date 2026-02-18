@@ -1,6 +1,6 @@
 import { Switch, Route, useLocation } from "wouter";
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, Variants } from "framer-motion";
-import { Star, Moon, BookOpen, ChevronRight, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, Wand2, PartyPopper } from "lucide-react";
+import { Star, Moon, BookOpen, ChevronRight, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, Wand2, PartyPopper, Search, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { stories } from "@/lib/stories";
 import { useState, useEffect, useMemo, useRef } from "react";
@@ -89,102 +89,136 @@ function FloatingElement({ children, delay = 0, duration = 4, yOffset = 10, xOff
 }
 
 function StoryBookCard({ story, onClick, index }: { story: Story, onClick: () => void, index: number }) {
-  // Use a predictable gradient based on story ID to ensure consistency
-  const gradients = [
-    "bg-gradient-to-br from-violet-500 via-purple-500 to-indigo-600",
-    "bg-gradient-to-br from-rose-400 via-pink-500 to-fuchsia-600",
-    "bg-gradient-to-br from-sky-400 via-blue-500 to-cyan-600",
-    "bg-gradient-to-br from-amber-400 via-orange-500 to-red-500",
-    "bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600",
+  // Soft warm pastels that harmonize with #FFFBF0 cream background
+  const pastels = [
+    { bg: "bg-[#FFEDE1]", accent: "text-[#E8956A]", ring: "ring-[#FFDDCC]" }, // warm peach
+    { bg: "bg-[#FFF3E0]", accent: "text-[#D4A053]", ring: "ring-[#FFE8C8]" }, // golden cream
+    { bg: "bg-[#FFE8E0]", accent: "text-[#D4736A]", ring: "ring-[#FFDAD4]" }, // soft blush
+    { bg: "bg-[#FFF5EB]", accent: "text-[#C49060]", ring: "ring-[#FFEBD4]" }, // sandy warm
+    { bg: "bg-[#FFECD2]", accent: "text-[#CC8844]", ring: "ring-[#FFE0BB]" }, // apricot
   ];
-  
-  const bgClass = gradients[story.id % gradients.length];
+
+  const palette = pastels[story.id % pastels.length];
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, rotateX: 10 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1, type: "spring", stiffness: 100, damping: 20 }}
-      whileHover={{ y: -15, rotateZ: 2, scale: 1.05, zIndex: 10 }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ delay: index * 0.06, type: "spring", stiffness: 140, damping: 20 }}
+      whileHover={{ y: -6, scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
       onClick={onClick}
-      className="group relative cursor-pointer perspective-1000"
+      className="group cursor-pointer"
     >
-      {/* Book Shape */}
       <div className={cn(
-        "relative h-[360px] w-full rounded-r-3xl rounded-l-lg overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] transition-all duration-300 border-l-[12px] border-white/20",
-        bgClass
+        "relative h-[160px] md:h-[280px] w-full rounded-3xl overflow-hidden transition-all duration-300 ring-1",
+        "shadow-[0_2px_12px_-4px_rgba(180,140,100,0.15)] hover:shadow-[0_8px_24px_-6px_rgba(180,140,100,0.25)]",
+        palette.bg,
+        palette.ring
       )}>
-        {/* Texture Overlay */}
-        <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('/paper-texture.png')]" />
-        
-        {/* Spine Effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-black/20 to-transparent z-10" />
-        <div className="absolute left-[11px] top-0 bottom-0 w-[1px] bg-white/20 z-20" />
-        
-        {/* Decorative Light Orbs */}
-        <div className="absolute -top-20 -right-20 w-60 h-60 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors" />
-        <div className="absolute bottom-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+        {/* Soft inner glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/20 pointer-events-none" />
 
-        <div className="p-8 h-full flex flex-col relative z-20 text-white">
-          <div className="flex justify-between items-start">
-            <motion.div 
-              whileHover={{ rotate: 360, scale: 1.2 }}
-              transition={{ type: "spring" }}
-              className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-4xl shadow-[inset_0_0_20px_rgba(255,255,255,0.2)] border border-white/40"
-            >
-              {story.emoji}
-            </motion.div>
-            
-            <div className="flex gap-2">
-              {story.category === "bedtime" && <Moon className="text-white/90 drop-shadow-md" size={24} />}
-              {story.category === "adventure" && <Sparkles className="text-white/90 drop-shadow-md" size={24} />}
-              {story.category === "swimming" && <Cloud className="text-white/90 drop-shadow-md" size={24} />}
-            </div>
-          </div>
-          
-          <div className="mt-auto">
-            <h3 className="text-3xl font-display font-bold leading-tight mb-4 drop-shadow-lg tracking-tight">
-              {story.title}
-            </h3>
-            <div className="flex items-center gap-3 text-white/95 font-bold text-sm">
-              <span className="bg-black/20 px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-2 border border-white/10">
-                <BookOpen size={16} />
-                {story.readTime}
-              </span>
-              <span className="bg-white/20 px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-2 border border-white/20 group-hover:bg-white group-hover:text-purple-600 transition-colors">
-                Read <ChevronRight size={14} />
-              </span>
-            </div>
-          </div>
+        {/* Emoji */}
+        <div className="flex items-center justify-center pt-6 md:pt-10">
+          <motion.span
+            whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.15 }}
+            transition={{ type: "spring", stiffness: 200 }}
+            className="text-4xl md:text-6xl drop-shadow-sm select-none"
+          >
+            {story.emoji}
+          </motion.span>
         </div>
 
-        {/* Shine Effect */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 transform -translate-x-full group-hover:translate-x-full z-30 pointer-events-none" style={{ transitionDuration: '1s' }} />
+        {/* Content */}
+        <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5">
+          <h3 className="text-xs md:text-base font-display font-bold text-slate-700 leading-snug line-clamp-2 mb-0.5 md:mb-1">
+            {story.title}
+          </h3>
+          <div className="flex items-center gap-1.5">
+            <BookOpen size={10} className={cn("md:w-3 md:h-3", palette.accent)} />
+            <span className={cn("text-[10px] md:text-xs font-medium", palette.accent)}>{story.readTime}</span>
+          </div>
+        </div>
       </div>
-      
-      {/* Pages Effect (Side View depth) */}
-      <div className="absolute right-3 top-3 bottom-3 w-6 bg-white rounded-r-lg -z-10 shadow-lg group-hover:right-5 transition-all duration-300" />
-      <div className="absolute right-2 top-2 bottom-2 w-6 bg-gray-200 rounded-r-lg -z-20 shadow-md group-hover:right-4 transition-all duration-300" />
     </motion.div>
+  );
+}
+
+const categoryMeta: Record<string, { icon: typeof Moon; label: string }> = {
+  bedtime: { icon: Moon, label: "Bedtime" },
+  adventure: { icon: Sparkles, label: "Adventure" },
+  swimming: { icon: Cloud, label: "Swimming" },
+  breathing: { icon: Heart, label: "Breathing" },
+};
+
+function CategoryRow({ category, categoryStories, onStoryClick }: { category: string; categoryStories: Story[]; onStoryClick: (id: number) => void }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const meta = categoryMeta[category];
+  const Icon = meta?.icon;
+
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  };
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.7;
+    el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+  };
+
+  return (
+    <div className="mb-4 md:mb-10">
+      <div className="flex items-center gap-2 mb-3 md:mb-4 px-1">
+        {Icon && <Icon size={20} className="text-amber-400" />}
+        <h2 className="text-lg md:text-2xl font-display font-bold text-slate-700">{meta?.label || category}</h2>
+        <span className="text-xs md:text-sm text-slate-400 font-bold ml-1">({categoryStories.length})</span>
+
+        {/* Desktop scroll arrows */}
+        <div className="hidden md:flex items-center gap-1 ml-auto">
+          <button onClick={() => scroll("left")} disabled={!canScrollLeft} className={cn("p-2 rounded-full transition-all", canScrollLeft ? "bg-white shadow-md hover:shadow-lg text-slate-600" : "text-slate-300 cursor-default")}>
+            <ChevronLeft size={18} />
+          </button>
+          <button onClick={() => scroll("right")} disabled={!canScrollRight} className={cn("p-2 rounded-full transition-all", canScrollRight ? "bg-white shadow-md hover:shadow-lg text-slate-600" : "text-slate-300 cursor-default")}>
+            <ChevronRight size={18} />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={scrollRef}
+        onScroll={checkScroll}
+        className="flex gap-3 md:gap-6 overflow-x-auto pb-3 scrollbar-hide snap-x snap-mandatory -mx-6 px-6"
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
+        {categoryStories.map((story, i) => (
+          <div key={story.id} className="snap-start shrink-0 w-[130px] md:w-[280px]">
+            <StoryBookCard story={story} index={i} onClick={() => onStoryClick(story.id)} />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
 function Home() {
   const [, setLocation] = useLocation();
-  const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
   const { toast } = useToast();
-
-  const filteredStories = stories.filter(
-    (s) => filter === "all" || s.category === filter
-  );
 
   const handleMagic = () => {
     confetti({
       particleCount: 150,
       spread: 100,
       origin: { y: 0.6 },
-      colors: ['#FFD700', '#FF69B4', '#00BFFF', '#9D5CFF'],
+      colors: ['#FFD700', '#F5A623', '#E8956A', '#D4A053'],
       zIndex: 200,
       gravity: 0.8,
       scalar: 1.2
@@ -196,89 +230,102 @@ function Home() {
     });
   };
 
+  const searchFiltered = search.trim()
+    ? stories.filter((s) => s.title.toLowerCase().includes(search.toLowerCase()))
+    : null;
+
+  const categories = useMemo(() => {
+    const cats: string[] = [];
+    stories.forEach((s) => { if (!cats.includes(s.category)) cats.push(s.category); });
+    return cats;
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#FFFBF0] relative overflow-hidden selection:bg-purple-200 selection:text-purple-900">
+    <div className="min-h-screen bg-[#FFFBF0] relative overflow-hidden selection:bg-amber-200 selection:text-amber-900">
       {/* Background Map Image */}
-      <div 
+      <div
         className="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply transition-opacity duration-1000"
         style={{ backgroundImage: `url('/map-bg.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       />
-      
+
       {/* Animated Background Gradients */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FFFBF0] pointer-events-none" />
-      
+
       {/* Floating Decor */}
       <div className="absolute top-20 left-10 text-yellow-400/60 pointer-events-none">
         <FloatingElement delay={0} duration={6}><Star size={64} fill="currentColor" /></FloatingElement>
       </div>
-      <div className="absolute top-40 right-20 text-blue-300/60 pointer-events-none">
+      <div className="absolute top-40 right-20 text-amber-300/60 pointer-events-none">
         <FloatingElement delay={1} duration={7} xOffset={20}><Moon size={84} fill="currentColor" /></FloatingElement>
       </div>
-      <div className="absolute bottom-40 left-20 text-pink-300/60 pointer-events-none">
+      <div className="absolute bottom-40 left-20 text-orange-300/60 pointer-events-none">
         <FloatingElement delay={2} duration={8} yOffset={-20}><Heart size={56} fill="currentColor" /></FloatingElement>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8 md:py-16">
-        <header className="flex flex-col xl:flex-row items-center justify-between mb-20 gap-8">
-          <div className="text-center xl:text-left relative">
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleMagic}
-              className="inline-flex items-center gap-2 px-5 py-2 bg-white/80 backdrop-blur-md rounded-full border-2 border-purple-200 mb-6 shadow-sm hover:shadow-md hover:border-purple-400 transition-all cursor-pointer group"
-            >
-              <Sparkles className="w-5 h-5 text-purple-500 group-hover:animate-spin" />
-              <span className="text-purple-700 font-bold text-sm tracking-wide uppercase">The Magical Library</span>
-            </motion.button>
-            
-            <h1 className="text-5xl md:text-7xl font-display font-extrabold text-slate-800 leading-[0.9] tracking-tight drop-shadow-sm">
-              Christopher & <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 animate-gradient-x">Benjamin's World</span>
-            </h1>
-            <p className="mt-6 text-xl md:text-2xl text-slate-500 font-body max-w-2xl mx-auto xl:mx-0 leading-relaxed">
-              Pick a story to start your adventure. <br className="hidden md:block" />
-              Brave knights, dancing giraffes, and sleepy moons await!
-            </p>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-3 p-2 bg-white/60 backdrop-blur-xl rounded-3xl shadow-lg border border-white/60 w-full xl:w-auto">
-            {["all", "bedtime", "adventure", "swimming", "breathing"].map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={cn(
-                  "px-6 py-4 rounded-2xl font-bold capitalize transition-all duration-300 text-lg flex items-center gap-2",
-                  filter === f 
-                    ? "bg-purple-600 text-white shadow-lg scale-105 shadow-purple-500/30" 
-                    : "text-slate-500 hover:text-purple-600 hover:bg-white"
-                )}
-              >
-                {f === "bedtime" && <Moon size={18} />}
-                {f === "adventure" && <Sparkles size={18} />}
-                {f === "swimming" && <Cloud size={18} />}
-                {f}
-              </button>
-            ))}
-          </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-6 md:py-16">
+        {/* Header */}
+        <header className="text-center mb-6 md:mb-12">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleMagic}
+            className="inline-flex items-center gap-2 px-5 py-2 bg-white/80 backdrop-blur-md rounded-full border-2 border-amber-200 mb-4 shadow-sm hover:shadow-md hover:border-amber-400 transition-all cursor-pointer group"
+          >
+            <Sparkles className="w-5 h-5 text-amber-400 group-hover:animate-spin" />
+            <span className="text-amber-700 font-bold text-sm tracking-wide uppercase">The Magical Library</span>
+          </motion.button>
+
+          <h1 className="text-3xl md:text-6xl font-display font-extrabold text-slate-800 leading-[0.95] tracking-tight drop-shadow-sm">
+            Christopher & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-amber-600 animate-gradient-x">Benjamin's World</span>
+          </h1>
+          <p className="mt-2 md:mt-4 text-sm md:text-xl text-slate-500 font-body max-w-2xl mx-auto leading-relaxed">
+            Pick a story to start your adventure!
+          </p>
         </header>
 
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-12 pb-32"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredStories.map((story, i) => (
-              <StoryBookCard 
-                key={story.id} 
-                story={story} 
-                index={i} 
-                onClick={() => setLocation(`/story/${story.id}`)}
+        {/* Search Bar */}
+        <div className="relative max-w-md mx-auto mb-8 md:mb-12">
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search stories..."
+            className="w-full pl-11 pr-4 py-3 md:py-4 bg-white/80 backdrop-blur-md rounded-2xl border-2 border-amber-100 focus:border-amber-400 focus:outline-none shadow-sm hover:shadow-md transition-all text-sm md:text-base font-body text-slate-700 placeholder:text-slate-400"
+          />
+          {search && (
+            <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-slate-100 transition-colors">
+              <X size={16} className="text-slate-400" />
+            </button>
+          )}
+        </div>
+
+        {/* Search Results or Category Rows */}
+        {searchFiltered ? (
+          <div>
+            <h2 className="text-lg font-display font-bold text-slate-600 mb-4">
+              {searchFiltered.length} result{searchFiltered.length !== 1 ? "s" : ""} for "{search}"
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 pb-32">
+              {searchFiltered.map((story, i) => (
+                <StoryBookCard key={story.id} story={story} index={i} onClick={() => setLocation(`/story/${story.id}`)} />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="pb-20">
+            {categories.map((cat) => (
+              <CategoryRow
+                key={cat}
+                category={cat}
+                categoryStories={stories.filter((s) => s.category === cat)}
+                onStoryClick={(id) => setLocation(`/story/${id}`)}
               />
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </div>
+        )}
       </div>
-      
+
       {/* Bottom Wave Decoration */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-0 pointer-events-none">
         <svg className="relative block w-[calc(133%+1.3px)] h-[150px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -296,7 +343,7 @@ function StoryComplete({ onRestart }: { onRestart: () => void }) {
       particleCount: 200,
       spread: 120,
       origin: { y: 0.6 },
-      colors: ['#FFD700', '#FF69B4', '#00BFFF', '#ffffff'],
+      colors: ['#FFD700', '#F5A623', '#E8956A', '#ffffff'],
       zIndex: 100,
       gravity: 0.6,
       scalar: 1.5,
@@ -314,7 +361,7 @@ function StoryComplete({ onRestart }: { onRestart: () => void }) {
         You finished the story like a brave explorer! Time for a high five!
       </p>
       <div className="flex gap-4">
-        <Button onClick={onRestart} size="lg" className="rounded-full h-16 px-10 text-xl font-bold shadow-xl bg-purple-600 hover:bg-purple-700 hover:scale-105 transition-all">
+        <Button onClick={onRestart} size="lg" className="rounded-full h-16 px-10 text-xl font-bold shadow-xl bg-amber-500 hover:bg-amber-600 hover:scale-105 transition-all">
           Read Again
         </Button>
         <Button onClick={() => window.location.href = '/'} variant="outline" size="lg" className="rounded-full h-16 px-10 text-xl font-bold border-2 border-slate-200 text-slate-600 hover:bg-slate-50">
@@ -400,7 +447,7 @@ function StoryReader({ params }: { params: { id: string } }) {
         transition={{ delay: i * 0.1 + 0.3 }}
         className={cn(
           "mb-6 text-xl md:text-3xl leading-relaxed font-body text-slate-700",
-          isDialogue && "font-bold text-slate-900 pl-6 border-l-4 border-purple-400 bg-purple-50/80 p-4 rounded-r-xl shadow-sm",
+          isDialogue && "font-bold text-slate-900 pl-6 border-l-4 border-amber-400 bg-amber-50/80 p-4 rounded-r-xl shadow-sm",
           isSoundEffect && "font-display text-4xl md:text-5xl text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 py-4 rotate-2 scale-110 origin-center"
         )}
       >
@@ -443,7 +490,7 @@ function StoryReader({ params }: { params: { id: string } }) {
           onClick={toggleSound}
           className="rounded-full shadow-lg bg-white hover:bg-gray-50 h-14 px-6 border-2 border-slate-100 hover:scale-105 transition-transform gap-3 hidden md:flex"
         >
-          <Music size={20} className="text-purple-500" />
+          <Music size={20} className="text-amber-500" />
           <span className="font-bold text-slate-600">Sound On</span>
         </Button>
       </div>

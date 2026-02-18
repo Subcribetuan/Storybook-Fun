@@ -14,7 +14,7 @@
 
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#0f172a" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Storybook" />
     <link rel="apple-touch-icon" href="/pwa-192x192.png" />
@@ -31,14 +31,22 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-              console.log('ServiceWorker registration successful');
-            }, (err) => {
-              console.log('ServiceWorker registration failed: ', err);
-            });
-        });
+        // In development, unregister any existing SW to avoid caching issues
+        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+          navigator.serviceWorker.getRegistrations().then((registrations) => {
+            registrations.forEach((r) => r.unregister());
+          });
+        } else {
+          // Only register SW in production
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+              .then((registration) => {
+                console.log('ServiceWorker registration successful');
+              }, (err) => {
+                console.log('ServiceWorker registration failed: ', err);
+              });
+          });
+        }
       }
     </script>
   </body>
