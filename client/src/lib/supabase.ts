@@ -3,7 +3,8 @@ import { createClient } from "@supabase/supabase-js";
 const SUPABASE_URL = "https://sobgwoffvuwqprtxwndx.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNvYmd3b2ZmdnV3cXBydHh3bmR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MTA0MzMsImV4cCI6MjA4Njk4NjQzM30.AAAUqGCiatBiDA4mGCCnj1DB-Tg7HjpDMHkH5HxyhII";
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const _global = globalThis as unknown as { __supabase?: ReturnType<typeof createClient> };
+export const supabase = _global.__supabase ??= createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export interface DbStory {
   id: number;
