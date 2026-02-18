@@ -503,19 +503,19 @@ function StoryComplete({ onRestart }: { onRestart: () => void }) {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-white/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-8 text-center animate-in fade-in zoom-in duration-500">
-      <div className="w-24 h-24 md:w-32 md:h-32 bg-yellow-100 rounded-full flex items-center justify-center mb-6 md:mb-8 animate-bounce">
-        <PartyPopper size={48} className="text-yellow-500 md:w-16 md:h-16" />
+    <div className="absolute inset-0 bg-white/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-8 text-center animate-in fade-in zoom-in duration-500">
+      <div className="w-32 h-32 bg-yellow-100 rounded-full flex items-center justify-center mb-8 animate-bounce">
+        <PartyPopper size={64} className="text-yellow-500" />
       </div>
-      <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-800 mb-3 md:mb-4">You Did It!</h2>
-      <p className="text-lg md:text-2xl text-slate-500 font-body mb-8 md:mb-10 max-w-lg">
+      <h2 className="text-5xl font-display font-bold text-slate-800 mb-4">You Did It!</h2>
+      <p className="text-2xl text-slate-500 font-body mb-10 max-w-lg">
         You finished the story like a brave explorer! Time for a high five!
       </p>
-      <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-sm md:max-w-none md:w-auto">
-        <Button onClick={onRestart} size="lg" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-lg md:text-xl font-bold shadow-xl bg-amber-500 hover:bg-amber-600 hover:scale-105 transition-all">
+      <div className="flex gap-4">
+        <Button onClick={onRestart} size="lg" className="rounded-full h-16 px-10 text-xl font-bold shadow-xl bg-amber-500 hover:bg-amber-600 hover:scale-105 transition-all">
           Read Again
         </Button>
-        <Button onClick={() => window.location.href = '/'} variant="outline" size="lg" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-lg md:text-xl font-bold border-2 border-slate-200 text-slate-600 hover:bg-slate-50">
+        <Button onClick={() => window.location.href = '/'} variant="outline" size="lg" className="rounded-full h-16 px-10 text-xl font-bold border-2 border-slate-200 text-slate-600 hover:bg-slate-50">
           Pick New Story
         </Button>
       </div>
@@ -599,9 +599,9 @@ function StoryReader({ params }: { params: { id: string } }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.1 + 0.3 }}
         className={cn(
-          "mb-5 md:mb-6 text-base md:text-3xl leading-relaxed font-body text-slate-700",
-          isDialogue && "font-bold text-slate-900 pl-4 md:pl-6 border-l-4 border-amber-400 bg-amber-50/80 p-3 md:p-4 rounded-r-xl shadow-sm",
-          isSoundEffect && "font-display text-2xl md:text-5xl text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 py-3 md:py-4 rotate-2 scale-110 origin-center"
+          "mb-6 text-xl md:text-3xl leading-relaxed font-body text-slate-700",
+          isDialogue && "font-bold text-slate-900 pl-6 border-l-4 border-amber-400 bg-amber-50/80 p-4 rounded-r-xl shadow-sm",
+          isSoundEffect && "font-display text-4xl md:text-5xl text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 py-4 rotate-2 scale-110 origin-center"
         )}
       >
         {paragraph}
@@ -609,97 +609,8 @@ function StoryReader({ params }: { params: { id: string } }) {
     );
   });
 
-  // ============ MOBILE LAYOUT ============
-  // Full-screen: fixed header + scrollable content + fixed footer
-  const mobileLayout = (
-    <div className="fixed inset-0 bg-[#FFFBF0] flex flex-col z-40">
-      {isComplete && <StoryComplete onRestart={() => { setIsComplete(false); setPage(0); }} />}
-
-      {/* Fixed Header */}
-      <div className="shrink-0 px-4 pt-3 pb-2 bg-[#FFFBF0]/95 backdrop-blur-sm z-30">
-        <div className="flex items-center gap-3 mb-2">
-          <button
-            onClick={() => setLocation("/")}
-            className="w-10 h-10 rounded-full bg-white shadow-sm border border-slate-200 flex items-center justify-center"
-          >
-            <X size={18} className="text-slate-500" />
-          </button>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">{story.emoji}</span>
-              <h1 className="text-sm font-bold text-slate-700 truncate">{story.title}</h1>
-            </div>
-          </div>
-          <span className="text-xs font-bold text-slate-400 shrink-0">
-            {page + 1}/{totalPages}
-          </span>
-        </div>
-        {/* Mobile Progress Bar */}
-        <div className="h-1.5 w-full bg-amber-100 rounded-full overflow-hidden">
-          <motion.div
-            className={cn("h-full bg-gradient-to-r rounded-full", story.color)}
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ type: "spring", stiffness: 50, damping: 15 }}
-          />
-        </div>
-      </div>
-
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden px-5 py-4">
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            key={page}
-            custom={direction}
-            variants={pageVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
-            }}
-          >
-            {formattedText}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Fixed Footer */}
-      <div className="shrink-0 px-4 py-3 bg-white border-t border-amber-100 flex items-center gap-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
-        <Button
-          variant="ghost"
-          onClick={handlePrev}
-          disabled={page === 0}
-          className="rounded-full text-slate-400 hover:text-slate-600 h-12 px-4 text-sm"
-        >
-          <ArrowLeft className="mr-1" size={18} /> Back
-        </Button>
-
-        <div className="flex-1" />
-
-        <Button
-          size="lg"
-          onClick={handleNext}
-          className={cn(
-            "rounded-full h-12 px-8 shadow-lg hover:shadow-xl transition-all bg-gradient-to-r text-white border-0 font-bold text-base",
-            story.color
-          )}
-        >
-          {page === totalPages - 1 ? (
-            <>Finish <Check className="ml-2" size={18} /></>
-          ) : (
-            <>Next <ArrowRight className="ml-2" size={18} /></>
-          )}
-        </Button>
-      </div>
-    </div>
-  );
-
-  // ============ DESKTOP LAYOUT ============
-  // Book-style two-page spread (unchanged)
-  const desktopLayout = (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-8 relative overflow-hidden">
+  return (
+    <div className="min-h-[100dvh] bg-slate-50 flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
       {/* Background Ambience */}
       <div className={cn("absolute inset-0 opacity-15 bg-gradient-to-br transition-colors duration-1000", story.color)} />
       <div className="absolute inset-0 opacity-40 bg-[url('/paper-texture.png')] mix-blend-multiply pointer-events-none" />
@@ -715,7 +626,7 @@ function StoryReader({ params }: { params: { id: string } }) {
         </Button>
 
         {/* Progress Bar */}
-        <div className="flex flex-col items-center flex-1 mx-8 max-w-md">
+        <div className="hidden md:flex flex-col items-center flex-1 mx-8 max-w-md">
           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Reading Progress</span>
           <div className="h-4 w-full bg-white rounded-full overflow-hidden shadow-inner border border-slate-200">
             <motion.div
@@ -730,17 +641,17 @@ function StoryReader({ params }: { params: { id: string } }) {
         <Button
           variant="secondary"
           onClick={toggleSound}
-          className="rounded-full shadow-lg bg-white hover:bg-gray-50 h-14 px-6 border-2 border-slate-100 hover:scale-105 transition-transform gap-3"
+          className="rounded-full shadow-lg bg-white hover:bg-gray-50 h-14 px-6 border-2 border-slate-100 hover:scale-105 transition-transform gap-3 hidden md:flex"
         >
           <Music size={20} className="text-amber-500" />
           <span className="font-bold text-slate-600">Sound On</span>
         </Button>
       </div>
 
-      {/* Book Container */}
-      <div className="relative w-full max-w-6xl aspect-[16/9] perspective-1000 z-20">
+      {/* Book Container — fills viewport height on mobile, aspect-ratio on desktop */}
+      <div className="relative w-full max-w-6xl h-[calc(100dvh-6rem)] md:h-auto md:aspect-[16/9] perspective-1000 z-20">
         <motion.div
-          className="w-full h-full bg-white rounded-[2.5rem] shadow-2xl flex flex-row overflow-hidden border-[12px] border-white relative ring-1 ring-slate-900/5"
+          className="w-full h-full bg-white rounded-[2.5rem] shadow-2xl flex flex-col md:flex-row overflow-hidden border-[12px] border-white relative ring-1 ring-slate-900/5"
           initial={{ rotateX: 10, scale: 0.9, opacity: 0 }}
           animate={{ rotateX: 0, scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 80, damping: 20 }}
@@ -748,13 +659,14 @@ function StoryReader({ params }: { params: { id: string } }) {
           {isComplete && <StoryComplete onRestart={() => { setIsComplete(false); setPage(0); }} />}
 
           {/* Book Spine Center */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-gradient-to-r from-gray-300 to-gray-100 z-30 shadow-inner" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-gradient-to-r from-gray-300 to-gray-100 z-30 hidden md:block shadow-inner" />
 
           {/* Left Page (Visuals) */}
           <div className={cn(
-            "flex w-1/2 relative overflow-hidden p-12 flex-col justify-center items-center text-white bg-gradient-to-br",
+            "hidden md:flex w-1/2 relative overflow-hidden p-12 flex-col justify-center items-center text-white bg-gradient-to-br",
             story.color
           )}>
+            {/* Animated Patterns */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
@@ -781,37 +693,43 @@ function StoryReader({ params }: { params: { id: string } }) {
                 {story.title}
               </motion.h2>
               <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/20 backdrop-blur-md rounded-full text-lg font-bold border border-white/30 mt-6 shadow-lg">
-                Page {page + 1} of {totalPages}
+                 Page {page + 1} of {totalPages}
               </div>
             </div>
           </div>
 
           {/* Right Page (Text) */}
           <div className="flex-1 bg-[#FFFBF0] relative flex flex-col h-full">
-            <div className="flex-1 p-16 overflow-y-auto custom-scrollbar relative overflow-x-hidden">
-              <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply" style={{ backgroundImage: `url('/paper-texture.png')` }} />
+            {/* Mobile Header (Emoji) */}
+            <div className="md:hidden p-6 pb-0 flex justify-center">
+              <div className="text-6xl drop-shadow-md">{story.emoji}</div>
+            </div>
 
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
-                  key={page}
-                  custom={direction}
-                  variants={pageVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 }
-                  }}
-                  className="relative z-10 min-h-full flex flex-col justify-center origin-left"
-                >
-                  {formattedText}
-                </motion.div>
-              </AnimatePresence>
+            <div className="flex-1 p-8 md:p-16 overflow-y-auto custom-scrollbar relative overflow-x-hidden">
+               {/* Paper Texture Overlay */}
+               <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply" style={{ backgroundImage: `url('/paper-texture.png')` }} />
+
+               <AnimatePresence mode="wait" custom={direction}>
+                 <motion.div
+                   key={page}
+                   custom={direction}
+                   variants={pageVariants}
+                   initial="enter"
+                   animate="center"
+                   exit="exit"
+                   transition={{
+                     x: { type: "spring", stiffness: 300, damping: 30 },
+                     opacity: { duration: 0.2 }
+                   }}
+                   className="relative z-10 min-h-full flex flex-col justify-center origin-left"
+                 >
+                   {formattedText}
+                 </motion.div>
+               </AnimatePresence>
             </div>
 
             {/* Bottom Navigation Area */}
-            <div className="p-8 bg-white border-t border-amber-100 flex justify-between items-center relative z-20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
+            <div className="p-6 md:p-8 bg-white border-t border-amber-100 flex justify-between items-center relative z-20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
               <Button
                 variant="ghost"
                 onClick={handlePrev}
@@ -820,6 +738,10 @@ function StoryReader({ params }: { params: { id: string } }) {
               >
                 <ArrowLeft className="mr-2" size={24} /> Back
               </Button>
+
+              <div className="md:hidden text-sm font-bold text-slate-400 uppercase tracking-widest">
+                {page + 1} / {totalPages}
+              </div>
 
               <Button
                 size="lg"
@@ -840,14 +762,6 @@ function StoryReader({ params }: { params: { id: string } }) {
         </motion.div>
       </div>
     </div>
-  );
-
-  return (
-    <>
-      {/* Show mobile layout on small screens, desktop on md+ */}
-      <div className="md:hidden">{mobileLayout}</div>
-      <div className="hidden md:block">{desktopLayout}</div>
-    </>
   );
 }
 
