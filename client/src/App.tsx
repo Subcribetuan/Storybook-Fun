@@ -503,19 +503,19 @@ function StoryComplete({ onRestart }: { onRestart: () => void }) {
   }, []);
 
   return (
-    <div className="absolute inset-0 bg-white/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-8 text-center animate-in fade-in zoom-in duration-500">
-      <div className="w-32 h-32 bg-yellow-100 rounded-full flex items-center justify-center mb-8 animate-bounce">
-        <PartyPopper size={64} className="text-yellow-500" />
+    <div className="fixed inset-0 bg-white/95 backdrop-blur-xl z-[100] flex flex-col items-center justify-center p-6 md:p-8 text-center animate-in fade-in zoom-in duration-500">
+      <div className="w-24 h-24 md:w-32 md:h-32 bg-yellow-100 rounded-full flex items-center justify-center mb-6 md:mb-8 animate-bounce">
+        <PartyPopper className="w-12 h-12 md:w-16 md:h-16 text-yellow-500" />
       </div>
-      <h2 className="text-5xl font-display font-bold text-slate-800 mb-4">You Did It!</h2>
-      <p className="text-2xl text-slate-500 font-body mb-10 max-w-lg">
+      <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-800 mb-3 md:mb-4">You Did It!</h2>
+      <p className="text-lg md:text-2xl text-slate-500 font-body mb-8 md:mb-10 max-w-lg">
         You finished the story like a brave explorer! Time for a high five!
       </p>
-      <div className="flex gap-4">
-        <Button onClick={onRestart} size="lg" className="rounded-full h-16 px-10 text-xl font-bold shadow-xl bg-amber-500 hover:bg-amber-600 hover:scale-105 transition-all">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-xs md:max-w-none md:w-auto">
+        <Button onClick={onRestart} size="lg" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-lg md:text-xl font-bold shadow-xl bg-amber-500 hover:bg-amber-600 hover:scale-105 transition-all w-full md:w-auto">
           Read Again
         </Button>
-        <Button onClick={() => window.location.href = '/'} variant="outline" size="lg" className="rounded-full h-16 px-10 text-xl font-bold border-2 border-slate-200 text-slate-600 hover:bg-slate-50">
+        <Button onClick={() => window.location.href = '/'} variant="outline" size="lg" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-lg md:text-xl font-bold border-2 border-slate-200 text-slate-600 hover:bg-slate-50 w-full md:w-auto">
           Pick New Story
         </Button>
       </div>
