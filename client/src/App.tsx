@@ -1,12 +1,21 @@
 import { Switch, Route, useLocation } from "wouter";
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, Variants } from "framer-motion";
-import { Star, Moon, BookOpen, ChevronRight, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, Wand2, PartyPopper, Search, ChevronLeft, Lock, LogOut, Eye, EyeOff } from "lucide-react";
+import { Star, Moon, BookOpen, ChevronRight, ArrowLeft, Heart, Sparkles, User, Play, Pause, Volume2, X, Music, Check, ArrowRight, Sun, Cloud, Wand2, PartyPopper, Search, ChevronLeft, Lock, LogOut, Eye, EyeOff, Plus, Trash2, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { stories } from "@/lib/stories";
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { stories as builtInStories } from "@/lib/stories";
+import { useState, useEffect, useMemo, useRef, useCallback, createContext, useContext } from "react";
 import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
 import { useToast } from "@/hooks/use-toast";
+import { fetchCustomStories, createStory, deleteStory, dbStoryToAppStory, type DbStory } from "@/lib/supabase";
+
+// --- All Stories Context (hardcoded + Supabase) ---
+interface AllStoriesCtx {
+  stories: Story[];
+  refreshCustom: () => void;
+}
+const AllStoriesContext = createContext<AllStoriesCtx>({ stories: builtInStories as Story[], refreshCustom: () => {} });
+function useAllStories() { return useContext(AllStoriesContext); }
 
 // --- Read Tracking (localStorage) ---
 const STORAGE_KEY = "wondertales-read-stories";
@@ -425,6 +434,7 @@ function Home() {
   const [filter, setFilter] = useState<FilterMode>("all");
   const { readSet, toggle } = useReadStories();
   const { toast } = useToast();
+  const { stories, refreshCustom } = useAllStories();
 
   const handleMagic = () => {
     confetti({
@@ -451,7 +461,7 @@ function Home() {
     const cats: string[] = [];
     stories.forEach((s) => { if (!cats.includes(s.category)) cats.push(s.category); });
     return cats;
-  }, []);
+  }, [stories]);
 
   return (
     <div className="min-h-screen bg-[#FFFBF0] relative overflow-x-clip selection:bg-amber-200 selection:text-amber-900">
@@ -625,6 +635,17 @@ function Home() {
         )}
       </div>
 
+      {/* Floating Add Story Button */}
+      <motion.button
+        onClick={() => setLocation("/add-story")}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-40 w-14 h-14 md:w-16 md:h-16 bg-amber-500 hover:bg-amber-600 text-white rounded-full shadow-xl hover:shadow-2xl flex items-center justify-center transition-colors"
+        title="Add a new story"
+      >
+        <Plus size={28} />
+      </motion.button>
+
       {/* Bottom Wave Decoration */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-0 pointer-events-none">
         <svg className="relative block w-[calc(133%+1.3px)] h-[150px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -693,6 +714,7 @@ const pageVariants: Variants = {
 
 function StoryReader({ params }: { params: { id: string } }) {
   const [, setLocation] = useLocation();
+  const { stories } = useAllStories();
   const story = stories.find((s) => s.id === Number(params.id));
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -942,21 +964,239 @@ function StoryReader({ params }: { params: { id: string } }) {
   );
 }
 
+// --- Story Editor Page ---
+const EMOJI_OPTIONS = ["📖","🌙","✨","🐾","🏁","🚀","💨","🐟","💦","🧸","🛡️","☁️","👾","🌕","🦁","🐻","🎪","🏰","🌊","🦋","🎈","🌈","⚡","🔥","❄️","🎵","🍎","🌻","🐢","🦊"];
+const COLOR_OPTIONS = [
+  { label: "Purple", value: "from-purple-500 to-pink-600" },
+  { label: "Blue", value: "from-blue-500 to-indigo-600" },
+  { label: "Orange", value: "from-orange-500 to-yellow-500" },
+  { label: "Green", value: "from-emerald-400 to-teal-500" },
+  { label: "Sky", value: "from-sky-400 to-blue-600" },
+  { label: "Red", value: "from-red-500 to-rose-600" },
+  { label: "Amber", value: "from-amber-400 to-orange-500" },
+  { label: "Indigo", value: "from-indigo-500 to-purple-600" },
+  { label: "Cyan", value: "from-cyan-400 to-blue-500" },
+  { label: "Violet", value: "from-violet-600 to-indigo-600" },
+];
+
+function StoryEditor() {
+  const [, setLocation] = useLocation();
+  const { refreshCustom } = useAllStories();
+  const { toast } = useToast();
+
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("bedtime");
+  const [emoji, setEmoji] = useState("📖");
+  const [color, setColor] = useState("from-purple-500 to-pink-600");
+  const [pages, setPages] = useState<string[]>([""]);
+  const [saving, setSaving] = useState(false);
+
+  const addPage = () => setPages([...pages, ""]);
+  const removePage = (i: number) => setPages(pages.filter((_, idx) => idx !== i));
+  const updatePage = (i: number, text: string) => setPages(pages.map((p, idx) => idx === i ? text : p));
+
+  const canSave = title.trim() && pages.some(p => p.trim());
+
+  const handleSave = async () => {
+    if (!canSave) return;
+    setSaving(true);
+    try {
+      const totalWords = pages.join(" ").split(/\s+/).length;
+      const readTime = `${Math.max(1, Math.round(totalWords / 200))} min`;
+
+      await createStory({
+        title: title.trim(),
+        category,
+        read_time: readTime,
+        emoji,
+        color,
+        pages: pages.filter(p => p.trim()).map(p => ({ text: p.trim() })),
+      });
+      refreshCustom();
+      toast({ title: "Story saved!", description: "Your new story is now in the library." });
+      setLocation("/");
+    } catch (e) {
+      toast({ title: "Error saving story", description: String(e) });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="min-h-[100dvh] bg-[#FFFBF0] selection:bg-amber-200 selection:text-amber-900">
+      <div className="max-w-2xl mx-auto px-4 py-6 md:py-12">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-8">
+          <Button variant="ghost" onClick={() => setLocation("/")} className="rounded-full h-12 w-12 p-0">
+            <ArrowLeft size={22} className="text-slate-500" />
+          </Button>
+          <h1 className="text-2xl md:text-3xl font-display font-bold text-slate-800">Add New Story</h1>
+        </div>
+
+        <div className="space-y-6">
+          {/* Title */}
+          <div>
+            <label className="block text-sm font-bold text-slate-600 mb-2">Story Title</label>
+            <input
+              type="text"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              placeholder="e.g. The Dragon Who Loved Pancakes"
+              className="w-full px-4 py-3 bg-white rounded-xl border-2 border-amber-100 focus:border-amber-400 focus:outline-none text-base font-body text-slate-700 placeholder:text-slate-400"
+            />
+          </div>
+
+          {/* Category */}
+          <div>
+            <label className="block text-sm font-bold text-slate-600 mb-2">Category</label>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(categoryMeta).map(([key, meta]) => (
+                <button
+                  key={key}
+                  onClick={() => setCategory(key)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-bold transition-all",
+                    category === key
+                      ? "bg-amber-500 text-white shadow-md"
+                      : "bg-white text-slate-500 border border-amber-100 hover:bg-amber-50"
+                  )}
+                >
+                  {meta.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Emoji Picker */}
+          <div>
+            <label className="block text-sm font-bold text-slate-600 mb-2">Cover Emoji</label>
+            <div className="flex flex-wrap gap-2">
+              {EMOJI_OPTIONS.map(e => (
+                <button
+                  key={e}
+                  onClick={() => setEmoji(e)}
+                  className={cn(
+                    "w-11 h-11 rounded-xl text-xl flex items-center justify-center transition-all",
+                    emoji === e ? "bg-amber-100 ring-2 ring-amber-400 scale-110" : "bg-white border border-slate-200 hover:bg-slate-50"
+                  )}
+                >
+                  {e}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Color Picker */}
+          <div>
+            <label className="block text-sm font-bold text-slate-600 mb-2">Card Color</label>
+            <div className="flex flex-wrap gap-2">
+              {COLOR_OPTIONS.map(c => (
+                <button
+                  key={c.value}
+                  onClick={() => setColor(c.value)}
+                  className={cn(
+                    "w-10 h-10 rounded-full bg-gradient-to-br transition-all",
+                    c.value,
+                    color === c.value ? "ring-2 ring-offset-2 ring-amber-400 scale-110" : "opacity-70 hover:opacity-100"
+                  )}
+                  title={c.label}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Pages */}
+          <div>
+            <label className="block text-sm font-bold text-slate-600 mb-2">Story Pages</label>
+            <p className="text-xs text-slate-400 mb-3">Each page is one screen in the reader. Use blank lines between paragraphs.</p>
+            <div className="space-y-4">
+              {pages.map((text, i) => (
+                <div key={i} className="relative">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-bold text-slate-400">Page {i + 1}</span>
+                    {pages.length > 1 && (
+                      <button onClick={() => removePage(i)} className="text-red-400 hover:text-red-600 transition-colors">
+                        <Trash2 size={14} />
+                      </button>
+                    )}
+                  </div>
+                  <textarea
+                    value={text}
+                    onChange={e => updatePage(i, e.target.value)}
+                    placeholder={i === 0 ? "Once upon a time..." : "Continue the story..."}
+                    rows={5}
+                    className="w-full px-4 py-3 bg-white rounded-xl border-2 border-amber-100 focus:border-amber-400 focus:outline-none text-sm font-body text-slate-700 placeholder:text-slate-400 resize-y"
+                  />
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={addPage}
+              className="mt-3 flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors"
+            >
+              <Plus size={16} /> Add another page
+            </button>
+          </div>
+
+          {/* Preview */}
+          {title.trim() && (
+            <div>
+              <label className="block text-sm font-bold text-slate-600 mb-2">Preview</label>
+              <div className="w-36">
+                <div className={cn("aspect-[3/4] rounded-2xl bg-gradient-to-br flex flex-col items-center justify-center p-3 text-white shadow-lg", color)}>
+                  <span className="text-4xl mb-2">{emoji}</span>
+                  <span className="text-xs font-bold text-center leading-tight line-clamp-2">{title}</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Save Button */}
+          <div className="pt-4 pb-8">
+            <Button
+              onClick={handleSave}
+              disabled={!canSave || saving}
+              className="w-full rounded-2xl h-14 text-lg font-bold shadow-lg bg-amber-500 hover:bg-amber-600 transition-all disabled:opacity-50"
+            >
+              {saving ? "Saving..." : "Save Story"}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [authed, setAuthed] = useState(() => isAuthed());
+  const [customStories, setCustomStories] = useState<DbStory[]>([]);
+
+  const loadCustom = useCallback(() => {
+    fetchCustomStories().then(setCustomStories);
+  }, []);
+
+  useEffect(() => {
+    if (authed) loadCustom();
+  }, [authed, loadCustom]);
+
+  const allStories = useMemo(() => {
+    const custom = customStories.map(dbStoryToAppStory);
+    return [...(builtInStories as Story[]), ...custom];
+  }, [customStories]);
 
   if (!authed) {
     return <PasswordGate onSuccess={() => setAuthed(true)} />;
   }
 
   return (
-    <>
+    <AllStoriesContext.Provider value={{ stories: allStories, refreshCustom: loadCustom }}>
       <MagicCursor />
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/story/:id" component={StoryReader} />
+        <Route path="/add-story" component={StoryEditor} />
       </Switch>
-    </>
+    </AllStoriesContext.Provider>
   );
 }
 
