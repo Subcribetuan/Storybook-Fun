@@ -5,7 +5,12 @@ import FilterBar from './FilterBar';
 
 export default function HomeView() {
   const { filter } = useStore();
-  const filtered = filter === 'all' ? stories : stories.filter((s) => s.category === filter);
+  const filtered = (filter === 'all' ? stories : stories.filter((s) => s.category === filter))
+    .slice()
+    .sort((a, b) => {
+      if (!a.dateAdded || !b.dateAdded) return 0;
+      return new Date(b.dateAdded) - new Date(a.dateAdded);
+    });
 
   return (
     <div style={{
