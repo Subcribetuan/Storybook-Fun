@@ -6,6 +6,7 @@ export const stories = [
     readTime: "5 min",
     emoji: "🌙 ✨ 🏰",
     color: "from-indigo-500 to-purple-600",
+    dateAdded: "2025-12-01",
     pages: [
       { text: `Once upon a time, in a cozy house on a quiet street, there lived two brothers.\n\nThe big brother was named Christopher. He was strong and brave, and he loved to explore.\n\nThe little brother was named Benjamin. He was curious and silly, and he loved to follow Christopher everywhere.` },
       { text: `One evening, Mommy and Daddy tucked them into their big, warm bed together. Daddy pulled the blanket up to their chins — tuck, tuck, tuck — and kissed them both on the forehead.\n\n"We'll be right here," Daddy said. "And later tonight, we'll come snuggle with you."\n\n"But what if it's dark?" whispered Benjamin.\n\n"What if it's too quiet?" whispered Christopher.\n\nDaddy smiled. "You have each other. And that's a very powerful thing."` },
@@ -25,6 +26,7 @@ export const stories = [
     readTime: "5 min",
     emoji: "✨ 🚪 🔮",
     color: "from-purple-500 to-pink-600",
+    dateAdded: "2025-12-03",
     pages: [
       { text: `On the third night in their big bed, something funny happened.\n\nBenjamin dropped his stuffed animal, and it rolled right under the bed.\n\n"Uh oh," said Benjamin.\n\nChristopher leaned over the side and looked underneath. It was dark down there. A little dusty. A little shadowy.\n\nBut then he saw something he had never seen before.\n\nA tiny door.` },
       { text: `It was no bigger than a book, with a round golden handle and a keyhole shaped like a star.\n\nAnd then — click — it opened. All by itself.\n\nOut came a warm breeze that smelled like cookies and grass and rain. And then out hopped a small, round creature no bigger than a tennis ball.\n\nHe was covered in soft blue fur with two big eyes like marbles.\n\n"Oh! Oh! You found me!" he said. "I'm Tumble! I'm a Dream Keeper. I live under your bed."` },
@@ -42,6 +44,7 @@ export const stories = [
     readTime: "5 min",
     emoji: "🐾 ⭐ 🌙",
     color: "from-blue-500 to-red-500",
+    dateAdded: "2025-12-05",
     pages: [
       { text: `Ryder had a problem. The pups couldn't sleep.\n\n"I keep hearing noises," said Chase. "These paws uphold the laws — and right now the law says I need to check this room AGAIN."\n\n"My bed feels too big," said Marshall, buried under blankets. "I'm NOT fired up. I'm fired DOWN."\n\n"I miss everyone," said Skye. "This pup's gotta fly — because being in the air makes me feel better."\n\n"It's too dark, dude," said Zuma, wearing goggles indoors.\n\n"Rubble's got tummy trouble on the double," said Rubble, stress-eating.\n\nRocky hid in a pillow fort. "Don't lose it, reuse it — I'm not coming out."` },
       { text: `Ryder didn't laugh. He didn't say "that's silly." He just listened.\n\n"No job is too big, no pup is too small. Tonight — this job calls for special helpers."\n\nHe called Christopher and Benjamin.\n\n"You're on your fourth night now? That makes you experts. Will you teach the pups to be brave at bedtime?"\n\nBenjamin nodded big.\n\n"We'll do it," said Christopher.\n\n"Paw Patrol — to the bedroom!"` },
@@ -58,6 +61,7 @@ export const stories = [
     readTime: "3 min",
     emoji: "🏁 🔥 💨",
     color: "from-orange-500 to-yellow-500",
+    dateAdded: "2025-12-08",
     pages: [
       { text: `Christopher and Benjamin were in bed when they heard it.\n\nVROOM. VROOM. VROOOOM.\n\nSEVEN MONSTER TRUCKS in the front yard. Wheels taller than Daddy.\n\nRyder on top of the biggest one.\n\n"HEY! YOU TWO! GET DOWN HERE! WE'VE GOT A RACE TO WIN!"\n\nA zip line shot through the window. They grabbed on — WHEEEEE! — and landed next to Ryder.\n\n"PAW PATROL — LET'S ROLL!"\n\nVROOOOOOM!` },
       { text: `All seven trucks launched. The ground shook. Stars blurred.\n\nChase hit the first turn. "Chase is on the case! And on the RACE!"\n\nSkye hit a ramp — FLYING. "This pup's gotta fly — AND DRIVE!"\n\nZuma hydroplaned sideways. "DUDE! LET'S DIVE IN! WHOAAAA!"\n\nRocky's door fell off. Caught it at full speed. "Don't lose it, reuse it — ESPECIALLY AT THIS SPEED!"\n\nMarshall swerved into a cone, a barrel, spun a full circle — ended up FIRST.\n\n"HOW DID I DO THAT?!"\n"NO ONE KNOWS!" yelled Chase.` },
@@ -73,6 +77,7 @@ export const stories = [
     readTime: "3 min",
     emoji: "🚀 🐾 🌕",
     color: "from-blue-600 to-indigo-700",
+    dateAdded: "2025-12-10",
     pages: [
       { text: `Benjamin was counting stars when one moved.\n\nIt wasn't a star. A spaceship. Paw prints on the side.\n\nRyder walked down the ramp in a space helmet.\n\n"Suit up, boys. We're going to the moon."\n\nInside the ship: "Christopher — co-pilot. Benjamin — chief button-pusher."\n\nA whole panel of colorful buttons.\n\n"Can I push one NOW?"\n\n"Not yet," said Ryder, grinning. "But soon."` },
       { text: `"TEN — NINE — EIGHT — SEVEN — SIX — FIVE — FOUR — THREE — TWO —"\n\nRyder looked at Benjamin. "This one's yours, buddy."\n\n"ONE — BLAST OFF!"\n\nHe smashed the big red button.\n\nBOOOOOM!\n\nThe sky went from blue to black to a million billion stars.\n\n"This pup's gotta FLY!" screamed Skye.\n\n"Dude — we're in SPACE!" yelled Zuma.\n\nOutside — Earth. The whole planet.\n\n"That's where we LIVE," whispered Benjamin.` },
@@ -88,6 +93,7 @@ export const stories = [
     readTime: "4 min",
     emoji: "💨 🎈 🦋",
     color: "from-teal-400 to-emerald-500",
+    dateAdded: "2025-12-14",
     pages: [
       { text: `"I don't WANT to go to sleep," said Christopher, arms crossed.\n\nBenjamin's lip wobbled. "My tummy feels bad."\n\n"Like butterflies?" asked Rubble.\n\n"Mean butterflies."\n\n"I get those too! Every time it thunders."\n\n"Really?"\n\n"Every single time, dude," said Zuma. "He hides under my hovercraft."\n\n"ZUMA! That was a SECRET!"\n\nBenjamin giggled.` },
       { text: `"My brain won't stop talking," said Christopher.\n\n"What's it saying?" asked Chase.\n\n"What if something happens. What if I can't sleep and I'm the only one awake."\n\n"My brain says that too. Every. Single. Night. These paws uphold the laws — but my brain doesn't listen to laws."\n\nRyder said: "Marshall — show them Brave Breathing."\n\nMarshall breathed in slow... then blew out like a faraway birthday candle.\n\nChristopher tried. In... out. In... out.\n\nShoulders dropped. "That actually feels good."\n\n"TOLD YOU! I'm fired up about breathing!"` },
@@ -103,6 +109,7 @@ export const stories = [
     readTime: "3 min",
     emoji: "🐟 🌊 💙",
     color: "from-cyan-400 to-blue-500",
+    dateAdded: "2025-12-18",
     pages: [
       { text: `Christopher was at the pool edge. Not going in. Nope.\n\nBenjamin on his lap. DOUBLE nope.\n\nA tiny blue fish popped out. Shaking. Wobble wobble wobble.\n\n"HELLO! HELP! I'm in WATER and I DON'T LIKE IT!"\n\n"But you're a FISH," said Benjamin.\n\n"I KNOW! My name is Finley and I'm a fish scared of water. PLEASE can I sit up there?"\n\nHe flopped out — SPLAT.\n\n"Much better. Dry. I like dry."` },
       { text: `A BIG grumpy fish appeared. One eye bigger than the other.\n\n"FINLEY. Get back in RIGHT NOW."\n\n"That's my grandpa Gus," whispered Finley.\n\n"I've been swimming FORTY-SEVEN YEARS," said Gus.\n\n"You're not very nice," said Benjamin.\n\nGus blinked. "...Fair enough. Sorry."\n\n"Have YOU ever been scared?" said Christopher.\n\nGus went quiet. "...Boats. I'm TERRIFIED of boats."\n\n"SEE?" said Finley. "EVERYONE'S scared of something!"\n\n"Oh, shush," said Gus. But he was smiling.` },
@@ -118,6 +125,7 @@ export const stories = [
     readTime: "3 min",
     emoji: "💦 🐾 🏊",
     color: "from-sky-400 to-blue-600",
+    dateAdded: "2025-12-22",
     pages: [
       { text: `"I don't wanna go swimming," said Christopher.\n"Me NEITHER," said Benjamin.\n\n"DUDES!" Zuma popped out of their BATHTUB. Goggles on.\n\nMarshall ran in — slipped — BONK. "I'm good!"\n\nChase: "The swimming case."\n\nRubble waddled in with a rubber duck and pool noodles. "I brought snacks too."\n\n"You can't eat snacks in the pool."\n\n"...I brought snacks too," said Rubble sadly.` },
       { text: `"What if I drink the water?" said Christopher. "It tastes YUCKY!"\n\n"I drank it once!" said Marshall. "GLUG GLUG GLUG! And I made THIS face."\n\nTongue out. Eyes crossed. Cheeks puffed.\n\nBenjamin SCREAMED laughing.\n\n"You just go BLEH and spit it out!"\n\n"BLEH!" "BLEH!" "BLEH BLEH BLEH!" said everyone.` },
@@ -132,6 +140,7 @@ export const stories = [
     readTime: "3 min",
     emoji: "🧸 🐾 💛",
     color: "from-orange-400 to-red-500",
+    dateAdded: "2025-12-26",
     pages: [
       { text: `Benjamin was in bed. Eyes wide wide wide open.\n\nScratch scratch scratch.\n\nBOING — Rubble jumped on the bed!\n\n"I came for SNUGGLES!" Wag wag wag wag wag. Pillow knocked off.\n\n"You're SILLY!"\n\nSO warm. SO fluffy. SO squishy.\n\nBenjamin poked his tummy. "That tickles!" Poked again. "HEY!" One more. "OKAY OKAY!"\n\n"One more?" "...Okay." Poke. "Hee hee hee!"` },
       { text: `"SLEEPY BODY game! Ready?"\n\n"Sleepy TOES." Wiggle wiggle. Soft. "Sleepy toes!"\n\n"Sleepy LEGS." Stiff — then PLOP.\n\n"Sleepy TUMMY." Balloon UP! Balloon DOWN!\n\n"Sleepy ARMS." Floppy floppy. "NOODLE ARMS!"\n\n"Sleepy FACE." Scrunched SO tight — "That's SILLY face!" — then ahhhhh.\n\n"NOW it's sleepy face."` },
@@ -147,6 +156,7 @@ export const stories = [
     readTime: "4 min",
     emoji: "🛡️ 💪 ❤️",
     color: "from-violet-600 to-indigo-600",
+    dateAdded: "2025-12-30",
     pages: [
       { text: `Everyone thinks Ryder never gets scared.\n\nChristopher used to think that too.\n\nUntil the night Ryder showed up alone.\n\nNo pups. No trucks. Just Ryder on the edge of the bed.\n\n"This isn't a pup mission. I needed to talk to someone. And I thought of you."\n\n"Me?"\n\n"You're the only one who'd get it."` },
       { text: `"Everyone counts on me," said Ryder. "And sometimes at night... I think — what if one day I CAN'T fix it?"\n\n"YOU think that?"\n\n"Every night."\n\n"But you're RYDER. You saved a whale. You did a truck backflip."\n\n"That WAS pretty cool."\n\n"So how can you be scared?"\n\n"Being in charge doesn't mean you're not scared. It means you're scared AND you do the job anyway. That's what makes it brave."` },
@@ -162,6 +172,7 @@ export const stories = [
     readTime: "5 min",
     emoji: "🐾 🌅 🤗",
     color: "from-amber-400 to-orange-500",
+    dateAdded: "2026-01-05",
     pages: [
       { text: `Chase had to go to Pup School.\n\nEvery pup went. Marshall went. Skye went. Rubble went. Every morning, Ryder drove them to the big red building and said goodbye and they ran inside.\n\nEvery pup except Chase.\n\nChase was holding onto Ryder's leg.\n\nNot a little bit. A LOT. Both paws wrapped around. Face buried in Ryder's knee. Not moving.\n\n"Chase," said Ryder. "It's time, buddy."\n\n"No."\n\n"The other pups are already inside."\n\n"I don't care."\n\n"You like Pup School. You told me yesterday you liked it."\n\n"I like it when I'm THERE. I don't like the part where you LEAVE."` },
       { text: `Christopher was watching from the gate. He didn't say anything. He just watched.\n\nBecause he knew exactly how Chase felt.\n\nRyder knelt down. Right there on the ground. He didn't pull Chase off. He didn't say "be brave." He didn't say "you're fine." He just knelt down and put his arms around Chase and held him.\n\n"I know," said Ryder.\n\n"You're going to LEAVE," said Chase. His voice was wobbly.\n\n"Yeah. I am."\n\n"What if something happens and you're not here?"\n\n"Your teachers are here."\n\n"They're not YOU."\n\nRyder didn't say anything for a second. Because that one was true and they both knew it.` },
@@ -179,6 +190,7 @@ export const stories = [
     readTime: "5 min",
     emoji: "☁️ 😴 🌟",
     color: "from-sky-400 to-indigo-400",
+    dateAdded: "2026-01-12",
     pages: [
       { text: `The window was open just a little bit. Just enough for the breeze to come in.\n\nBut tonight something else came in too.\n\nA cloud. A small one. About the size of a pillow. It floated through the gap and landed — POOF — on the end of Benjamin's bed.\n\nBenjamin sat up.\n\n"Christopher. There's a cloud on my bed."\n\n"Go to sleep, Benjamin."\n\n"There's a CLOUD on my BED."\n\nChristopher looked. There was, in fact, a cloud on Benjamin's bed.\n\n"...Oh."` },
       { text: `The cloud had a face. Two sleepy eyes. A little mouth. And it looked EXHAUSTED.\n\n"Sorry," said the cloud. "Sorry sorry sorry. I just need to sit down for a minute."\n\n"Are you okay?" said Christopher.\n\n"I've been floating ALL day. ALL day. Do you know how tiring it is being a cloud? Everyone thinks we just float around doing nothing but we have JOBS. I had to rain on a garden this morning. Then I had to make shade for a dog. Then the WIND pushed me halfway across the sky and I ended up HERE and I'm SO TIRED but I can't — I just CAN'T —"\n\n"Can't what?" said Benjamin.\n\n"I can't sleep."\n\nThe cloud's little eyes filled up with tiny raindrops. Not crying. Just... leaking.\n\n"Clouds don't really cry," she said. "We just rain a little bit when we're upset. Sorry about your blanket."` },
@@ -197,6 +209,7 @@ export const stories = [
     readTime: "5 min",
     emoji: "👾 😱 🫣",
     color: "from-emerald-400 to-teal-500",
+    dateAdded: "2026-01-20",
     pages: [
       { text: `There was a monster under the bed.\n\nHis name was Gloop. He was green. He had seven eyes. And he was absolutely, completely, one hundred percent TERRIFIED of children.\n\n"Don't move," Gloop whispered to himself. "They're RIGHT ABOVE ME. Two of them. TWO. Oh this is bad. This is very very bad."` },
       { text: `Christopher heard something.\n\n"Benjamin. Something's under the bed."\n\nBenjamin leaned over the side. His face appeared upside down, looking under the bed.\n\n"AAAAAGH!" screamed Gloop.\n\n"AAAAAGH!" screamed Benjamin.\n\n"AAAAAGH!" screamed Gloop again.\n\n"There's a MONSTER!" said Benjamin.\n\n"There's a BOY!" said Gloop. "AN UPSIDE DOWN BOY! That's the WORST kind!"\n\nGloop scrambled to the far corner under the bed. He was shaking. All seven eyes were blinking at different times.\n\nChristopher leaned over too.\n\n"THERE'S TWO OF THEM!" said Gloop. "WHY ARE THERE TWO?"` },
@@ -215,6 +228,7 @@ export const stories = [
     readTime: "5 min",
     emoji: "🌕 🌠 💫",
     color: "from-amber-300 to-yellow-500",
+    dateAdded: "2026-02-01",
     pages: [
       { text: `Christopher couldn't sleep. He was lying in bed looking out the window at the moon.\n\nThe moon was big tonight. Really big. Bigger than normal.\n\n"Benjamin. Look at the moon."\n\nBenjamin looked.\n\n"It's big," said Benjamin.\n\n"Yeah."\n\nThey watched it. And then something happened that has never happened before in the whole entire history of the world.\n\nThe moon moved.\n\nNot slowly, the way the moon normally moves. FAST. It dropped. Down, down, down through the sky like a ball falling off a table. And it landed — THOOMPH — right in their backyard.\n\nThe whole room went bright. Golden bright. Like morning but softer.` },
       { text: `They ran to the window.\n\nThe moon was sitting in the grass. It was HUGE. It took up the whole backyard. It was warm and glowing and it hummed — a deep, low hum, like a sleeping cat the size of a house.\n\n"Christopher," whispered Benjamin. "The moon is in our GARDEN."\n\n"I know."\n\n"Should we tell Daddy?"\n\nChristopher thought about it. "...Not yet."\n\nThey crept outside in their pyjamas. Bare feet on cold grass. The moon was warm, though. The closer they got, the warmer it was. Like standing near a fireplace. Their shadows stretched all the way back to the house.\n\nChristopher reached out and touched it.\n\nIt was smooth. And warm. And it hummed under his hand. Like it was breathing.\n\n"Hello?" said Christopher.\n\nThe moon didn't say anything. Moons don't talk. Everyone knows that.\n\nThen the moon said: "Hello, Christopher."` },

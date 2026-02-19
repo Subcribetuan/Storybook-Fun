@@ -224,6 +224,7 @@ interface Story {
   pages: { text: string }[];
   isCustom?: boolean;
   dbId?: number;
+  dateAdded?: string;
 }
 
 // --- Components ---
@@ -241,6 +242,20 @@ function FloatingElement({ children, delay = 0, duration = 4, yOffset = 10, xOff
       {children}
     </motion.div>
   );
+}
+
+function isNewStory(dateAdded?: string) {
+  if (!dateAdded) return false;
+  const added = new Date(dateAdded);
+  const now = new Date();
+  const diffDays = (now.getTime() - added.getTime()) / (1000 * 60 * 60 * 24);
+  return diffDays <= 7;
+}
+
+function formatDate(dateAdded?: string) {
+  if (!dateAdded) return '';
+  const d = new Date(dateAdded);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
 function StoryBookCard({ story, onClick, index, isRead, onToggleRead, onDelete }: { story: Story; onClick: () => void; index: number; isRead?: boolean; onToggleRead?: () => void; onDelete?: () => void }) {
@@ -274,6 +289,19 @@ function StoryBookCard({ story, onClick, index, isRead, onToggleRead, onDelete }
       )}>
         {/* Soft inner glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/20 pointer-events-none" />
+
+        {/* New Badge */}
+        {isNewStory(story.dateAdded) && !isRead && (
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className="absolute top-2 left-2 md:top-3 md:left-3 z-10"
+          >
+            <div className="px-2 py-0.5 md:px-2.5 md:py-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full shadow-md ring-2 ring-white">
+              <span className="text-[9px] md:text-[11px] font-bold text-white uppercase tracking-wider">New</span>
+            </div>
+          </motion.div>
+        )}
 
         {/* Delete Button (custom stories only) */}
         {onDelete && (
@@ -327,9 +355,16 @@ function StoryBookCard({ story, onClick, index, isRead, onToggleRead, onDelete }
           <h3 className={cn("text-xs md:text-base font-display font-bold leading-snug line-clamp-2 mb-0.5 md:mb-1", isRead ? "text-slate-500" : "text-slate-700")}>
             {story.title}
           </h3>
-          <div className="flex items-center gap-1.5">
-            <BookOpen size={10} className={cn("md:w-3 md:h-3", palette.accent)} />
-            <span className={cn("text-[10px] md:text-xs font-medium", palette.accent)}>{story.readTime}</span>
+          <div className="flex items-center gap-1.5 justify-between">
+            <div className="flex items-center gap-1.5">
+              <BookOpen size={10} className={cn("md:w-3 md:h-3", palette.accent)} />
+              <span className={cn("text-[10px] md:text-xs font-medium", palette.accent)}>{story.readTime}</span>
+            </div>
+            {story.dateAdded && (
+              <span className="text-[9px] md:text-[10px] text-slate-400 font-medium">
+                {formatDate(story.dateAdded)}
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -1173,7 +1208,14 @@ function App() {
 
   const allStories = useMemo(() => {
     const custom = customStories.map(dbStoryToAppStory);
-    return [...(builtInStories as Story[]), ...custom];
+    const combined = [...(builtInStories as Story[]), ...custom];
+    // Sort newest first by dateAdded
+    return combined.sort((a, b) => {
+      if (!a.dateAdded && !b.dateAdded) return 0;
+      if (!a.dateAdded) return 1;
+      if (!b.dateAdded) return -1;
+      return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
+    });
   }, [customStories]);
 
   if (!authed) {

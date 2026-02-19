@@ -53,6 +53,7 @@ export function dbStoryToAppStory(s: DbStory) {
     pages: splitPages,
     isCustom: true,
     dbId: s.id,
+    dateAdded: s.created_at ? s.created_at.split("T")[0] : undefined,
   };
 }
 
