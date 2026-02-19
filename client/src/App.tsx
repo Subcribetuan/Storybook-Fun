@@ -225,6 +225,7 @@ interface Story {
   isCustom?: boolean;
   dbId?: number;
   dateAdded?: string;
+  ageRange?: string;
 }
 
 // --- Components ---
@@ -359,6 +360,12 @@ function StoryBookCard({ story, onClick, index, isRead, onToggleRead, onDelete }
             <div className="flex items-center gap-1.5">
               <BookOpen size={10} className={cn("md:w-3 md:h-3", palette.accent)} />
               <span className={cn("text-[10px] md:text-xs font-medium", palette.accent)}>{story.readTime}</span>
+              {story.ageRange && (
+                <>
+                  <span className="text-slate-300 text-[8px] md:text-[10px]">|</span>
+                  <span className="text-[9px] md:text-[10px] text-slate-400 font-medium">Ages {story.ageRange}</span>
+                </>
+              )}
             </div>
             {story.dateAdded && (
               <span className="text-[9px] md:text-[10px] text-slate-400 font-medium">
@@ -377,6 +384,8 @@ const categoryMeta: Record<string, { icon: typeof Moon; label: string }> = {
   "paw-patrol": { icon: Star, label: "Paw Patrol" },
   swimming: { icon: Cloud, label: "Swimming" },
   breathing: { icon: Heart, label: "Breathing" },
+  adventure: { icon: Sparkles, label: "Adventure" },
+  feelings: { icon: Sun, label: "Feelings" },
 };
 
 type FilterMode = "all" | "new" | "read";
@@ -474,7 +483,7 @@ function Home() {
           </motion.button>
 
           <h1 className="text-3xl md:text-6xl font-display font-extrabold text-slate-800 leading-[0.95] tracking-tight drop-shadow-sm">
-            Christopher & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-amber-600 animate-gradient-x">Benjamine's World</span>
+            Christopher & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-amber-600 animate-gradient-x">Benjamin's World</span>
           </h1>
           <p className="mt-2 md:mt-4 text-sm md:text-xl text-slate-500 font-body max-w-2xl mx-auto leading-relaxed">
             Pick a story to start your adventure!
