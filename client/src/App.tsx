@@ -769,6 +769,19 @@ function StoryReader({ params }: { params: { id: string } }) {
     setMusicEnabled(prev => !prev);
   };
 
+  // Close sound picker when tapping outside
+  const pickerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!showSoundPicker) return;
+    const handler = (e: MouseEvent) => {
+      if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
+        setShowSoundPicker(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [showSoundPicker]);
+
   // Audio lifecycle — create engine on mount, dispose on unmount
   useEffect(() => {
     const engine = new StoryAudioEngine();
@@ -906,7 +919,7 @@ function StoryReader({ params }: { params: { id: string } }) {
         </div>
 
         {/* Music Controls */}
-        <div className="relative flex items-center gap-2">
+        <div ref={pickerRef} className="relative flex items-center gap-2">
           {/* Music Toggle Button (both mobile + desktop) */}
           <Button
             variant="secondary"

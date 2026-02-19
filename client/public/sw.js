@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wondertales-v5';
+const CACHE_NAME = 'wondertales-v6';
 const STATIC_ASSETS = [
   '/manifest.json',
   '/pwa-192x192.png',
