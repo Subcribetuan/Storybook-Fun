@@ -745,6 +745,90 @@ function StoryReader({ params }: { params: { id: string } }) {
 
   const totalPages = story?.pages.length || 0;
 
+  // --- All refs must be declared before any conditional returns ---
+  const pickerRef = useRef<HTMLDivElement>(null);
+  const textScrollRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const isSwiping = useRef(false);
+
+  // --- All effects must be declared before any conditional returns ---
+
+  // Close sound picker when tapping outside
+  useEffect(() => {
+    if (!showSoundPicker) return;
+    const handler = (e: MouseEvent) => {
+      if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
+        setShowSoundPicker(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [showSoundPicker]);
+
+  // Audio lifecycle — create engine on mount, dispose on unmount
+  useEffect(() => {
+    if (!story) return;
+    const engine = new StoryAudioEngine();
+    audioRef.current = engine;
+    return () => {
+      engine.dispose();
+      audioRef.current = null;
+    };
+  }, [story?.id]);
+
+  // Start/stop music when toggled or sound changes
+  useEffect(() => {
+    if (!story) return;
+    const engine = audioRef.current;
+    if (!engine) return;
+    const soundId = resolveSound(selectedSound, story.category);
+    if (musicEnabled && !isComplete) {
+      if (!engine.playing || engine.currentSound !== soundId) {
+        engine.start(soundId);
+        engine.setVolume(musicVolume);
+      }
+    } else if (!musicEnabled && engine.playing) {
+      engine.stop();
+    }
+    saveMusicPreference(musicEnabled, musicVolume, selectedSound);
+  }, [musicEnabled, selectedSound, story?.category, story?.id, isComplete]);
+
+  // Volume changes
+  useEffect(() => {
+    audioRef.current?.setVolume(musicVolume);
+    saveMusicPreference(musicEnabled, musicVolume, selectedSound);
+  }, [musicVolume]);
+
+  // Wind-down on last 2 pages for bedtime/breathing
+  useEffect(() => {
+    if (!story) return;
+    const engine = audioRef.current;
+    if (!engine || !musicEnabled) return;
+    const isWindDownCategory = story.category === "bedtime" || story.category === "breathing";
+    const pagesFromEnd = totalPages - 1 - page;
+
+    if (isWindDownCategory && pagesFromEnd <= 1 && totalPages > 3) {
+      const duration = pagesFromEnd === 1 ? 30 : 15;
+      engine.windDown(duration);
+    } else {
+      engine.cancelWindDown();
+    }
+  }, [page, musicEnabled, story?.category, totalPages]);
+
+  // Stop music on story completion
+  useEffect(() => {
+    if (isComplete) {
+      audioRef.current?.stop();
+    }
+  }, [isComplete]);
+
+  // Scroll to top on page change
+  useEffect(() => {
+    textScrollRef.current?.scrollTo(0, 0);
+  }, [page]);
+
+  // --- Conditional return AFTER all hooks ---
   if (!story) return null;
 
   const handleNext = () => {
@@ -769,100 +853,21 @@ function StoryReader({ params }: { params: { id: string } }) {
     setMusicEnabled(prev => !prev);
   };
 
-  // Close sound picker when tapping outside
-  const pickerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!showSoundPicker) return;
-    const handler = (e: MouseEvent) => {
-      if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
-        setShowSoundPicker(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [showSoundPicker]);
-
-  // Audio lifecycle — create engine on mount, dispose on unmount
-  useEffect(() => {
-    const engine = new StoryAudioEngine();
-    audioRef.current = engine;
-    return () => {
-      engine.dispose();
-      audioRef.current = null;
-    };
-  }, [story.id]);
-
-  // Start/stop music when toggled or sound changes
-  useEffect(() => {
-    const engine = audioRef.current;
-    if (!engine) return;
-    const soundId = resolveSound(selectedSound, story.category);
-    if (musicEnabled && !isComplete) {
-      // Start or switch sound
-      if (!engine.playing || engine.currentSound !== soundId) {
-        engine.start(soundId);
-        engine.setVolume(musicVolume);
-      }
-    } else if (!musicEnabled && engine.playing) {
-      engine.stop();
-    }
-    saveMusicPreference(musicEnabled, musicVolume, selectedSound);
-  }, [musicEnabled, selectedSound, story.category, story.id, isComplete]);
-
-  // Volume changes
-  useEffect(() => {
-    audioRef.current?.setVolume(musicVolume);
-    saveMusicPreference(musicEnabled, musicVolume, selectedSound);
-  }, [musicVolume]);
-
-  // Wind-down on last 2 pages for bedtime/breathing
-  useEffect(() => {
-    const engine = audioRef.current;
-    if (!engine || !musicEnabled) return;
-    const isWindDownCategory = story.category === "bedtime" || story.category === "breathing";
-    const pagesFromEnd = totalPages - 1 - page;
-
-    if (isWindDownCategory && pagesFromEnd <= 1 && totalPages > 3) {
-      const duration = pagesFromEnd === 1 ? 30 : 15;
-      engine.windDown(duration);
-    } else {
-      engine.cancelWindDown();
-    }
-  }, [page, musicEnabled, story.category, totalPages]);
-
-  // Stop music on story completion
-  useEffect(() => {
-    if (isComplete) {
-      audioRef.current?.stop();
-    }
-  }, [isComplete]);
-
-  // Scroll to top on page change
-  const textScrollRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    textScrollRef.current?.scrollTo(0, 0);
-  }, [page]);
-
   // Swipe gesture support
-  const touchStartX = useRef(0);
-  const touchStartY = useRef(0);
-  const isSwiping = useRef(false);
-
-  const onTouchStart = useCallback((e: React.TouchEvent) => {
+  const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
     isSwiping.current = false;
-  }, []);
+  };
 
-  const onTouchEnd = useCallback((e: React.TouchEvent) => {
+  const onTouchEnd = (e: React.TouchEvent) => {
     const dx = e.changedTouches[0].clientX - touchStartX.current;
     const dy = e.changedTouches[0].clientY - touchStartY.current;
-    // Only count as swipe if horizontal movement > 50px and more horizontal than vertical
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
       if (dx < 0) handleNext();
       else handlePrev();
     }
-  }, [page, totalPages]);
+  };
 
   const currentPage = story.pages[page];
   const progress = ((page + 1) / totalPages) * 100;
