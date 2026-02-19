@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
 import { useToast } from "@/hooks/use-toast";
 import { fetchCustomStories, createStory, deleteStory, dbStoryToAppStory, type DbStory } from "@/lib/supabase";
-import { StoryAudioEngine, getMusicPreference, saveMusicPreference } from "@/lib/storyAudio";
+import { StoryAudioEngine, getMusicPreference, saveMusicPreference, resolveSound, SOUND_OPTIONS } from "@/lib/storyAudio";
 import { Slider } from "@/components/ui/slider";
 
 // --- All Stories Context (hardcoded + Supabase) ---
@@ -740,6 +740,8 @@ function StoryReader({ params }: { params: { id: string } }) {
   const audioRef = useRef<StoryAudioEngine | null>(null);
   const [musicEnabled, setMusicEnabled] = useState(() => getMusicPreference().enabled);
   const [musicVolume, setMusicVolume] = useState(() => getMusicPreference().volume);
+  const [selectedSound, setSelectedSound] = useState<string | null>(() => getMusicPreference().sound);
+  const [showSoundPicker, setShowSoundPicker] = useState(false);
 
   const totalPages = story?.pages.length || 0;
 
@@ -777,23 +779,27 @@ function StoryReader({ params }: { params: { id: string } }) {
     };
   }, [story.id]);
 
-  // Start/stop music when toggled
+  // Start/stop music when toggled or sound changes
   useEffect(() => {
     const engine = audioRef.current;
     if (!engine) return;
-    if (musicEnabled && !engine.playing && !isComplete) {
-      engine.start(story.category);
-      engine.setVolume(musicVolume);
+    const soundId = resolveSound(selectedSound, story.category);
+    if (musicEnabled && !isComplete) {
+      // Start or switch sound
+      if (!engine.playing || engine.currentSound !== soundId) {
+        engine.start(soundId);
+        engine.setVolume(musicVolume);
+      }
     } else if (!musicEnabled && engine.playing) {
       engine.stop();
     }
-    saveMusicPreference(musicEnabled, musicVolume);
-  }, [musicEnabled, story.category, story.id, isComplete]);
+    saveMusicPreference(musicEnabled, musicVolume, selectedSound);
+  }, [musicEnabled, selectedSound, story.category, story.id, isComplete]);
 
   // Volume changes
   useEffect(() => {
     audioRef.current?.setVolume(musicVolume);
-    saveMusicPreference(musicEnabled, musicVolume);
+    saveMusicPreference(musicEnabled, musicVolume, selectedSound);
   }, [musicVolume]);
 
   // Wind-down on last 2 pages for bedtime/breathing
@@ -900,59 +906,112 @@ function StoryReader({ params }: { params: { id: string } }) {
         </div>
 
         {/* Music Controls */}
-        <div className="flex items-center gap-2">
-          {/* Mobile Music Toggle */}
+        <div className="relative flex items-center gap-2">
+          {/* Music Toggle Button (both mobile + desktop) */}
           <Button
             variant="secondary"
             onClick={toggleSound}
             className={cn(
-              "md:hidden rounded-full shadow-lg h-12 w-12 p-0 border-2 border-slate-100 transition-all",
+              "rounded-full shadow-lg h-12 w-12 md:h-14 md:w-14 p-0 border-2 border-slate-100 transition-all",
               musicEnabled ? "bg-amber-50 border-amber-200" : "bg-white"
             )}
           >
             {musicEnabled ? (
-              <Volume2 size={18} className="text-amber-500" />
+              <Volume2 size={18} className="text-amber-500 md:w-5 md:h-5" />
             ) : (
-              <Music size={18} className="text-slate-400" />
+              <Music size={18} className="text-slate-400 md:w-5 md:h-5" />
             )}
           </Button>
 
-          {/* Desktop Music Controls */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Sound Picker Toggle (only when music is on) */}
+          {musicEnabled && (
             <Button
               variant="secondary"
-              onClick={toggleSound}
+              onClick={() => setShowSoundPicker(prev => !prev)}
               className={cn(
-                "rounded-full shadow-lg h-14 px-6 border-2 border-slate-100 hover:scale-105 transition-all gap-3",
-                musicEnabled ? "bg-amber-50 hover:bg-amber-100 border-amber-200" : "bg-white hover:bg-gray-50"
+                "rounded-full shadow-lg h-12 md:h-14 px-3 md:px-5 border-2 border-slate-100 transition-all gap-1.5 md:gap-2",
+                showSoundPicker ? "bg-amber-100 border-amber-300" : "bg-white hover:bg-gray-50"
               )}
             >
-              {musicEnabled ? (
-                <Volume2 size={20} className="text-amber-500" />
-              ) : (
-                <Music size={20} className="text-slate-400" />
-              )}
-              <span className="font-bold text-slate-600">
-                {musicEnabled ? "Music On" : "Music Off"}
+              <span className="text-base md:text-lg">{SOUND_OPTIONS.find(s => s.id === (selectedSound || "auto"))?.emoji || "✨"}</span>
+              <span className="text-xs md:text-sm font-bold text-slate-600 hidden sm:inline">
+                {SOUND_OPTIONS.find(s => s.id === (selectedSound || "auto"))?.label || "Auto"}
               </span>
             </Button>
-            {musicEnabled && (
+          )}
+
+          {/* Desktop Volume Slider */}
+          {musicEnabled && (
+            <motion.div
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: 100, opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
+              className="overflow-hidden hidden md:block"
+            >
+              <Slider
+                value={[musicVolume * 100]}
+                onValueChange={([v]: number[]) => setMusicVolume(v / 100)}
+                max={100}
+                step={5}
+                className="w-[100px]"
+              />
+            </motion.div>
+          )}
+
+          {/* Sound Picker Dropdown */}
+          <AnimatePresence>
+            {showSoundPicker && musicEnabled && (
               <motion.div
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: 120, opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                className="overflow-hidden"
+                initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                className="absolute top-full right-0 mt-2 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 z-50 min-w-[200px]"
               >
-                <Slider
-                  value={[musicVolume * 100]}
-                  onValueChange={([v]: number[]) => setMusicVolume(v / 100)}
-                  max={100}
-                  step={5}
-                  className="w-[120px]"
-                />
+                {SOUND_OPTIONS.map((opt) => {
+                  const isActive = (selectedSound || "auto") === opt.id;
+                  return (
+                    <button
+                      key={opt.id}
+                      onClick={() => {
+                        setSelectedSound(opt.id === "auto" ? null : opt.id);
+                        setShowSoundPicker(false);
+                      }}
+                      className={cn(
+                        "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all",
+                        isActive
+                          ? "bg-amber-50 text-amber-700"
+                          : "hover:bg-slate-50 text-slate-600"
+                      )}
+                    >
+                      <span className="text-lg">{opt.emoji}</span>
+                      <span className="text-sm font-bold flex-1">{opt.label}</span>
+                      {opt.id === "auto" && (
+                        <span className="text-[10px] text-slate-400 font-medium">
+                          ({SOUND_OPTIONS.find(s => s.id === resolveSound(null, story.category))?.label})
+                        </span>
+                      )}
+                      {isActive && <Check size={14} className="text-amber-500" />}
+                    </button>
+                  );
+                })}
+
+                {/* Mobile Volume Slider inside picker */}
+                <div className="md:hidden mt-2 pt-2 border-t border-slate-100 px-3 pb-1">
+                  <div className="flex items-center gap-2">
+                    <Volume2 size={14} className="text-slate-400 shrink-0" />
+                    <Slider
+                      value={[musicVolume * 100]}
+                      onValueChange={([v]: number[]) => setMusicVolume(v / 100)}
+                      max={100}
+                      step={5}
+                      className="flex-1"
+                    />
+                  </div>
+                </div>
               </motion.div>
             )}
-          </div>
+          </AnimatePresence>
         </div>
       </div>
 
@@ -968,7 +1027,7 @@ function StoryReader({ params }: { params: { id: string } }) {
                 setIsComplete(false);
                 setPage(0);
                 if (musicEnabled && audioRef.current) {
-                  audioRef.current.start(story.category);
+                  audioRef.current.start(resolveSound(selectedSound, story.category));
                   audioRef.current.setVolume(musicVolume);
                 }
               }} />}

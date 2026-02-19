@@ -1,92 +1,138 @@
-// Web Audio API ambient sound engine for storybook categories
-// Generates calming audio procedurally — no audio files needed
+// Web Audio API ambient sound engine for storybook
+// Generates calming ambient sounds procedurally — no audio files needed
 
 const MUSIC_ENABLED_KEY = "wondertales-music-enabled";
 const MUSIC_VOLUME_KEY = "wondertales-music-volume";
+const MUSIC_SOUND_KEY = "wondertales-music-sound";
 
-export function getMusicPreference(): { enabled: boolean; volume: number } {
+export function getMusicPreference(): { enabled: boolean; volume: number; sound: string | null } {
   const enabled = localStorage.getItem(MUSIC_ENABLED_KEY) !== "false";
   const vol = parseFloat(localStorage.getItem(MUSIC_VOLUME_KEY) || "0.4");
-  return { enabled, volume: isNaN(vol) ? 0.4 : Math.max(0, Math.min(1, vol)) };
+  const sound = localStorage.getItem(MUSIC_SOUND_KEY);
+  return { enabled, volume: isNaN(vol) ? 0.4 : Math.max(0, Math.min(1, vol)), sound };
 }
 
-export function saveMusicPreference(enabled: boolean, volume: number): void {
+export function saveMusicPreference(enabled: boolean, volume: number, sound: string | null): void {
   localStorage.setItem(MUSIC_ENABLED_KEY, String(enabled));
   localStorage.setItem(MUSIC_VOLUME_KEY, String(volume));
+  if (sound) {
+    localStorage.setItem(MUSIC_SOUND_KEY, sound);
+  } else {
+    localStorage.removeItem(MUSIC_SOUND_KEY);
+  }
 }
 
-interface OscConfig {
-  type: OscillatorType;
-  frequency: number;
-  detune: number;
-  gain: number;
+// --- Sound options exposed for UI ---
+export interface SoundOption {
+  id: string;
+  label: string;
+  emoji: string;
 }
+
+export const SOUND_OPTIONS: SoundOption[] = [
+  { id: "auto", label: "Auto", emoji: "✨" },
+  { id: "rain", label: "Rain", emoji: "🌧️" },
+  { id: "ocean", label: "Ocean", emoji: "🌊" },
+  { id: "wind", label: "Wind", emoji: "🍃" },
+  { id: "night", label: "Night", emoji: "🌙" },
+  { id: "stream", label: "Stream", emoji: "💧" },
+  { id: "warmth", label: "Warmth", emoji: "🔥" },
+];
+
+// Category → default sound mapping (used when "auto" is selected)
+const CATEGORY_DEFAULTS: Record<string, string> = {
+  bedtime: "night",
+  breathing: "rain",
+  swimming: "ocean",
+  adventure: "wind",
+  "paw-patrol": "warmth",
+  feelings: "rain",
+};
+
+// --- Sound Profiles ---
+// All sounds are noise-driven (not oscillator-driven) for a natural feel.
+// Oscillators are only used as subtle sub-bass warmth, nearly inaudible.
 
 interface SoundProfile {
-  oscillators: OscConfig[];
+  // Primary noise layer
+  noise: {
+    type: "white" | "pink" | "brown";
+    filterType: BiquadFilterType;
+    filterFreq: number;
+    filterQ: number;
+    gain: number;
+  };
+  // Optional second noise layer (texture/detail)
+  noise2?: {
+    type: "white" | "pink" | "brown";
+    filterType: BiquadFilterType;
+    filterFreq: number;
+    filterQ: number;
+    gain: number;
+  };
+  // LFO modulates the noise for wave/pulse effects
   lfo: { frequency: number; depth: number };
-  noise: { type: "white" | "pink" | "brown"; filterFreq: number; filterQ: number; gain: number } | null;
+  // Optional subtle sub-bass warmth (very low, felt not heard)
+  subBass?: { frequency: number; gain: number };
   masterGain: number;
 }
 
 const PROFILES: Record<string, SoundProfile> = {
-  bedtime: {
-    oscillators: [
-      { type: "sine", frequency: 130.81, detune: 0, gain: 0.12 },   // C3
-      { type: "sine", frequency: 164.81, detune: -5, gain: 0.08 },  // E3 slightly detuned for warmth
-    ],
-    lfo: { frequency: 0.06, depth: 0.3 },
-    noise: { type: "brown", filterFreq: 200, filterQ: 0.5, gain: 0.15 },
+  rain: {
+    // Gentle rain: pink noise through a mid-range filter
+    noise: { type: "pink", filterType: "lowpass", filterFreq: 2500, filterQ: 0.3, gain: 0.6 },
+    // Occasional raindrop detail: white noise with bandpass
+    noise2: { type: "white", filterType: "bandpass", filterFreq: 4000, filterQ: 2, gain: 0.08 },
+    lfo: { frequency: 0.04, depth: 0.15 },
+    subBass: { frequency: 55, gain: 0.03 },
+    masterGain: 0.8,
+  },
+  ocean: {
+    // Surf: brown noise gives deep rumble
+    noise: { type: "brown", filterType: "lowpass", filterFreq: 600, filterQ: 0.5, gain: 0.7 },
+    // Foam/hiss layer
+    noise2: { type: "white", filterType: "highpass", filterFreq: 2000, filterQ: 0.2, gain: 0.12 },
+    // Slow LFO makes it swell like waves
+    lfo: { frequency: 0.08, depth: 0.45 },
+    subBass: { frequency: 40, gain: 0.04 },
+    masterGain: 0.75,
+  },
+  wind: {
+    // Gentle wind: brown noise, very low-passed
+    noise: { type: "brown", filterType: "lowpass", filterFreq: 400, filterQ: 0.3, gain: 0.65 },
+    // Higher whistle layer
+    noise2: { type: "pink", filterType: "bandpass", filterFreq: 1200, filterQ: 1.5, gain: 0.06 },
+    lfo: { frequency: 0.05, depth: 0.35 },
     masterGain: 0.7,
   },
-  breathing: {
-    oscillators: [
-      { type: "sine", frequency: 110, detune: 0, gain: 0.1 },       // A2
-      { type: "sine", frequency: 165, detune: 3, gain: 0.05 },      // E3 faint fifth
-    ],
-    lfo: { frequency: 0.03, depth: 0.4 },  // ultra-slow, breath-like
-    noise: { type: "brown", filterFreq: 100, filterQ: 0.3, gain: 0.1 },
-    masterGain: 0.6,
-  },
-  swimming: {
-    oscillators: [
-      { type: "sine", frequency: 146.83, detune: 0, gain: 0.1 },    // D3
-      { type: "triangle", frequency: 220, detune: 7, gain: 0.06 },  // A3
-    ],
-    lfo: { frequency: 0.15, depth: 0.35 }, // wave-like motion
-    noise: { type: "white", filterFreq: 400, filterQ: 0.8, gain: 0.18 },
+  night: {
+    // Night ambience: very soft brown noise base (room tone)
+    noise: { type: "brown", filterType: "lowpass", filterFreq: 300, filterQ: 0.3, gain: 0.5 },
+    // Faint high shimmer (distant crickets approximation)
+    noise2: { type: "white", filterType: "bandpass", filterFreq: 5000, filterQ: 8, gain: 0.04 },
+    lfo: { frequency: 0.02, depth: 0.1 },
+    subBass: { frequency: 65, gain: 0.03 },
     masterGain: 0.65,
   },
-  adventure: {
-    oscillators: [
-      { type: "triangle", frequency: 261.63, detune: 0, gain: 0.08 }, // C4
-      { type: "triangle", frequency: 196, detune: 5, gain: 0.06 },    // G3
-    ],
-    lfo: { frequency: 0.1, depth: 0.2 },
-    noise: null,
-    masterGain: 0.5,
+  stream: {
+    // Babbling brook: pink noise mid-high
+    noise: { type: "pink", filterType: "bandpass", filterFreq: 1800, filterQ: 0.8, gain: 0.4 },
+    // Water flow: brown noise low
+    noise2: { type: "brown", filterType: "lowpass", filterFreq: 500, filterQ: 0.4, gain: 0.3 },
+    // Faster LFO for babbling rhythm
+    lfo: { frequency: 0.2, depth: 0.25 },
+    masterGain: 0.7,
   },
-  "paw-patrol": {
-    oscillators: [
-      { type: "triangle", frequency: 164.81, detune: 0, gain: 0.09 }, // E3
-      { type: "sine", frequency: 196, detune: -3, gain: 0.06 },       // G3
-    ],
-    lfo: { frequency: 0.08, depth: 0.25 },
-    noise: { type: "pink", filterFreq: 300, filterQ: 0.5, gain: 0.1 },
-    masterGain: 0.55,
-  },
-  feelings: {
-    oscillators: [
-      { type: "sine", frequency: 174.61, detune: 0, gain: 0.1 },    // F3
-      { type: "sine", frequency: 220, detune: -4, gain: 0.07 },     // A3
-    ],
-    lfo: { frequency: 0.07, depth: 0.3 },
-    noise: { type: "brown", filterFreq: 150, filterQ: 0.4, gain: 0.12 },
-    masterGain: 0.6,
+  warmth: {
+    // Cozy fireplace/furnace: deep brown rumble
+    noise: { type: "brown", filterType: "lowpass", filterFreq: 250, filterQ: 0.4, gain: 0.6 },
+    // Crackle detail
+    noise2: { type: "white", filterType: "bandpass", filterFreq: 3000, filterQ: 3, gain: 0.03 },
+    lfo: { frequency: 0.03, depth: 0.12 },
+    subBass: { frequency: 50, gain: 0.05 },
+    masterGain: 0.7,
   },
 };
-
-const DEFAULT_PROFILE = PROFILES.bedtime;
 
 function generateNoiseBuffer(ctx: AudioContext, type: "white" | "pink" | "brown"): AudioBuffer {
   const sampleRate = ctx.sampleRate;
@@ -106,7 +152,7 @@ function generateNoiseBuffer(ctx: AudioContext, type: "white" | "pink" | "brown"
       data[i] = last * 3.5;
     }
   } else {
-    // Pink noise — simplified Voss algorithm
+    // Pink noise — Voss algorithm
     let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
     for (let i = 0; i < length; i++) {
       const white = Math.random() * 2 - 1;
@@ -124,29 +170,63 @@ function generateNoiseBuffer(ctx: AudioContext, type: "white" | "pink" | "brown"
   return buffer;
 }
 
+function createNoiseLayer(
+  ctx: AudioContext,
+  dest: AudioNode,
+  config: SoundProfile["noise"],
+  now: number
+): { source: AudioBufferSourceNode; gain: GainNode } {
+  const buffer = generateNoiseBuffer(ctx, config.type);
+  const source = ctx.createBufferSource();
+  source.buffer = buffer;
+  source.loop = true;
+
+  const filter = ctx.createBiquadFilter();
+  filter.type = config.filterType;
+  filter.frequency.setValueAtTime(config.filterFreq, now);
+  filter.Q.setValueAtTime(config.filterQ, now);
+
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(config.gain, now);
+
+  source.connect(filter);
+  filter.connect(gain);
+  gain.connect(dest);
+  source.start(now);
+
+  return { source, gain };
+}
+
+export function resolveSound(selectedSound: string | null, category: string): string {
+  if (!selectedSound || selectedSound === "auto") {
+    return CATEGORY_DEFAULTS[category] || "night";
+  }
+  return selectedSound;
+}
+
 export class StoryAudioEngine {
   private ctx: AudioContext | null = null;
   private masterGainNode: GainNode | null = null;
   private lfoGainNode: GainNode | null = null;
-  private oscNodes: OscillatorNode[] = [];
-  private oscGainNodes: GainNode[] = [];
-  private noiseSource: AudioBufferSourceNode | null = null;
-  private noiseGain: GainNode | null = null;
+  private noiseLayers: { source: AudioBufferSourceNode; gain: GainNode }[] = [];
+  private subBassOsc: OscillatorNode | null = null;
+  private subBassGain: GainNode | null = null;
   private lfoNode: OscillatorNode | null = null;
   private _isPlaying = false;
   private _volume = 0.4;
-  private _savedVolume = 0.4; // for wind-down restore
+  private _savedVolume = 0.4;
   private _isWindingDown = false;
+  private _currentSound = "";
 
   get playing() { return this._isPlaying; }
+  get currentSound() { return this._currentSound; }
 
-  start(category: string): void {
-    // Stop any existing playback first
+  start(soundId: string): void {
     if (this._isPlaying) this.stop();
 
-    const profile = PROFILES[category] || DEFAULT_PROFILE;
+    const profile = PROFILES[soundId] || PROFILES.night;
+    this._currentSound = soundId;
 
-    // Create or resume AudioContext
     if (!this.ctx || this.ctx.state === "closed") {
       this.ctx = new AudioContext();
     }
@@ -157,12 +237,12 @@ export class StoryAudioEngine {
     const ctx = this.ctx;
     const now = ctx.currentTime;
 
-    // Master gain
+    // Master gain — starts silent, fades in
     this.masterGainNode = ctx.createGain();
     this.masterGainNode.gain.setValueAtTime(0.001, now);
     this.masterGainNode.connect(ctx.destination);
 
-    // LFO for volume pulsing
+    // LFO modulates noise volume for natural movement
     this.lfoGainNode = ctx.createGain();
     this.lfoGainNode.gain.setValueAtTime(1, now);
     this.lfoGainNode.connect(this.masterGainNode);
@@ -170,54 +250,35 @@ export class StoryAudioEngine {
     this.lfoNode = ctx.createOscillator();
     this.lfoNode.type = "sine";
     this.lfoNode.frequency.setValueAtTime(profile.lfo.frequency, now);
-    const lfoDepthGain = ctx.createGain();
-    lfoDepthGain.gain.setValueAtTime(profile.lfo.depth, now);
-    this.lfoNode.connect(lfoDepthGain);
-    lfoDepthGain.connect(this.lfoGainNode.gain);
+    const lfoDepth = ctx.createGain();
+    lfoDepth.gain.setValueAtTime(profile.lfo.depth, now);
+    this.lfoNode.connect(lfoDepth);
+    lfoDepth.connect(this.lfoGainNode.gain);
     this.lfoNode.start(now);
 
-    // Oscillators
-    for (const osc of profile.oscillators) {
-      const oscNode = ctx.createOscillator();
-      oscNode.type = osc.type;
-      oscNode.frequency.setValueAtTime(osc.frequency, now);
-      oscNode.detune.setValueAtTime(osc.detune, now);
+    // Primary noise layer
+    this.noiseLayers.push(createNoiseLayer(ctx, this.lfoGainNode, profile.noise, now));
 
-      const gainNode = ctx.createGain();
-      gainNode.gain.setValueAtTime(osc.gain, now);
-
-      oscNode.connect(gainNode);
-      gainNode.connect(this.lfoGainNode);
-      oscNode.start(now);
-
-      this.oscNodes.push(oscNode);
-      this.oscGainNodes.push(gainNode);
+    // Secondary noise layer (texture/detail)
+    if (profile.noise2) {
+      this.noiseLayers.push(createNoiseLayer(ctx, this.lfoGainNode, profile.noise2, now));
     }
 
-    // Noise layer
-    if (profile.noise) {
-      const noiseBuffer = generateNoiseBuffer(ctx, profile.noise.type);
-      this.noiseSource = ctx.createBufferSource();
-      this.noiseSource.buffer = noiseBuffer;
-      this.noiseSource.loop = true;
-
-      const filter = ctx.createBiquadFilter();
-      filter.type = "lowpass";
-      filter.frequency.setValueAtTime(profile.noise.filterFreq, now);
-      filter.Q.setValueAtTime(profile.noise.filterQ, now);
-
-      this.noiseGain = ctx.createGain();
-      this.noiseGain.gain.setValueAtTime(profile.noise.gain, now);
-
-      this.noiseSource.connect(filter);
-      filter.connect(this.noiseGain);
-      this.noiseGain.connect(this.lfoGainNode);
-      this.noiseSource.start(now);
+    // Optional sub-bass warmth (nearly inaudible, just adds body)
+    if (profile.subBass) {
+      this.subBassOsc = ctx.createOscillator();
+      this.subBassOsc.type = "sine";
+      this.subBassOsc.frequency.setValueAtTime(profile.subBass.frequency, now);
+      this.subBassGain = ctx.createGain();
+      this.subBassGain.gain.setValueAtTime(profile.subBass.gain, now);
+      this.subBassOsc.connect(this.subBassGain);
+      this.subBassGain.connect(this.masterGainNode); // bypasses LFO
+      this.subBassOsc.start(now);
     }
 
-    // Fade in over 1.5 seconds
+    // Fade in over 2 seconds
     const targetGain = this._volume * profile.masterGain;
-    this.masterGainNode.gain.linearRampToValueAtTime(targetGain, now + 1.5);
+    this.masterGainNode.gain.linearRampToValueAtTime(targetGain, now + 2);
 
     this._isPlaying = true;
     this._isWindingDown = false;
@@ -228,14 +289,12 @@ export class StoryAudioEngine {
 
     const now = this.ctx.currentTime;
 
-    // Fade out over 0.5 seconds
     if (this.masterGainNode) {
       this.masterGainNode.gain.cancelScheduledValues(now);
       this.masterGainNode.gain.setValueAtTime(this.masterGainNode.gain.value, now);
       this.masterGainNode.gain.linearRampToValueAtTime(0.001, now + 0.5);
     }
 
-    // Schedule node cleanup after fade
     setTimeout(() => this._disconnectAll(), 600);
 
     this._isPlaying = false;
@@ -243,20 +302,19 @@ export class StoryAudioEngine {
   }
 
   private _disconnectAll(): void {
-    for (const osc of this.oscNodes) {
-      try { osc.stop(); osc.disconnect(); } catch {}
+    for (const layer of this.noiseLayers) {
+      try { layer.source.stop(); layer.source.disconnect(); } catch {}
+      try { layer.gain.disconnect(); } catch {}
     }
-    this.oscNodes = [];
-    this.oscGainNodes = [];
+    this.noiseLayers = [];
+
+    try { this.subBassOsc?.stop(); this.subBassOsc?.disconnect(); } catch {}
+    this.subBassOsc = null;
+    try { this.subBassGain?.disconnect(); } catch {}
+    this.subBassGain = null;
 
     try { this.lfoNode?.stop(); this.lfoNode?.disconnect(); } catch {}
     this.lfoNode = null;
-
-    try { this.noiseSource?.stop(); this.noiseSource?.disconnect(); } catch {}
-    this.noiseSource = null;
-
-    try { this.noiseGain?.disconnect(); } catch {}
-    this.noiseGain = null;
 
     try { this.lfoGainNode?.disconnect(); } catch {}
     this.lfoGainNode = null;
@@ -268,7 +326,7 @@ export class StoryAudioEngine {
   setVolume(value: number): void {
     this._volume = Math.max(0, Math.min(1, value));
     if (!this._isPlaying || !this.masterGainNode || !this.ctx) return;
-    if (this._isWindingDown) return; // don't override wind-down
+    if (this._isWindingDown) return;
 
     const now = this.ctx.currentTime;
     this.masterGainNode.gain.cancelScheduledValues(now);
