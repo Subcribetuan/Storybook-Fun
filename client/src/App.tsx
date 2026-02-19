@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
 import { useToast } from "@/hooks/use-toast";
 import { fetchCustomStories, createStory, deleteStory, dbStoryToAppStory, type DbStory } from "@/lib/supabase";
+import { StoryAudioEngine, getMusicPreference, saveMusicPreference } from "@/lib/storyAudio";
+import { Slider } from "@/components/ui/slider";
 
 // --- All Stories Context (hardcoded + Supabase) ---
 interface AllStoriesCtx {
@@ -734,6 +736,11 @@ function StoryReader({ params }: { params: { id: string } }) {
   const [isComplete, setIsComplete] = useState(false);
   const { toast } = useToast();
 
+  // --- Music state ---
+  const audioRef = useRef<StoryAudioEngine | null>(null);
+  const [musicEnabled, setMusicEnabled] = useState(() => getMusicPreference().enabled);
+  const [musicVolume, setMusicVolume] = useState(() => getMusicPreference().volume);
+
   const totalPages = story?.pages.length || 0;
 
   if (!story) return null;
@@ -757,12 +764,59 @@ function StoryReader({ params }: { params: { id: string } }) {
   };
 
   const toggleSound = () => {
-    toast({
-      title: "Audio Enabled 🎵",
-      description: "Imagine soft piano music playing...",
-      duration: 2000,
-    });
+    setMusicEnabled(prev => !prev);
   };
+
+  // Audio lifecycle — create engine on mount, dispose on unmount
+  useEffect(() => {
+    const engine = new StoryAudioEngine();
+    audioRef.current = engine;
+    return () => {
+      engine.dispose();
+      audioRef.current = null;
+    };
+  }, [story.id]);
+
+  // Start/stop music when toggled
+  useEffect(() => {
+    const engine = audioRef.current;
+    if (!engine) return;
+    if (musicEnabled && !engine.playing && !isComplete) {
+      engine.start(story.category);
+      engine.setVolume(musicVolume);
+    } else if (!musicEnabled && engine.playing) {
+      engine.stop();
+    }
+    saveMusicPreference(musicEnabled, musicVolume);
+  }, [musicEnabled, story.category, story.id, isComplete]);
+
+  // Volume changes
+  useEffect(() => {
+    audioRef.current?.setVolume(musicVolume);
+    saveMusicPreference(musicEnabled, musicVolume);
+  }, [musicVolume]);
+
+  // Wind-down on last 2 pages for bedtime/breathing
+  useEffect(() => {
+    const engine = audioRef.current;
+    if (!engine || !musicEnabled) return;
+    const isWindDownCategory = story.category === "bedtime" || story.category === "breathing";
+    const pagesFromEnd = totalPages - 1 - page;
+
+    if (isWindDownCategory && pagesFromEnd <= 1 && totalPages > 3) {
+      const duration = pagesFromEnd === 1 ? 30 : 15;
+      engine.windDown(duration);
+    } else {
+      engine.cancelWindDown();
+    }
+  }, [page, musicEnabled, story.category, totalPages]);
+
+  // Stop music on story completion
+  useEffect(() => {
+    if (isComplete) {
+      audioRef.current?.stop();
+    }
+  }, [isComplete]);
 
   // Scroll to top on page change
   const textScrollRef = useRef<HTMLDivElement>(null);
@@ -845,14 +899,61 @@ function StoryReader({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        <Button
-          variant="secondary"
-          onClick={toggleSound}
-          className="rounded-full shadow-lg bg-white hover:bg-gray-50 h-14 px-6 border-2 border-slate-100 hover:scale-105 transition-transform gap-3 hidden md:flex"
-        >
-          <Music size={20} className="text-amber-500" />
-          <span className="font-bold text-slate-600">Sound On</span>
-        </Button>
+        {/* Music Controls */}
+        <div className="flex items-center gap-2">
+          {/* Mobile Music Toggle */}
+          <Button
+            variant="secondary"
+            onClick={toggleSound}
+            className={cn(
+              "md:hidden rounded-full shadow-lg h-12 w-12 p-0 border-2 border-slate-100 transition-all",
+              musicEnabled ? "bg-amber-50 border-amber-200" : "bg-white"
+            )}
+          >
+            {musicEnabled ? (
+              <Volume2 size={18} className="text-amber-500" />
+            ) : (
+              <Music size={18} className="text-slate-400" />
+            )}
+          </Button>
+
+          {/* Desktop Music Controls */}
+          <div className="hidden md:flex items-center gap-3">
+            <Button
+              variant="secondary"
+              onClick={toggleSound}
+              className={cn(
+                "rounded-full shadow-lg h-14 px-6 border-2 border-slate-100 hover:scale-105 transition-all gap-3",
+                musicEnabled ? "bg-amber-50 hover:bg-amber-100 border-amber-200" : "bg-white hover:bg-gray-50"
+              )}
+            >
+              {musicEnabled ? (
+                <Volume2 size={20} className="text-amber-500" />
+              ) : (
+                <Music size={20} className="text-slate-400" />
+              )}
+              <span className="font-bold text-slate-600">
+                {musicEnabled ? "Music On" : "Music Off"}
+              </span>
+            </Button>
+            {musicEnabled && (
+              <motion.div
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: 120, opacity: 1 }}
+                exit={{ width: 0, opacity: 0 }}
+                className="overflow-hidden"
+              >
+                <Slider
+                  value={[musicVolume * 100]}
+                  onValueChange={([v]: number[]) => setMusicVolume(v / 100)}
+                  max={100}
+                  step={5}
+                  className="w-[120px]"
+                />
+              </motion.div>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Book Container — fills viewport height on mobile, aspect-ratio on desktop */}
@@ -863,7 +964,14 @@ function StoryReader({ params }: { params: { id: string } }) {
           animate={{ rotateX: 0, scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 80, damping: 20 }}
         >
-          {isComplete && <StoryComplete onRestart={() => { setIsComplete(false); setPage(0); }} />}
+          {isComplete && <StoryComplete onRestart={() => {
+                setIsComplete(false);
+                setPage(0);
+                if (musicEnabled && audioRef.current) {
+                  audioRef.current.start(story.category);
+                  audioRef.current.setVolume(musicVolume);
+                }
+              }} />}
 
           {/* Mobile Progress Bar — thin bar at top of card */}
           <div className="md:hidden absolute top-0 left-0 right-0 h-1 bg-slate-200/50 z-40">
