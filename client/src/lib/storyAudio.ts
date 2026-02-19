@@ -217,12 +217,20 @@ export class StoryAudioEngine {
   private _savedVolume = 0.4;
   private _isWindingDown = false;
   private _currentSound = "";
+  private _stopTimeout: ReturnType<typeof setTimeout> | null = null;
 
   get playing() { return this._isPlaying; }
   get currentSound() { return this._currentSound; }
 
   start(soundId: string): void {
-    if (this._isPlaying) this.stop();
+    // Cancel any pending delayed cleanup from a previous stop()
+    if (this._stopTimeout) {
+      clearTimeout(this._stopTimeout);
+      this._stopTimeout = null;
+    }
+    // Immediately disconnect old nodes (no delayed cleanup that would kill new nodes)
+    if (this._isPlaying) this._disconnectAll();
+    this._isPlaying = false;
 
     const profile = PROFILES[soundId] || PROFILES.night;
     this._currentSound = soundId;
@@ -295,7 +303,10 @@ export class StoryAudioEngine {
       this.masterGainNode.gain.linearRampToValueAtTime(0.001, now + 0.5);
     }
 
-    setTimeout(() => this._disconnectAll(), 600);
+    this._stopTimeout = setTimeout(() => {
+      this._disconnectAll();
+      this._stopTimeout = null;
+    }, 600);
 
     this._isPlaying = false;
     this._isWindingDown = false;
