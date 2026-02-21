@@ -485,7 +485,7 @@ function Home() {
           </motion.button>
 
           <h1 className="text-3xl md:text-6xl font-display font-extrabold text-slate-800 leading-[0.95] tracking-tight drop-shadow-sm">
-            Christopher & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-amber-600 animate-gradient-x">Benjamin's World</span>
+            Christopher & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-amber-600 animate-gradient-x">Benjamine's World</span>
           </h1>
           <p className="mt-2 md:mt-4 text-sm md:text-xl text-slate-500 font-body max-w-2xl mx-auto leading-relaxed">
             Pick a story to start your adventure!

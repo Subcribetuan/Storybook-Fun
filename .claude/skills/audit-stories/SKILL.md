@@ -84,7 +84,7 @@ Prioritized list of actionable fixes (high/medium/low priority)
 
 ## Important Notes
 
-- This is a personal storybook for two specific children (Christopher and Benjamin), so limited diversity is expected and acceptable — note it but don't penalize heavily
+- This is a personal storybook for two specific children (Christopher and Benjamine), so limited diversity is expected and acceptable — note it but don't penalize heavily
 - Stories use Paw Patrol characters (licensed IP used in personal context)
 - The app is a PWA at storybook-fun.vercel.app
 - Stories come from TWO sources: hardcoded (`client/src/lib/stories.ts`) and Supabase custom stories
