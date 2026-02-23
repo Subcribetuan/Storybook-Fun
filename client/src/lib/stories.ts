@@ -365,5 +365,23 @@ export const stories = [
       { text: `The big cry got a little smaller.\n\nSniff. Sniff.\n\n"Crying is silly," said Benjamine.\n\n"No it's not. I cry too."\n\n"YOU cry?"\n\n"Sometimes. When my brain gets too full."\n\nBenjamine's eyes went wide. "YOUR brain?"\n\n"Even Christopher-brains get too full."` },
       { text: `Benjamine leaned on Christopher. Warm. Close.\n\nThe cry was done now. But the warm feeling stayed.\n\nSometimes you don't need words.\n\nYou just need someone to sit with you.\n\nTwo brothers. Close. Okay.` }
     ]
+  },
+  {
+    id: 22,
+    title: "Just Feet",
+    category: "swimming",
+    readTime: "3 min",
+    ageRange: "4-7",
+    emoji: "🦶 🏊 💙",
+    color: "from-cyan-400 to-blue-500",
+    dateAdded: "2026-02-23",
+    pages: [
+      { text: `Swimming lesson day.\n\nEveryone was in the pool. Splashing. Kicking. Laughing.\n\nEveryone except Christopher.\n\nChristopher sat on the edge. Arms crossed. Feet dry. His green goggles sat on top of his head — he always picked the green ones — but they weren't going anywhere near the water today.\n\n"Arms out, everyone!" said the teacher.\n\nChristopher didn't move.\n\n"Kick kick kick!"\n\nChristopher didn't kick.` },
+      { text: `The pool was loud. Splashing and laughing and the teacher's whistle.\n\nBut Christopher's brain was louder.\n\nIt wasn't that he didn't HEAR her. He heard her fine. His brain just wouldn't let his body do anything. Like his arms were glued crossed. Like his feet were stuck to the tiles.\n\nThe tiles were cold under his legs. His tummy was tight. He stared at the water and the water stared back.\n\nBenjamine was already in — up to his tummy — because Benjamine didn't stop to think about things like that. He just went.\n\n"Kick kick kick!" said the teacher.\n\nBenjamine kicked SO hard he splashed himself right in the face. He stood there. Dripping. Blinked twice.\n\n"That was my face," he said.\n\nChristopher didn't smile.` },
+      { text: `Then — wet paws on tiles. Flop.\n\nZuma sat down. Right next to Christopher. On the edge. Paws hanging over, not in the water.\n\n"Dude," said Zuma.\n\n"...Hi," said Christopher.\n\nThey sat. Zuma didn't say "get in." He didn't say "it's fun." He didn't say anything about the water at all.\n\nHe just sat there. Tail still.\n\n"How come YOU'RE not in?" asked Christopher.\n\nZuma looked at his own paws. "Sometimes I like sitting first."\n\n"But you're the WATER pup."\n\n"Yep."\n\n"And you're... sitting."\n\n"Yep."` },
+      { text: `"Dude. You know what I used to do at training?"\n\n"What?"\n\n"Nothing." Zuma's ears went flat. "Ryder would say 'dive,' and I'd just... sit there. Paws on my knees. Looking at the water. Not moving. Not even blinking. The other pups thought I was broken."\n\nChristopher stared. "YOU did that?"\n\n"Every. Single. Training. For weeks, dude. Weeks."\n\n"What happened?"\n\n"One day Ryder sat next to me. Didn't say 'dive.' Didn't say anything. Just sat. And then after a while I put just my paws in. Just paws. Nothing else."\n\nChristopher's arms uncrossed. Just a little. He hadn't even noticed.\n\n"That must've been hard," he said. Quietly.\n\nZuma's tail twitched. "...Yeah, dude. It was."` },
+      { text: `Christopher looked at the water. Then at his feet. Then at the water again.\n\nHe uncrossed his arms all the way.\n\nBig breath in. Big breath out.\n\nOne foot went over the edge.\n\nThe water was warm. Not cold like the tiles. Warm.\n\nThe other foot went in.\n\nJust feet. Nothing else. Not swimming. Not kicking. Not listening to the teacher yet. Just... feet.\n\n"Dude!" said Zuma. "FEET!"\n\n"Just my feet," said Christopher.\n\n"FEET COUNT!"\n\nBenjamine paddled over, water up to his chin. "Christopher! Your FEET are in!"\n\n"Just my feet," Christopher said again. But his mouth was doing something it hadn't done all morning.\n\nAlmost smiling.` },
+      { text: `Later. Wrapped in the big towel on the bench. The warm one.\n\nBenjamine was wrapped in his towel too, hair sticking up everywhere like a hedgehog.\n\n"You went," said Benjamine. Simple. Like it was obvious.\n\n"I didn't swim."\n\n"You WENT. Your feet went IN."\n\nChristopher looked down at his feet. Still a bit wrinkly from the water.\n\nNext week, maybe knees. Maybe not. That was okay too.\n\nZuma's voice, somewhere in his head: Just paws, dude. That's it.\n\nThe towel was warm. The car would be warm too. And later, the bed. And Benjamine. And the blanket.\n\nTwo brothers in their towels. One small step. Enough.` }
+    ]
   }
 ];
