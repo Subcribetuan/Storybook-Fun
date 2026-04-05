@@ -79,7 +79,7 @@ function useReadStories() {
 // --- Auth (simple password gate) ---
 const AUTH_KEY = "wondertales-authed";
 // SHA-256 hash of the password — change by hashing your new password
-const PASSWORD_HASH = "3cdf50e92f3d0967ce56132bba8432c0dac2034429ea108f5dac90a3d49db584";
+const PASSWORD_HASH = "14d45cd393c6e1d2467979d0cd07795fb26d8a72b62fa005fa79869edc3f31f2";
 
 async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();
@@ -874,8 +874,9 @@ function StoryReader({ params }: { params: { id: string } }) {
 
   // Format Text — split on any newline(s) for paragraph spacing
   const formattedText = currentPage.text.split(/\n+/).filter(p => p.trim()).map((paragraph, i) => {
-    const isDialogue = paragraph.trim().startsWith('"');
-    const isSoundEffect = paragraph === paragraph.toUpperCase() && paragraph.length < 50;
+    const trimmed = paragraph.trim();
+    const isDialogue = trimmed.startsWith('"');
+    const isDirection = trimmed.startsWith('(') && trimmed.endsWith(')');
 
     return (
       <motion.p
@@ -886,10 +887,17 @@ function StoryReader({ params }: { params: { id: string } }) {
         className={cn(
           "mb-6 text-xl md:text-3xl leading-relaxed font-body text-slate-700",
           isDialogue && "font-bold text-slate-900 pl-6 border-l-4 border-amber-400 bg-amber-50/80 p-4 rounded-r-xl shadow-sm",
-          isSoundEffect && "font-display text-4xl md:text-5xl text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 py-4 rotate-2 scale-110 origin-center"
+          isDirection && "italic text-sm md:text-base text-amber-600/70 mb-2 leading-normal"
         )}
       >
-        {paragraph}
+        {isDirection ? paragraph : paragraph.split(/(\([^)]*\))/).map((part, j) => {
+          const isInlineDirection = part.startsWith('(') && part.endsWith(')');
+          return isInlineDirection ? (
+            <span key={j} className="italic text-sm md:text-base text-amber-600/70">{part}</span>
+          ) : (
+            <span key={j}>{part}</span>
+          );
+        })}
       </motion.p>
     );
   });
