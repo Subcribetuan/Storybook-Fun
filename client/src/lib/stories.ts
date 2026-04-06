@@ -34,5 +34,41 @@ export const stories = [
         text: "(whisper — this whole page is almost silent)\nThat night, back in the hotel room, the fan spun slowly above their heads.\n\nThe sheets were cool and thin. The air smelled like rain and a little bit like satay smoke, far away.\n\n(pause — 3 seconds)\n\nBenjamine was already asleep. His mouth still a little bit sticky. His fingers still a little bit brown from the sauce.\n\nChristopher looked at the band-aid on his thumb. The crooked one. The Benjamine one.\n\n(pause — 3 seconds)\n\nHe closed his eyes.\n\n(trailing off, voice fading)\nEverything was different here. The air. The food. The rain. The sounds.\n\nBut his brother was right next to him.\n\n(pause — 5 seconds. Then barely audible.)\n\nAnd that was the same as always."
       }
     ]
+  },
+  {
+    id: 2,
+    title: "The Giant Trees",
+    category: "travel",
+    readTime: "5 min",
+    ageRange: "4-5",
+    emoji: "🌳🇸🇬👋",
+    color: "from-emerald-400 to-teal-500",
+    dateAdded: "2026-04-06",
+    pages: [
+      {
+        text: "(warmly)\nChristopher and Benjamine took a bus from Malaysia to Singapore. It wasn't very long. Benjamine fell asleep with his head on Christopher's arm and woke up in a different country.\n\n\"Are we there?\" he said.\n\n\"We're there,\" said Daddy.\n\nSingapore was different from Malaysia. Everything was clean and shiny and new. The buildings were so tall Christopher had to lean all the way back to see the tops.\n\nBenjamine didn't bother looking up. He was watching a line of ants carry a crumb across the pavement. He always found the ants first. Everywhere they went, Benjamine found the ants.\n\nHe still had a tiny bit of satay sauce on his sleeve from the night market. He hadn't let Mummy wash it off."
+      },
+      {
+        text: "(slowly, building wonder)\nThat afternoon, they went to a garden.\n\nBut it wasn't like any garden back home. There were trees — but not real trees. Giant metal trees, taller than buildings, covered in plants that grew up their sides like green blankets. They stretched into the sky and their tops spread out like mushrooms.\n\n\"Those aren't real trees,\" said Christopher.\n\n\"They look real,\" said Benjamine.\n\n\"They're not.\"\n\n\"But they look real.\"\n\nChristopher couldn't argue with that.\n\n(pause — 2 seconds)\n\nThere was a playground underneath the giant trees. And on the playground, sitting at the top of the slide, not sliding — just sitting — there was a boy."
+      },
+      {
+        text: "(softly, carefully)\nThe boy was about Christopher's age. He had a red shirt and short hair and he was watching them the way Christopher watched new things — very still, very quiet.\n\nChristopher watched him back.\n\nBenjamine was already running toward the swings.\n\n\"Go play,\" said Daddy.\n\nChristopher walked to the bottom of the slide. The boy looked down at him. Christopher looked up.\n\n\"Hi,\" said Christopher.\n\nThe boy said something. But it wasn't English. The sounds were different. The shape of the words was different. Christopher didn't understand any of it.\n\n(pause — 3 seconds)\n\nChristopher's mouth opened. But nothing came out. He didn't know what to say if his words didn't work."
+      },
+      {
+        text: "(slowly, almost a whisper — this whole page is the hard one)\nChristopher stood at the bottom of the slide. The boy sat at the top. They looked at each other.\n\nThe boy said something else. Quieter this time. His fingers picked at the edge of his red shirt. Christopher shook his head. The boy went quiet.\n\n(pause — 3 seconds)\n\nChristopher felt his chest go tight. He wanted to say something friendly. Something that would make the boy smile. But every word he knew was the wrong language.\n\nHe thought about walking away. He thought about going to the swings with Benjamine. He thought about pretending he hadn't come over at all.\n\nHis tummy went tight. Just like at the night market.\n\n(long pause — 5 seconds. Let the silence sit.)\n\nHe stood there. The giant trees hummed above them. The air smelled like rain coming. And neither of them said anything at all."
+      },
+      {
+        text: "(matter-of-fact — Benjamine arrives like it's nothing)\nBenjamine appeared.\n\nHe didn't say hi. He didn't try to talk. He just climbed up the slide — the wrong way, feet slipping, knees bumping — and sat down next to the boy at the top.\n\n(pause — 2 seconds)\n\nThe boy looked at Benjamine. Benjamine looked at the boy.\n\nThen Benjamine pointed at the boy's red shirt. He pointed at his own blue shirt. He pointed at the sky, which was turning orange.\n\n(matter-of-fact, serious voice)\n\"No orange shirt,\" Benjamine said.\n\nThe boy didn't understand the words. But he looked down at his red shirt, looked at Benjamine's blue shirt, and looked at the sky.\n\n(pause — 2 seconds)\n\nHe laughed.\n\nIt was a small laugh. But it was real.\n\nAnd then they slid down together."
+      },
+      {
+        text: "(warmly, picking up pace — this is the fun part)\nAfter that, it was easy.\n\nThey chased each other around the metal trees. They took turns jumping off the low wall — Benjamine first, then the boy, then Christopher. They found a puddle from the afternoon rain and stamped in it until their legs were spotted with mud.\n\nThe boy taught them a clapping game. He showed them with his hands, slowly, then faster. Benjamine got it wrong every time and laughed so hard he sat down. Christopher got it right on the third try and the boy held up his hand.\n\nChristopher high-fived him.\n\n(softly)\nAnd something warm spread through his chest. The kind of warm that isn't about temperature.\n\nHe still didn't know a single word the boy had said. But he knew the boy was kind. He knew the boy liked jumping. He knew the boy was patient when Benjamine kept getting the clapping wrong.\n\nYou can know a lot about someone without knowing their words."
+      },
+      {
+        text: "(slowly, softly)\nThe boy's mum called something from across the garden. The boy looked up. He said something back — quick, easy words Christopher couldn't follow.\n\nThen he turned to Christopher and Benjamine.\n\n(pause — 3 seconds)\n\nHe put his hand on his own chest.\n\n\"Wei,\" he said.\n\nChristopher understood. That was his name.\n\nChristopher put his hand on his own chest. \"Christopher.\"\n\nBenjamine put his hand on his chest. \"Benjamine.\" (pause — 2 seconds) \"With an E.\"\n\nWei smiled. He said something soft — maybe goodbye, maybe see you, maybe something else entirely. Then he ran to his mum.\n\n(pause — 3 seconds)\n\nThey watched him go.\n\n(softly)\n\"I liked him,\" said Benjamine.\n\n\"Me too,\" said Christopher.\n\n\"Do you think he liked us?\"\n\nChristopher thought about the high five. The clapping game. The laughing.\n\n\"Yeah,\" he said. \"I think he did.\""
+      },
+      {
+        text: "(whisper — this whole page is barely there)\nThat night, back in the hotel, Christopher lay next to Benjamine and looked at the ceiling.\n\nOutside the window, the giant trees had turned on. They glowed purple and blue and green, like something from a dream. The light came through the curtains and made soft shapes on the wall.\n\n(pause — 3 seconds)\n\n\"Christopher?\" Benjamine's voice was sleepy.\n\n\"Yeah?\"\n\n\"We don't know how to say goodnight in Wei's language.\"\n\n(pause — 2 seconds)\n\nChristopher thought about that.\n\n(softly)\n\"I think goodnight is the same in every language,\" he said. \"You just close your eyes and the other person knows.\"\n\n(pause — 3 seconds)\n\nBenjamine closed his eyes.\n\n(trailing off, voice fading)\nAnd somewhere across Singapore, maybe Wei was closing his too.\n\nThe giant trees glowed softly outside. The rain started, warm and quiet, tapping on the window like it wanted to come in.\n\nAnd everything was still."
+      }
+    ]
   }
 ];
