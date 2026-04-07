@@ -37,30 +37,41 @@ Before any story is final:
 
 ## AGE TARGETING
 
-Every story must specify an ageRange.
+Every story must specify an ageRange. **These are strict limits — not guidelines.**
 
 ### Ages 2-3 (Benjamine's Range — Short & Simple)
-- 3-4 pages, 100-200 words total, 2 min read
-- Sentences: 4-6 words average. One idea per sentence.
-- Vocabulary: only words a 2-year-old uses daily
-- Emotion: ONE feeling per story. Don't layer fears.
-- Structure: simple repetition pattern (goodnight toes, goodnight knees...)
+- 3-4 pages, 80-150 words total, 2 min read
+- **Sentences: 3-5 words. Maximum 6.** One idea per sentence.
+- **Single clause only.** No "and" joining two actions. No "because." No "when."
+- Vocabulary: only words a 2-year-old uses daily (see Word Rules below)
+- Emotion: ONE feeling per story. Only: happy, sad, scared.
+- **Repetition: 50-70% of text should be repeated or near-repeated phrases**
+- Structure: catalogue/ritual (Goodnight Moon) or simple repetition with variation (Dear Zoo)
 - Ending: short, direct. "Warm. Soft. Goodnight."
 - Benjamine is the main character. Christopher is the anchor.
 - Best categories: bedtime, feelings
 
-### Ages 3-5 (Both Brothers — Standard)
-- 5-7 pages, 300-600 words total, 3-5 min read
-- Most stories live here. Full emotional arc, humor.
-- Both brothers active. Dialogue-driven.
+### Ages 3-4 (Both Brothers — Standard) — PRIMARY TARGET
+- 4-6 pages, 200-350 words total, 3-4 min read
+- **Sentences: 5-8 words average. Maximum 10.**
+- **Mostly single clause.** Occasional "and" compound. Rare "because" with concrete cause only.
+- Vocabulary: common daily words plus 2-3 "stretch" words per story, each with immediate context
+- Emotion words allowed: happy, sad, scared, angry, brave, safe, warm, cold, tired, silly
+- Both brothers active. Simple dialogue — 3-5 word sentences for dialogue.
 - All categories work.
 
-### Ages 4-5 (Christopher Leads — Longer & Deeper)
-- 7-9 pages, 600-900 words MAX, 5 min read
-- Complex emotions: being the big one, leadership, separation
+### Ages 4-5 (Christopher Leads — Longer)
+- 5-7 pages, 350-500 words MAX, 4-5 min read
+- **Sentences: 6-10 words average.**
+- Mix of simple and compound. Some "because," "when," "so." One clause type per sentence.
+- Can use: worried, proud, brave, lonely, excited — but ground in body sensation
 - Christopher is the emotional lead. Benjamine is the grounding force.
-- Can explore what it means to be brave, why grown-ups get scared too
 - **WARNING:** May be too long for school-night bedtime. Mark "weekend reads."
+
+### Attention Span Limits (from research)
+- Age 2: 4-6 minutes max → stories must be 2-3 min
+- Age 3: 6-9 minutes max → stories must be 3-4 min
+- Age 4: 8-12 minutes max → stories must be 4-5 min
 
 ---
 
@@ -154,12 +165,50 @@ Write the repeating frame at **Benjamine's level** (he joins in on the chorus). 
 - "..." before vulnerable admissions
 - Trailing ellipsis for falling asleep
 
-### Word Choice
-- Words a 2-5 year old knows. If a grown-up would explain it, don't use it.
-- Bad words: "thorough," "enormous," "anxious" — use "SO big," "scared," "tummy"
-- Physical comparisons: "soft as pillows," "no bigger than a tennis ball"
-- **Powerful verbs over adjectives:** "He crept" not "He walked quietly"
-- Dr. Seuss principle: **Severe constraints produce sharper writing.** Limit vocabulary ruthlessly.
+### Word Rules — THE CONCRETE TEST
+**If you can't point at it, touch it, hear it, taste it, or smell it — a toddler can't understand the word.**
+
+**Never use these (adults think they're simple, toddlers don't know them):**
+
+| Don't use | Why | Use instead |
+|---|---|---|
+| suddenly | abstract time concept | "And then —" |
+| beautiful | aesthetic judgment | soft, warm, shiny |
+| decided | invisible mental state | "Christopher said 'Let's go!'" |
+| noticed | cognitive process | "Christopher saw" |
+| carefully | invisible adverb | "slow, slow, slow" |
+| perhaps | conditional/hypothetical | skip it, or "maybe" for age 4+ |
+| gentle/gently | abstract quality | soft, quiet, slow |
+| adventure | abstract concept | describe what happens |
+| comfortable | abstract sensation | soft, warm, cozy |
+| different | requires comparison | describe what IS: "this one was red" |
+| important | value judgment | skip it, make it concrete |
+| special | abstract value | describe WHY concretely |
+
+**No metaphors or similes.** Toddlers are literal thinkers. "Like water around two rocks" means nothing to a 3-year-old. Say what you mean.
+
+**No internal monologue.** "Christopher wondered if..." is invisible. Show it: "Christopher looked at Benjamine. Benjamine's eyes were big."
+
+**No stacking adjectives.** Not "the big, old, scary, dark cave." Say: "The cave was dark. Very dark."
+
+**No adverbs.** Not "He walked quietly." Say: "He walked on tiptoes."
+
+**No passive voice.** Not "The ball was kicked by the dog." Say: "The dog kicked the ball."
+
+**No embedded clauses.** Not "The bear, who had been sleeping all winter, woke up." Say: "The bear slept all winter. Then he woke up."
+
+**No rhetorical questions.** "Wasn't that fun?" confuses toddlers who try to answer literally.
+
+**Examples of too complex vs correct:**
+
+Too complex: "Christopher felt a wave of courage wash over him"
+Correct: "Christopher took one step. Then another step."
+
+Too complex: "The night was full of possibility"
+Correct: "The night was dark and quiet."
+
+Too complex: "Was it always okay, or did it just become okay?"
+Correct: "Is it okay now?"
 
 ### Sensory Stacking (Your Illustrations)
 Every scene needs 2-3 senses (not all five — overwhelm kills immersion):
