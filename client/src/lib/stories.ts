@@ -64,5 +64,38 @@ export const stories = [
         text: "(whisper)\nThat night the big trees turned on. They glowed purple and blue and green.\n\nThe light came through the curtains.\n\n\"Christopher?\" said Benjamine. His voice was sleepy.\n\n\"Yeah?\"\n\n\"How do you say goodnight in Wei's words?\"\n\n(pause — 3 seconds)\n\n(softly)\n\"You just close your eyes,\" said Christopher.\n\n\"And the other person knows.\"\n\nBenjamine closed his eyes.\n\n(trailing off)\nThe trees glowed soft outside. The rain tapped on the window.\n\nIt was all quiet.\n\n(pause — 5 seconds)"
       }
     ]
+  },
+  {
+    id: 3,
+    title: "The Lost Baby Dino",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🦕🐾✨",
+    color: "from-green-400 to-emerald-500",
+    dateAdded: "2026-04-09",
+    pages: [
+      {
+        text: "(warmly)\nChristopher and Benjamine were in bed.\n\nMummy and Daddy were just down the hall.\n\nThe room was dark. The room was quiet.\n\n(pause — 2 seconds)\n\nThen they heard a noise.\n\nA small noise. A tiny hiccup.\n\n\"What was that?\" said Benjamine.\n\n\"I don't know,\" said Christopher."
+      },
+      {
+        text: "(softly)\nThey sat up. They listened.\n\nThere it was again.\n\nA tiny noise. Behind the toy box.\n\nChristopher got out of bed. Benjamine got out too.\n\n(pause — 3 seconds)\n\nThey looked behind the toy box.\n\nA baby dinosaur was hiding there.\n\nIt was very small. Green. With big eyes.\n\nIt was shaking."
+      },
+      {
+        text: "(slowly)\n\"Hello,\" said Christopher.\n\nThe baby dino said nothing. It just looked at them.\n\n\"Are you scared?\" said Benjamine.\n\n(pause — 2 seconds)\n\nThe baby dino nodded its head.\n\n\"It's lost,\" said Christopher. \"We need to help.\"\n\n\"How?\" said Benjamine.\n\n\"We can call the pups.\""
+      },
+      {
+        text: "(excited)\nChristopher pressed the pup button.\n\n\"Paw Patrol! We need help!\"\n\n(pause — 2 seconds)\n\nChase came first. Then Marshall.\n\nMarshall tripped on a sock.\n\n\"I'm okay!\" he said.\n\n\"There's a baby dino,\" said Christopher. \"It's lost.\"\n\n\"Let's go!\" said Chase."
+      },
+      {
+        text: "(warmly)\nThey all went outside.\n\nChristopher held the baby dino. It was warm. And shaking.\n\nChase smelled the air. \"This way!\" he said.\n\nThey walked through the grass.\n\nThey walked past the trees.\n\nThey came to a big nest.\n\n(pause — 3 seconds)\n\n\"Look!\" said Benjamine."
+      },
+      {
+        text: "(warmly)\nA big dinosaur was there.\n\nIt was the baby's mum.\n\nThe mum looked sad. She had been looking all night.\n\nChristopher put the baby down.\n\nThe baby ran to its mum.\n\n(pause — 3 seconds)\n\nThe mum gave them a soft nudge. That meant \"thank you.\""
+      },
+      {
+        text: "(whisper)\nThey went back to bed.\n\nThe room was warm. The room was quiet.\n\nChristopher closed his eyes. Benjamine closed his eyes too.\n\n(pause — 3 seconds)\n\n\"We helped someone today,\" said Benjamine.\n\n\"Yes,\" said Christopher. \"Even small ones can help.\"\n\n(trailing off)\nThe dark was soft. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)"
+      }
+    ]
   }
 ];
