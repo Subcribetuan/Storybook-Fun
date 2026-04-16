@@ -518,5 +518,195 @@ export const stories = [
       { text: "(warmly)\nLast was Ryder.\n\nHe sat in his chair.\n\n\"Are they all asleep?\" he said.\n\n\"Yes,\" said Christopher.\n\n(pause — 3 seconds)\n\nRyder smiled.\n\n\"Whenever you're in trouble,\" said Ryder. \"Just yelp for help.\"" },
       { text: "(whisper)\nThat night Christopher and Benjamine were in bed.\n\nThe pups were sleeping at the lookout.\n\nMummy and Daddy were down the hall.\n\n(pause — 3 seconds)\n\n\"The pups are tired too,\" said Benjamine.\n\n\"Everyone gets tired,\" said Christopher.\n\n(trailing off)\nThe bed was warm. The night was soft.\n\nGoodnight.\n\n(pause — 5 seconds)" }
     ]
+  },
+  {
+    id: 21,
+    title: "The Broken Bridge",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🌉🔧🐾",
+    color: "from-green-500 to-emerald-700",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine went for a walk.\n\nThey came to the little wooden bridge.\n\nThe one over the stream.\n\n(pause — 2 seconds)\n\nBut one of the boards was gone.\n\nThere was a big hole in the middle." },
+      { text: "(slowly)\nChristopher looked at the hole.\n\nIt was too big to step over.\n\nThe water went past underneath. Slow and quiet.\n\n(pause — 3 seconds)\n\n\"We can't cross,\" said Benjamine.\n\nHe wanted to get to the other side. The berries grew over there." },
+      { text: "(softly)\nChristopher pressed the pup button.\n\n\"Paw Patrol! We need help!\"\n\n(pause — 2 seconds)\n\nRocky came with his truck.\n\n\"Don't lose it, reuse it!\" he said." },
+      { text: "(matter-of-fact)\nRocky looked at the hole. He looked in his truck.\n\nHe had lots of things. Old bits of wood. Bent nails. A piece of rope.\n\n(pause — 3 seconds)\n\nHe pulled out one board. Too small.\n\nHe pulled out another. Too big." },
+      { text: "(slowly)\nThe third board was just right.\n\nRocky laid it over the hole.\n\nChristopher held one end. Benjamine held the other.\n\n(pause — 3 seconds)\n\nRocky put in the nails.\n\nOne. Two. Three." },
+      { text: "(warmly)\nThe bridge was fixed.\n\nThe new board was a new colour. Not the same as the others.\n\nBut it worked.\n\n(pause — 3 seconds)\n\nThey walked across. The bridge held.\n\nBenjamine found the berries." },
+      { text: "(whisper)\nThat night Christopher was in bed.\n\nHe could still see the bridge.\n\nThe new board. The new colour.\n\n(pause — 3 seconds)\n\n\"It's still a bridge,\" said Benjamine.\n\n\"Yes,\" said Christopher. \"It still works.\"\n\n(trailing off)\nThe house was quiet. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 22,
+    title: "The Runaway Kitten",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐱🚓🐾",
+    color: "from-blue-500 to-sky-700",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine heard a tiny cry.\n\nIt came from behind the bushes.\n\n(pause — 2 seconds)\n\nThey looked.\n\nA tiny kitten. White with grey feet.\n\nVery small. Very scared." },
+      { text: "(slowly)\nChristopher reached out.\n\nThe kitten ran.\n\nShe hid under a car.\n\n(pause — 3 seconds)\n\n\"She's scared of us,\" said Benjamine.\n\n\"But she's all alone,\" said Christopher." },
+      { text: "(softly)\nChristopher pressed the pup button.\n\nChase came right away.\n\n\"Chase is on the case!\" he said.\n\n(pause — 2 seconds)\n\n\"There's a scared kitten,\" said Christopher.\n\n\"Under the car.\"" },
+      { text: "(matter-of-fact)\nChase did not run to the kitten.\n\nHe got very low.\n\nHe did not make any sound.\n\n(pause — 3 seconds)\n\nHe sat down on the ground.\n\nQuiet as could be." },
+      { text: "(softly)\nChristopher and Benjamine sat down too.\n\nThey waited.\n\nA long time.\n\n(long pause — 5 seconds)\n\nThe kitten peeked out.\n\nShe saw Chase. She saw the boys. No one moved." },
+      { text: "(warmly)\nThe kitten came out. Slow step. Slow step.\n\nShe sniffed Chase's nose.\n\nHe did not move.\n\n(pause — 3 seconds)\n\nShe rubbed her head on his paw.\n\nShe was not scared now." },
+      { text: "(whisper)\nThe kitten came home with them.\n\nMummy gave her milk in a little bowl.\n\n(pause — 3 seconds)\n\n\"You didn't chase her,\" said Benjamine.\n\n\"Scared things need slow,\" said Chase.\n\n(trailing off)\nThe kitten curled up. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 23,
+    title: "The Sneezy Pup",
+    category: "feelings",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🤧🐶🛏️",
+    color: "from-red-400 to-rose-600",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine went to the lookout.\n\nMarshall was there.\n\nBut Marshall did not look right.\n\n(pause — 2 seconds)\n\nHis nose was runny.\n\nHis eyes were watery.\n\nHis ears were droopy." },
+      { text: "(slowly)\nMarshall tried to jump up.\n\nThen he sneezed.\n\nHe fell over a chair.\n\n(pause — 3 seconds)\n\n\"I'm okay!\" he said.\n\nBut he was not okay. Not really." },
+      { text: "(softly)\n\"He's sick,\" said Ryder. \"He needs rest.\"\n\n(pause — 2 seconds)\n\nMarshall tried to get up again.\n\n\"I'm fired up,\" he said.\n\nBut his voice was small." },
+      { text: "(matter-of-fact)\n\"We can help,\" said Christopher.\n\n\"Help how?\" said Benjamine.\n\n\"We can make him rest.\"\n\n(pause — 3 seconds)\n\nChristopher got Marshall's blanket.\n\nBenjamine got him a bowl of water." },
+      { text: "(slowly)\nMarshall lay down.\n\nChristopher tucked the blanket around him.\n\nBenjamine sat near. Not close. Just near.\n\n(pause — 3 seconds)\n\nThey did not make him laugh.\n\nBecause laughing made him sneeze." },
+      { text: "(softly)\nThey stayed all afternoon.\n\nMarshall slept a little.\n\nThen he slept a lot.\n\n(pause — 3 seconds)\n\nHe woke up. His nose was less runny.\n\nHis ears were not so droopy." },
+      { text: "(whisper)\nThat night Christopher was in bed.\n\n\"Will Marshall be better tomorrow?\" said Benjamine.\n\n\"Maybe,\" said Christopher. \"Or maybe the day after.\"\n\n(pause — 3 seconds)\n\n\"Sick takes time,\" said Christopher.\n\n(trailing off)\nThe house was quiet. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 24,
+    title: "The Big Race",
+    category: "feelings",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🏁🐕💨",
+    color: "from-pink-500 to-fuchsia-600",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nThe pups had a race.\n\nAround the lookout. Two times.\n\n(pause — 2 seconds)\n\nChristopher and Benjamine were at the finish line.\n\nThey would say who won.\n\nRyder said go." },
+      { text: "(excited)\nSkye went fast.\n\nShe was the fastest one.\n\nChase was close behind.\n\n(pause — 2 seconds)\n\nMarshall tripped near the start. But got up.\n\nRubble was at the back. His legs were short." },
+      { text: "(slowly)\nSkye came around the last corner.\n\nShe was almost at the finish.\n\nShe was going to win.\n\n(pause — 3 seconds)\n\nThen Rubble tripped. Right near the end.\n\nHe fell hard. He did not get up." },
+      { text: "(softly)\nSkye looked back.\n\nRubble was still on the ground.\n\nHe looked sad.\n\n(long pause — 5 seconds)\n\nSkye stopped.\n\nShe turned around.\n\nShe ran back to Rubble." },
+      { text: "(matter-of-fact)\n\"Come on,\" said Skye. \"Get up.\"\n\nShe helped him up.\n\nRubble's leg was a bit sore.\n\n(pause — 3 seconds)\n\nSkye walked next to him.\n\nSlow. The same speed as Rubble." },
+      { text: "(warmly)\nThey crossed the finish line together.\n\nLast.\n\nBut together.\n\n(pause — 3 seconds)\n\n\"You didn't win,\" said Benjamine.\n\n\"I didn't come first,\" said Skye.\n\n\"But I won the better thing.\"" },
+      { text: "(whisper)\nThat night Christopher was in bed.\n\nHe could still see the race.\n\n\"Skye could have won,\" said Benjamine.\n\n\"She did win,\" said Christopher.\n\n\"Just another way.\"\n\n(pause — 3 seconds)\n\n(trailing off)\nThe lookout was quiet. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 25,
+    title: "The Heavy Log",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🪵🚜🐾",
+    color: "from-yellow-500 to-orange-600",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine walked on the forest path.\n\nA big log was across the way.\n\n(pause — 2 seconds)\n\nIt must have fallen in the night.\n\nThey could not go around. The bushes were too thick.\n\nThey could not go under.\n\nThe log was too low." },
+      { text: "(slowly)\nChristopher pushed the log.\n\nIt did not move.\n\nBenjamine pushed too.\n\n(pause — 3 seconds)\n\nThey pushed together.\n\nThe log did not move. Not even a little." },
+      { text: "(softly)\nChristopher pressed the pup button.\n\nRubble came with his digger.\n\n\"Rubble on the double!\" he said.\n\n(pause — 2 seconds)\n\nHe looked at the log.\n\n\"That's a big one.\"" },
+      { text: "(matter-of-fact)\nRubble pushed with his digger.\n\nThe log wobbled.\n\nBut it did not roll.\n\n(pause — 3 seconds)\n\nRubble sat back.\n\n\"I can't do it alone,\" he said. \"It's too big for one.\"" },
+      { text: "(slowly)\n\"Who can help?\" said Benjamine.\n\n\"I'll call Rocky,\" said Rubble.\n\n(pause — 2 seconds)\n\nRocky came with his truck.\n\n\"Don't lose it, reuse it!\" he said.\n\nHe looked at the log." },
+      { text: "(warmly)\nRubble pushed from the front.\n\nRocky pushed from the side.\n\nChristopher and Benjamine pushed from the back.\n\n(pause — 3 seconds)\n\nThe log wobbled. Then it rolled.\n\nSlow at first. Then a bit faster.\n\nThe path was clear." },
+      { text: "(whisper)\nThat night Benjamine had a question.\n\n\"Why couldn't Rubble do it alone?\"\n\n\"Some things are too big,\" said Christopher. \"Asking for help is okay.\"\n\n(pause — 3 seconds)\n\n\"Even for Rubble,\" said Benjamine.\n\n(trailing off)\nThe forest was quiet. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 26,
+    title: "The Frozen Ball",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "⛄🎾🐾",
+    color: "from-sky-300 to-cyan-500",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nChristopher had a new ball.\n\nHe took it to the snow mountain.\n\nBenjamine came too.\n\n(pause — 2 seconds)\n\nChristopher threw the ball.\n\nIt went too far.\n\nIt rolled down the hill. Into the deep snow." },
+      { text: "(slowly)\nChristopher and Benjamine looked down the hill.\n\nThe ball was gone.\n\nThe snow was very deep there.\n\n(pause — 3 seconds)\n\n\"We can't get it,\" said Benjamine.\n\n\"My new ball,\" said Christopher." },
+      { text: "(softly)\nChristopher pressed the pup button.\n\nEverest came over the snow.\n\n\"Ice or snow, I'm ready to go!\" she said.\n\n(pause — 2 seconds)\n\n\"My ball,\" said Christopher.\n\n\"In the deep snow.\"" },
+      { text: "(matter-of-fact)\nEverest dug with her paws.\n\nShe found something hard.\n\nBut it was not the ball.\n\n(pause — 3 seconds)\n\nIt was ice. The ball was under the ice.\n\nThe ball was stuck." },
+      { text: "(slowly)\nEverest did not pull.\n\nShe did not hit the ice.\n\nShe just sat down.\n\n(pause — 3 seconds)\n\n\"What are we doing?\" said Benjamine.\n\n\"Waiting,\" said Everest. \"For the sun.\"" },
+      { text: "(warmly)\nThey waited.\n\nThe sun came out from the clouds.\n\nThe ice got softer. Just a little.\n\n(pause — 3 seconds)\n\nEverest dug again.\n\nThe ball came free.\n\nIt was cold but it was fine." },
+      { text: "(whisper)\nThat night Benjamine was thinking.\n\n\"Why did we wait?\"\n\n\"If you pull hard,\" said Christopher. \"The ice breaks the ball.\"\n\n(pause — 3 seconds)\n\n\"Sometimes you wait for the sun,\" said Everest.\n\n(trailing off)\nThe ball was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 27,
+    title: "The Shell at the Bottom",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐚🌊🐾",
+    color: "from-teal-500 to-cyan-700",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine were at the beach.\n\nThe water was clear.\n\nYou could see the bottom.\n\n(pause — 2 seconds)\n\nBenjamine saw something shiny.\n\nA pretty shell.\n\nPink and swirly." },
+      { text: "(slowly)\nBenjamine tried to reach it.\n\nThe water was too deep.\n\nHis hand could not touch.\n\n(pause — 3 seconds)\n\n\"I want that shell,\" said Benjamine.\n\n\"I want to keep it.\"" },
+      { text: "(softly)\nChristopher pressed the pup button.\n\nZuma came on his board.\n\n\"Let's dive in!\" he said.\n\n(pause — 2 seconds)\n\n\"There's a shell at the bottom,\" said Benjamine.\n\n\"I want it.\"" },
+      { text: "(matter-of-fact)\nZuma looked down in the water.\n\nHe looked for a long time.\n\nThen he came back up.\n\n(pause — 3 seconds)\n\n\"I can get it,\" said Zuma.\n\n\"But look first. Look a long time.\"" },
+      { text: "(slowly)\nBenjamine lay on the sand.\n\nHe put his eyes close to the water.\n\nHe looked at the shell.\n\n(long pause — 5 seconds)\n\nThere was a tiny fish inside.\n\nA little striped one.\n\nThe shell was her home." },
+      { text: "(softly)\n\"Oh,\" said Benjamine.\n\nHis face went soft.\n\nHe sat back on the sand.\n\n(pause — 3 seconds)\n\n\"It's a home,\" he said.\n\n\"Yes,\" said Zuma.\n\n\"I don't want it anymore.\"" },
+      { text: "(whisper)\nThat night Benjamine had a sandy toe.\n\nHe didn't mind.\n\n(pause — 3 seconds)\n\n\"The fish is still there,\" he said.\n\n\"Yes,\" said Christopher. \"In her shell.\"\n\n(trailing off)\nThe beach was quiet now. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 28,
+    title: "The Shy New Pup",
+    category: "feelings",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐶👋🌸",
+    color: "from-purple-400 to-violet-600",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nA new pup came to the lookout.\n\nHer name was Liberty.\n\nShe was small. White and grey.\n\n(pause — 2 seconds)\n\nChristopher and Benjamine came to meet her.\n\nBut Liberty did not come out." },
+      { text: "(slowly)\nLiberty was behind Ryder's chair.\n\nThe other pups ran over.\n\nChase barked hello.\n\n(pause — 3 seconds)\n\nMarshall gave her a big paw shake.\n\nSkye flew down close.\n\nLiberty hid her face." },
+      { text: "(softly)\n\"She's shy,\" said Benjamine.\n\n\"Like me sometimes.\"\n\n(pause — 2 seconds)\n\nThe other pups went away.\n\nChristopher went away too.\n\nBut Benjamine did not go away." },
+      { text: "(matter-of-fact)\nBenjamine sat down on the floor.\n\nNot close to Liberty.\n\nNot far.\n\n(pause — 3 seconds)\n\nHe did not talk.\n\nHe just sat there.\n\nHe looked at his feet." },
+      { text: "(slowly)\nA long time passed.\n\nLiberty peeked out.\n\nShe saw Benjamine. He was not looking at her.\n\n(long pause — 5 seconds)\n\nShe came out a little.\n\nShe came out a bit more.\n\nShe sat next to Benjamine." },
+      { text: "(softly)\nShe did not say anything.\n\nBenjamine did not say anything.\n\nThey just sat there.\n\n(pause — 3 seconds)\n\nBut Liberty leaned on his arm.\n\nA tiny bit.\n\nBenjamine smiled. A tiny bit." },
+      { text: "(whisper)\nThat night Benjamine had a thought.\n\n\"She talks a bit now,\" he said.\n\n\"Yes,\" said Christopher. \"You helped her.\"\n\n(pause — 3 seconds)\n\n\"How?\"\n\n\"You waited. You didn't make her talk.\"\n\n(trailing off)\nLiberty was at the lookout. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 29,
+    title: "The Loud Storm",
+    category: "feelings",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🌩️🏠🐾",
+    color: "from-slate-500 to-blue-800",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine were asleep.\n\nThe bed was warm. The house was safe.\n\n(pause — 2 seconds)\n\nThen a storm came in the night.\n\nBig rain. Big wind.\n\nChristopher opened his eyes." },
+      { text: "(slowly)\nBenjamine was sitting up.\n\nHis eyes were big.\n\n\"I'm scared,\" he said.\n\n(pause — 3 seconds)\n\nThe thunder came again.\n\nChristopher felt his tummy go tight. He was scared too.\n\nBut he didn't say it yet." },
+      { text: "(softly)\nThey went to the window.\n\nThey saw the lookout.\n\nThe lights were on.\n\n(pause — 3 seconds)\n\nThey could see the pups.\n\nThe pups did not look right. They were scared too." },
+      { text: "(excited)\nThey got their coats.\n\nDaddy said they could check on the pups.\n\nJust a quick look.\n\n(pause — 2 seconds)\n\nAt the lookout, Marshall was under his bed.\n\nRubble was holding Mr Biscuit tight.\n\nChase was at the window. Watching." },
+      { text: "(slowly)\nChase looked at Christopher.\n\n\"I'm the brave pup,\" said Chase.\n\n\"But I'm scared too.\"\n\n(pause — 3 seconds)\n\n\"Me too,\" said Christopher.\n\n\"Brave pups get scared. So do brave boys.\"" },
+      { text: "(warmly)\nThey all sat together.\n\nChristopher, Benjamine, Chase, Marshall, Rubble.\n\nClose. In a pile.\n\n(pause — 3 seconds)\n\nThe thunder came again.\n\nBut they were holding each other.\n\nIt was less scary that way." },
+      { text: "(whisper)\nThe thunder got quieter.\n\nThen it was gone.\n\nJust the rain was left. Soft rain.\n\n(pause — 3 seconds)\n\n\"We did it,\" said Chase.\n\n\"Together,\" said Benjamine.\n\n(trailing off)\nThe pups curled up. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 30,
+    title: "The Last Treat",
+    category: "feelings",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🍪🐾💛",
+    color: "from-amber-300 to-yellow-500",
+    dateAdded: "2026-04-16",
+    pages: [
+      { text: "(warmly)\nRyder had a bag of treats.\n\nOne for each pup.\n\nChristopher and Benjamine were watching.\n\n(pause — 2 seconds)\n\nRyder gave one to Chase.\n\nOne to Marshall. One to Skye.\n\nOne to Rubble. One to Rocky. One to Zuma." },
+      { text: "(slowly)\nEveryone had a treat.\n\nThey were chewing.\n\nTails were wagging.\n\n(pause — 2 seconds)\n\nThen Liberty came in. Late.\n\nShe did not know it was treat time." },
+      { text: "(softly)\nRyder looked in the bag.\n\nThe bag was empty.\n\n(pause — 3 seconds)\n\n\"Oh no,\" said Ryder. \"No treats left.\"\n\nLiberty did not say anything.\n\nBut her tail went low. Very low." },
+      { text: "(matter-of-fact)\nChase looked at his treat.\n\nHe had a big bit left.\n\nHe took one more bite. A small one.\n\n(pause — 3 seconds)\n\nThen he put the rest down.\n\nOn the floor. For Liberty." },
+      { text: "(slowly)\nMarshall saw what Chase did.\n\nHe did the same. He left a bit.\n\nThen Skye left a bit. Then Rubble. Then Rocky. Then Zuma.\n\n(pause — 3 seconds)\n\nSix little bits of treat.\n\nAll on the floor for Liberty." },
+      { text: "(warmly)\nLiberty walked over.\n\nThe six bits made one big treat.\n\nThe biggest one of all.\n\n(pause — 3 seconds)\n\nShe took a bite.\n\nHer tail went up.\n\n\"Thank you,\" she said. Very quiet. But she said it." },
+      { text: "(whisper)\nThat night Benjamine had a thought.\n\n\"They shared,\" he said. \"Even when it was hard.\"\n\n\"A little bit each,\" said Christopher.\n\n(pause — 3 seconds)\n\n\"Made a big bit for Liberty.\"\n\n(trailing off)\nThe pups were full. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
   }
 ];
