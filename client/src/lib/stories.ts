@@ -708,5 +708,195 @@ export const stories = [
       { text: "(warmly)\nLiberty walked over.\n\nThe six bits made one big treat.\n\nThe biggest one of all.\n\n(pause — 3 seconds)\n\nShe took a bite.\n\nHer tail went up.\n\n\"Thank you,\" she said. Very quiet. But she said it." },
       { text: "(whisper)\nThat night Benjamine had a thought.\n\n\"They shared,\" he said. \"Even when it was hard.\"\n\n\"A little bit each,\" said Christopher.\n\n(pause — 3 seconds)\n\n\"Made a big bit for Liberty.\"\n\n(trailing off)\nThe pups were full. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
     ]
+  },
+  {
+    id: 31,
+    title: "The Muddy Puppy",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐶🛁🐾",
+    color: "from-amber-700 to-stone-800",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine were in the garden.\n\nThe grass was wet from the rain.\n\n(pause — 2 seconds)\n\nBenjamine was looking at worms. He always found the worms.\n\nThen he heard a little whimper.\n\nA tiny sad sound." },
+      { text: "(slowly)\nThey looked behind the garden shed.\n\nA little puppy was there.\n\nHe was too muddy to see his colour.\n\n(pause — 3 seconds)\n\nHis ears were stuck down. His tail was in a lump.\n\nHe was shaking." },
+      { text: "(softly)\n\"We need help,\" said Christopher.\n\nBenjamine looked at his brother.\n\n\"I can do it this time.\"\n\n(pause — 3 seconds)\n\nBenjamine pressed the pup button.\n\n\"Paw Patrol! There's a muddy puppy!\"" },
+      { text: "(excited)\nMarshall came running.\n\nHe tripped on a wet rock.\n\n\"I'm okay!\" he said.\n\n(pause — 2 seconds)\n\nHe got back up.\n\n\"I'm fired up!\"\n\nHe saw the puppy. \"We need a bath.\"" },
+      { text: "(slowly)\nMarshall got his water. A soft spray.\n\nNot too hard. Not too cold.\n\n(pause — 3 seconds)\n\nBenjamine held the puppy close.\n\nChristopher rubbed with a soft cloth.\n\nThe mud came off. A bit at a time." },
+      { text: "(warmly)\nThe puppy was gold. And a bit of white.\n\nHe had a spot on his nose.\n\n(pause — 3 seconds)\n\nHe shook the water off. Drops went everywhere.\n\nBenjamine laughed. Marshall laughed.\n\nThe puppy's tail was going fast now." },
+      { text: "(whisper)\nThat night the puppy was home with his mummy.\n\nChristopher was in bed.\n\n(pause — 3 seconds)\n\n\"I called the pups today,\" said Benjamine.\n\n\"You did good,\" said Christopher.\n\n\"Just like I do.\"\n\n(trailing off)\nThe garden was quiet. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 32,
+    title: "The Flyaway Hat",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🧢🌬️🐾",
+    color: "from-blue-500 to-indigo-600",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nBenjamine had a new hat.\n\nIt was blue with a yellow star.\n\n(pause — 2 seconds)\n\nThey went to the park.\n\nThe wind was big today. It pulled at the trees." },
+      { text: "(slowly)\nBenjamine ran on the grass.\n\nThe wind took his hat.\n\nUp and up and up.\n\n(pause — 3 seconds)\n\nIt landed on a very tall branch.\n\nWay too high to reach." },
+      { text: "(softly)\nBenjamine jumped up. His fingers did not touch.\n\nHe jumped again. Nothing.\n\n(long pause — 5 seconds)\n\n\"My star hat,\" he said.\n\nHis eyes went watery." },
+      { text: "(matter-of-fact)\nChristopher looked up. Then down at Benjamine.\n\n\"Who can fly?\" he said.\n\nBenjamine thought.\n\n(pause — 2 seconds)\n\n\"Skye,\" he said.\n\nBenjamine pressed the pup button.\n\n\"Paw Patrol! A hat needs help!\"" },
+      { text: "(excited)\nSkye came flying down.\n\n\"This pup's gotta fly!\" she said.\n\n(pause — 2 seconds)\n\nShe looked at the hat.\n\n\"A star hat. I like stars.\"\n\nUp she flew." },
+      { text: "(warmly)\nSkye flew back down.\n\nThe wind pushed her a bit. Then a bit more.\n\n(pause — 3 seconds)\n\nBut she held the hat tight.\n\nShe gave it to Benjamine.\n\nHe put it on with two hands. So the wind couldn't have it." },
+      { text: "(whisper)\nThat night the hat was on the chair.\n\nThe wind was still outside.\n\n(pause — 3 seconds)\n\n\"I called Skye,\" said Benjamine.\n\n\"You did,\" said Christopher. \"And she came.\"\n\n(trailing off)\nThe wind was outside. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 33,
+    title: "The Stuck Cow",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐄🌾🐾",
+    color: "from-lime-500 to-green-700",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine were on a farm walk.\n\nThere was a big field with cows.\n\n(pause — 2 seconds)\n\nThe cows were eating grass.\n\nAll but one.\n\nOne cow was not moving." },
+      { text: "(slowly)\nThe cow was near the fence.\n\nHer back leg was deep in mud.\n\nShe pulled. The leg did not come out.\n\n(pause — 3 seconds)\n\nShe made a sad sound.\n\nBenjamine looked at Christopher." },
+      { text: "(softly)\n\"She's stuck,\" said Benjamine.\n\n\"Like the duck, remember?\"\n\n\"Yes,\" said Christopher. \"Bad mud.\"\n\n(pause — 3 seconds)\n\nBenjamine pressed the pup button.\n\n\"Paw Patrol! A cow needs help!\"" },
+      { text: "(excited)\nRubble came with his digger.\n\n\"Rubble on the double!\" he said.\n\n(pause — 2 seconds)\n\nHe looked at the cow.\n\n\"That's a big one.\"\n\nThe cow was tired." },
+      { text: "(slowly)\nRubble did not pull the cow.\n\nHe dug around the leg.\n\nSlow and careful.\n\n(pause — 3 seconds)\n\nA bit of mud came away. Then a bit more.\n\nBenjamine talked soft to the cow.\n\n\"You're okay. You're okay.\"" },
+      { text: "(warmly)\nRubble dug one more time.\n\nThe cow moved her leg.\n\nJust a little.\n\n(pause — 3 seconds)\n\nThen it came out.\n\nThe cow walked a few steps.\n\nThen she lay down in the sun." },
+      { text: "(whisper)\nThat night Benjamine still heard the sad sound.\n\nBut softer now.\n\n(pause — 3 seconds)\n\n\"You talked to her,\" said Christopher.\n\n\"Sad things need soft words,\" said Benjamine.\n\n(trailing off)\nThe field was quiet. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 34,
+    title: "The Wobbly Gate",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🚪🐕🐾",
+    color: "from-stone-500 to-amber-700",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine were at the park.\n\nA dog came in with her person.\n\n(pause — 2 seconds)\n\nHer name was Ruby. The dog.\n\nRuby ran around and around.\n\nHappy happy legs." },
+      { text: "(slowly)\nBut the gate was wobbly.\n\nOne of the pieces of wood was off.\n\n(pause — 2 seconds)\n\nRuby's person was worried.\n\n\"If she finds it, she'll run out.\"\n\n\"Out on the road.\"" },
+      { text: "(softly)\nBenjamine looked at the gate.\n\nHe looked at Ruby.\n\nRuby was sniffing near the wobbly bit.\n\n(pause — 3 seconds)\n\nBenjamine pressed the pup button.\n\n\"Paw Patrol! The gate is broken!\"" },
+      { text: "(excited)\nRocky came with his truck.\n\n\"Don't lose it, reuse it!\" he said.\n\n(pause — 2 seconds)\n\nHe looked at the gate.\n\n\"I can fix it.\"\n\nHe looked in his truck." },
+      { text: "(slowly)\nRocky had old bits of wood.\n\nSome bent nails. A bit of wire.\n\n(pause — 3 seconds)\n\nHe tried one piece of wood. Too long.\n\nHe tried another. Too thin.\n\nHe tried a third. Just right." },
+      { text: "(warmly)\nRocky put the wood in.\n\nHe bent a nail. Then another.\n\nHe used the wire too.\n\n(pause — 3 seconds)\n\nThe gate was not pretty.\n\nBut it was closed.\n\nRuby pushed it with her nose. It did not move." },
+      { text: "(whisper)\nThat night Benjamine had a question.\n\n\"Did it look a bit funny?\"\n\n\"Yes,\" said Christopher. \"A bit.\"\n\n(pause — 3 seconds)\n\n\"But Ruby is safe,\" said Benjamine.\n\n\"That's the best part.\"\n\n(trailing off)\nRuby was home. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 35,
+    title: "The Little Turtle",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐢💧🐾",
+    color: "from-green-600 to-teal-700",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine were near the pond.\n\nThe sun was going down.\n\n(pause — 2 seconds)\n\nBenjamine saw something small on the path.\n\nA little turtle.\n\nWalking the wrong way." },
+      { text: "(slowly)\nThe turtle was going away from the water.\n\nFar from the water.\n\n(pause — 3 seconds)\n\n\"She needs the water,\" said Benjamine.\n\n\"How do you know?\"\n\n\"Mummy read a book about turtles.\"" },
+      { text: "(softly)\nChristopher tried to pick the turtle up.\n\nShe pulled her head in.\n\n\"She's scared,\" said Benjamine.\n\n(pause — 3 seconds)\n\nBenjamine pressed the pup button.\n\n\"Paw Patrol! A turtle needs home!\"" },
+      { text: "(excited)\nZuma came on his board.\n\n\"Let's dive in!\" he said.\n\n(pause — 2 seconds)\n\nZuma sat down low. Very low.\n\nLike he did with the kitten.\n\nHe did not move fast." },
+      { text: "(slowly)\nZuma got a little cup from his pack.\n\nA soft one. With water inside.\n\n(pause — 3 seconds)\n\nHe let the turtle walk into it.\n\nSlow, not pushing.\n\nThe turtle just walked right in." },
+      { text: "(warmly)\nThey carried the cup to the pond.\n\nVery careful. No bumps.\n\n(pause — 3 seconds)\n\nZuma tipped it near the water.\n\nThe turtle slipped in.\n\nShe swam away. Not fast. Happy." },
+      { text: "(whisper)\nThat night Benjamine was thinking.\n\n\"Was she a long way from home?\"\n\n\"A bit of a way,\" said Christopher.\n\n(pause — 3 seconds)\n\n\"Home feels good when you find it,\" said Benjamine.\n\n(trailing off)\nThe turtle was in her pond. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 36,
+    title: "The Icy Steps",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "❄️🪜🐾",
+    color: "from-cyan-400 to-sky-600",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nIn the morning the world was white.\n\nFrost on the grass. Ice on the path.\n\n(pause — 2 seconds)\n\nMummy had to go to the shop.\n\nBut the front steps were ice.\n\nShe slipped. She caught the rail." },
+      { text: "(slowly)\nMummy was okay.\n\nBut she didn't try again.\n\nThe steps were too slippery.\n\n(pause — 3 seconds)\n\n\"We can't go out,\" she said.\n\n\"Not until the ice melts.\"\n\nMummy needed milk for breakfast." },
+      { text: "(softly)\nBenjamine looked at the steps.\n\nThey were shiny and hard.\n\n(pause — 2 seconds)\n\nBenjamine pressed the pup button.\n\n\"Paw Patrol! Icy steps!\"" },
+      { text: "(excited)\nEverest came over the grass.\n\n\"Ice or snow, I'm ready to go!\" she said.\n\n(pause — 2 seconds)\n\nShe looked at the steps.\n\n\"Ice is tricky,\" she said.\n\n\"But I know ice.\"" },
+      { text: "(slowly)\nEverest did not hit the ice.\n\nShe sprinkled something on it.\n\nLittle bits of salt.\n\n(pause — 3 seconds)\n\nShe waited. Christopher waited. Benjamine waited.\n\nThe ice got bumpy. A bit softer." },
+      { text: "(warmly)\nEverest walked up the steps. Slow.\n\nEach paw stuck where it should.\n\n(pause — 3 seconds)\n\nNow the steps were safe.\n\nMummy walked out. She didn't slip.\n\nBenjamine waved from the door." },
+      { text: "(whisper)\nThat night the ice was all gone.\n\nMummy said thank you lots of times.\n\n(pause — 3 seconds)\n\n\"Ice melts,\" said Benjamine.\n\n\"Yes,\" said Christopher. \"And sometimes we help it.\"\n\n(trailing off)\nThe steps were safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 37,
+    title: "The Quiet Woods",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🌲🐦🐾",
+    color: "from-emerald-600 to-green-800",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nChristopher and Benjamine were in the woods.\n\nIt was late afternoon.\n\n(pause — 2 seconds)\n\nThe birds had been singing all day.\n\nBut now it was too quiet.\n\nNot a single bird." },
+      { text: "(slowly)\n\"Where are the birds?\" said Benjamine.\n\n\"I don't know,\" said Christopher.\n\nThey listened.\n\n(pause — 3 seconds)\n\nThen they heard a tiny sound.\n\nJust one.\n\nA worried chirp." },
+      { text: "(softly)\nThe chirp came again.\n\nBut where?\n\n(pause — 3 seconds)\n\nBenjamine pressed the pup button.\n\n\"Paw Patrol! A bird sounds sad!\"" },
+      { text: "(excited)\nTracker came down a vine.\n\n\"I'm all ears!\" he said.\n\n(pause — 2 seconds)\n\nHe closed his eyes.\n\nHis ears went up.\n\nHe listened a long time." },
+      { text: "(slowly)\n\"This way,\" said Tracker.\n\nHe led them past the big oak.\n\nPast the fallen branch.\n\n(pause — 3 seconds)\n\nThe sound got clearer.\n\nIt came from a hollow log.\n\nA small hole in the side." },
+      { text: "(warmly)\nChristopher peeked in.\n\nA baby bird was inside. He had fallen down.\n\n(pause — 3 seconds)\n\nBenjamine reached his hand in. Very slow.\n\nThe baby bird hopped on.\n\nThey put him on a low branch. His mummy came right away." },
+      { text: "(whisper)\nThat night all the birds were singing again.\n\nChristopher could hear them from bed.\n\n(pause — 3 seconds)\n\n\"You have to listen first,\" said Benjamine.\n\n\"Then you can help.\"\n\n(trailing off)\nThe woods were full of birds. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 38,
+    title: "The Lost Badge",
+    category: "feelings",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🏅🐕🐾",
+    color: "from-yellow-400 to-amber-600",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nChase was at the lookout.\n\nHe was looking everywhere.\n\n(pause — 2 seconds)\n\nUnder his bed. Behind his bowl.\n\nOn top of his hat.\n\n\"Have you seen my badge?\"" },
+      { text: "(slowly)\nChase was very worried.\n\nA policeman pup needs his badge.\n\n(pause — 3 seconds)\n\nChristopher and Benjamine came to the lookout.\n\n\"What's wrong?\" said Benjamine.\n\n\"My badge is gone.\"" },
+      { text: "(softly)\nChase had already looked.\n\nHe looked some more.\n\nHe did not find it.\n\n(long pause — 5 seconds)\n\n\"I find things for other pups,\" he said.\n\n\"I can't find my own thing.\"" },
+      { text: "(matter-of-fact)\nBenjamine looked at Chase.\n\nChase looked small. Small and sad.\n\n\"Even helpers need help,\" said Benjamine.\n\n(pause — 2 seconds)\n\nBenjamine pressed the pup button.\n\n\"Paw Patrol! Chase needs help!\"" },
+      { text: "(slowly)\nAll the pups came.\n\nThey looked under everything.\n\nRubble looked in the dirt. Skye looked from the sky.\n\n(pause — 3 seconds)\n\nMarshall looked behind the fire hose.\n\nZuma looked by the water." },
+      { text: "(warmly)\nBenjamine sat down by Chase's cushion.\n\nHe put his hand under.\n\n(pause — 3 seconds)\n\nThere it was.\n\nThe badge.\n\nUnder Chase's own bed.\n\nChase just blinked." },
+      { text: "(whisper)\nThat night Benjamine was proud.\n\n\"Chase couldn't find it,\" he said.\n\n\"Sometimes we can't see our own things,\" said Christopher.\n\n(pause — 3 seconds)\n\n\"That's why we have each other.\"\n\n(trailing off)\nChase had his badge. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 39,
+    title: "The Big Job",
+    category: "feelings",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🛠️🏠🐾",
+    color: "from-orange-500 to-red-600",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nA big storm came in the night.\n\nThe morning was full of things to fix.\n\n(pause — 2 seconds)\n\nA tree had fallen.\n\nA fence was down.\n\nThe beach was full of sticks." },
+      { text: "(slowly)\nRyder was reading a list.\n\n\"Tree — Rubble. Fence — Rocky. Beach — Zuma.\"\n\n(pause — 2 seconds)\n\nHe thought and thought.\n\n\"And I'll do the roof myself.\"\n\nHe looked tired." },
+      { text: "(softly)\nChristopher and Benjamine were there.\n\nRyder was climbing up a ladder.\n\nWith tools. And a big bucket.\n\n(pause — 3 seconds)\n\n\"It's a lot for one person,\" said Benjamine.\n\n\"Even the leader.\"" },
+      { text: "(matter-of-fact)\nBenjamine pressed the pup button.\n\nRyder looked down.\n\n\"Why did you press it?\" he said.\n\n\"I called you,\" said Benjamine.\n\n(pause — 3 seconds)\n\n\"You need help too.\"" },
+      { text: "(slowly)\nRyder blinked.\n\nHe looked at his list.\n\nHe looked at the roof.\n\n(long pause — 5 seconds)\n\n\"I forgot to write my own name,\" he said.\n\n\"I always forget.\"" },
+      { text: "(warmly)\nChristopher and Benjamine held the ladder.\n\nThey passed up the nails.\n\nThey brought him water.\n\n(pause — 3 seconds)\n\nThe roof got fixed.\n\nSlow but sure.\n\nRyder smiled the whole time." },
+      { text: "(whisper)\nThat night Benjamine had a thought.\n\n\"Leaders need help too,\" he said.\n\n\"They just forget to ask.\"\n\n(pause — 3 seconds)\n\n\"Then we have to ask for them,\" said Christopher.\n\n(trailing off)\nThe roof was fixed. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 40,
+    title: "Goodnight Liberty",
+    category: "bedtime",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🌙🐶💛",
+    color: "from-purple-500 to-indigo-700",
+    dateAdded: "2026-04-17",
+    pages: [
+      { text: "(warmly)\nLiberty was at the lookout.\n\nAll the pups were asleep.\n\n(pause — 2 seconds)\n\nBut not Liberty.\n\nShe was very quiet.\n\nBut her eyes were open." },
+      { text: "(slowly)\nChristopher and Benjamine came to say goodnight.\n\nChase was snoring. Marshall was twitching his paw.\n\n(pause — 2 seconds)\n\nLiberty was sitting up in her bed.\n\nShe had her little blanket.\n\nBut she was not sleeping." },
+      { text: "(softly)\n\"Are you okay?\" said Benjamine.\n\n\"I can't sleep,\" said Liberty.\n\n\"It's too new here.\"\n\n(pause — 3 seconds)\n\nBenjamine sat on the floor near her.\n\nHe did not touch her. He just sat." },
+      { text: "(matter-of-fact)\n\"When I can't sleep,\" said Benjamine, \"I call someone.\"\n\n\"Who?\" said Liberty.\n\n\"The pups. But who do pups call?\"\n\n(pause — 3 seconds)\n\nBenjamine pressed the pup button.\n\nVery soft.\n\n\"Paw Patrol. Liberty can't sleep.\"" },
+      { text: "(softly)\nRyder came in quiet.\n\nNo fast steps.\n\nHe had a little light in his hand.\n\n(pause — 3 seconds)\n\n\"This is my old night light,\" he said.\n\n\"I had it when I was small.\"\n\nHe put it next to Liberty's bed." },
+      { text: "(softly)\nThe light was warm and soft.\n\nIt made yellow shapes on the wall.\n\n(pause — 3 seconds)\n\nLiberty lay down.\n\nHer eyes blinked slow.\n\nThen her eyes stayed closed." },
+      { text: "(whisper)\nChristopher and Benjamine went home quiet.\n\nThe whole lookout was asleep now.\n\n(pause — 3 seconds)\n\n\"Sometimes new things are scary,\" said Benjamine.\n\n\"A little light helps,\" said Christopher.\n\n(trailing off)\nLiberty was sleeping. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
   }
 ];
