@@ -1088,5 +1088,195 @@ export const stories = [
       { text: "(warmly)\nSkye came out with the kitten.\n\nSafe in her soft mouth.\n\n(pause — 3 seconds)\n\nMrs Goodway held the kitten close.\n\n\"No job is too big,\" said Ryder.\n\n\"No pup is too small.\"" },
       { text: "(whisper)\nThat night Benjamine thought of the kitten.\n\nBack on the porch with her bowl.\n\n(pause — 3 seconds)\n\n\"Small pups can help too,\" said Christopher.\n\n\"Everyone can,\" said Benjamine.\n\n(trailing off)\nThe kitten was home. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
     ]
+  },
+  {
+    id: 51,
+    title: "Benjamine and the Balloon",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🎈🐕☁️",
+    color: "from-pink-400 to-fuchsia-500",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nBenjamine had a yellow balloon.\n\nIt was a gift from Nana.\n\n(pause — 2 seconds)\n\nHe held it tight in the garden.\n\nThe string was long.\n\nChristopher sat on the step." },
+      { text: "(slowly)\nA gust of wind came.\n\nThe string slipped from his hand.\n\n(pause — 2 seconds)\n\nThe balloon floated up.\n\nOver the shed.\n\nOver the fence.\n\nInto a big tree." },
+      { text: "(softly)\nBenjamine's lip started to wobble.\n\n\"My balloon,\" he said.\n\n(pause — 3 seconds)\n\nChristopher came to stand close.\n\n\"Who can fly?\" he said.\n\nBenjamine thought hard." },
+      { text: "(excited)\nBenjamine pressed the pup button.\n\nAll by himself.\n\n\"Paw Patrol, my balloon is stuck.\"\n\n(pause — 2 seconds)\n\nSkye came spinning down.\n\n\"Let's take to the sky!\" she said." },
+      { text: "(slowly)\nSkye flew up to the tree.\n\nShe used her claw.\n\n(pause — 3 seconds)\n\nShe pulled the balloon free.\n\nThe string came down with it.\n\nRight into Benjamine's hand." },
+      { text: "(warmly)\n\"Thank you, Skye,\" said Benjamine.\n\n\"Let's take to the sky!\" said Skye.\n\n(pause — 3 seconds)\n\nShe waved goodbye.\n\nBenjamine held the string tight now.\n\nTighter than before." },
+      { text: "(whisper)\nThat night the balloon sat by the bed.\n\nBumping the ceiling soft.\n\n(pause — 3 seconds)\n\n\"I called the pups,\" said Benjamine.\n\n\"You did good,\" said Christopher.\n\n(trailing off)\nThe balloon was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 52,
+    title: "Smoke in the Kitchen",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🍞💨🚒",
+    color: "from-red-500 to-orange-500",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nMummy made toast for breakfast.\n\nShe stepped out to get the mail.\n\n(pause — 2 seconds)\n\nChristopher was in his room.\n\nBenjamine sat by the table.\n\nThe kitchen was sunny." },
+      { text: "(slowly)\nSmoke came from the toaster.\n\nGrey and thick.\n\n(pause — 2 seconds)\n\nThe smoke alarm went off.\n\nBenjamine did not cry.\n\nHe ran to find Mummy.\n\nShe was at the gate." },
+      { text: "(softly)\n\"Smoke!\" said Benjamine.\n\n\"In the kitchen.\"\n\n(pause — 3 seconds)\n\nMummy came in and pulled the plug.\n\n\"Good job,\" she said.\n\n\"But let's make sure it's safe.\"" },
+      { text: "(excited)\nBenjamine pressed the pup button.\n\n\"Paw Patrol, we need a check.\"\n\n(pause — 2 seconds)\n\nMarshall came right away.\n\n\"I'm fired up!\" he said.\n\nHe sniffed the toaster. Then the air." },
+      { text: "(matter-of-fact)\n\"No flame,\" said Marshall.\n\n\"Just black toast.\"\n\n(pause — 3 seconds)\n\nHe checked the walls.\n\nHe checked the plug.\n\n\"All safe,\" he said." },
+      { text: "(warmly)\nBenjamine let out a big breath.\n\nMummy hugged him close.\n\n(pause — 3 seconds)\n\n\"I'm fired up!\" said Marshall.\n\n\"Good job calling us.\"\n\nBenjamine felt tall." },
+      { text: "(whisper)\nThat night Benjamine lay in bed.\n\nHis tummy was full.\n\n(pause — 3 seconds)\n\n\"You called for help,\" said Christopher.\n\n\"That was big,\" said Benjamine.\n\n(trailing off)\nThe house was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 53,
+    title: "The Book That Broke",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "📖🔧♻️",
+    color: "from-emerald-500 to-green-600",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nChristopher had a book he loved.\n\nFull of trains.\n\n(pause — 2 seconds)\n\nHe read it to Benjamine at bedtime.\n\nOver and over.\n\nThe pages were soft from use." },
+      { text: "(slowly)\nOne day the book fell.\n\nThe spine cracked.\n\n(pause — 2 seconds)\n\nTwo pages came out.\n\nThen three.\n\nChristopher looked at the pieces.\n\nHis face got quiet." },
+      { text: "(softly)\nBenjamine sat next to him.\n\n\"Don't be sad,\" he said.\n\n(pause — 3 seconds)\n\n\"Old things can still work.\"\n\n\"We just need glue.\"\n\n\"And a pup.\"" },
+      { text: "(excited)\nBenjamine pressed the pup button.\n\n\"Paw Patrol, a book is broken.\"\n\n(pause — 2 seconds)\n\nRocky came with his truck.\n\n\"Don't lose it, reuse it!\" he said.\n\nHe had tape and glue." },
+      { text: "(slowly)\nRocky put the pages back in.\n\nOne by one.\n\n(pause — 3 seconds)\n\nHe pressed the spine down.\n\nHe wrapped it with tape.\n\nClean and tight." },
+      { text: "(warmly)\nThe book was whole again.\n\nNot new. But strong.\n\n(pause — 3 seconds)\n\n\"Don't lose it, reuse it!\" said Rocky.\n\nChristopher hugged the book.\n\n\"Thank you,\" he said." },
+      { text: "(whisper)\nThat night Christopher read the book.\n\nSlow and careful.\n\n(pause — 3 seconds)\n\n\"It still works,\" said Benjamine.\n\n\"Because you called Rocky,\" said Christopher.\n\n(trailing off)\nThe book was fixed. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 54,
+    title: "The Melting Cake",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🎂❄️🐾",
+    color: "from-cyan-400 to-blue-500",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nIt was Christopher's birthday.\n\nMummy bought an ice cream cake.\n\n(pause — 2 seconds)\n\nPink with white stripes.\n\nIt sat on the kitchen bench.\n\nThe kitchen was warm." },
+      { text: "(slowly)\nThe freezer made a click.\n\nThen it stopped humming.\n\n(pause — 2 seconds)\n\nThe light went out.\n\nThe door felt warm.\n\nThe cake would melt soon.\n\nMummy looked worried." },
+      { text: "(softly)\n\"We need a cold pup,\" said Benjamine.\n\n\"A fast one.\"\n\n(pause — 3 seconds)\n\nChristopher nodded.\n\n\"I know who you mean.\"\n\nBenjamine pressed the pup button." },
+      { text: "(excited)\n\"Paw Patrol, the cake is melting!\"\n\nEverest came with her truck.\n\nHer truck kept things cold.\n\n(pause — 2 seconds)\n\n\"Ice or snow!\" she said.\n\n\"I'm ready to go.\"" },
+      { text: "(slowly)\nShe moved the cake to her truck.\n\nCold air blew inside.\n\n(pause — 3 seconds)\n\nThe cake stayed firm.\n\nThe icing stayed crisp.\n\nEverest winked at Benjamine." },
+      { text: "(warmly)\nThey had the party in the garden.\n\nThe cake came out just right.\n\n(pause — 3 seconds)\n\n\"Ice or snow!\" said Everest.\n\n\"I'm ready to go.\"\n\nChristopher blew the candles." },
+      { text: "(whisper)\nThat night Benjamine felt full.\n\nFull of cake. Full of joy.\n\n(pause — 3 seconds)\n\n\"You saved the party,\" said Christopher.\n\n\"Everest did,\" said Benjamine.\n\n(trailing off)\nThe cake was gone. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 55,
+    title: "Sam at the Library",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "📚🧸👂",
+    color: "from-yellow-500 to-amber-600",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nMummy took them to the library.\n\nBig and quiet.\n\n(pause — 2 seconds)\n\nBenjamine had his sock puppet.\n\nHis name was Sam.\n\nThey read three books together." },
+      { text: "(slowly)\nWhen they got home Sam was gone.\n\nBenjamine felt his pocket.\n\n(pause — 2 seconds)\n\nHe felt the bag.\n\nHe felt the car seat.\n\nNo Sam.\n\nHis eyes went shiny." },
+      { text: "(softly)\n\"Sam is still there,\" said Christopher.\n\n\"In the library.\"\n\n(pause — 3 seconds)\n\n\"But the library closed,\" said Benjamine.\n\nHis lip wobbled.\n\nThen he had a thought." },
+      { text: "(excited)\nBenjamine pressed the pup button.\n\n\"Paw Patrol, Sam is lost.\"\n\n(pause — 2 seconds)\n\nTracker came through the trees.\n\n\"I'm all ears!\" he said.\n\n\"Where did you last see him?\"" },
+      { text: "(slowly)\n\"At the library,\" said Benjamine.\n\nTracker closed his eyes.\n\n(pause — 3 seconds)\n\n\"I hear a small voice,\" he said.\n\n\"Someone is waiting.\"\n\n\"Follow me.\"" },
+      { text: "(warmly)\nThe library had a night helper.\n\nShe was still inside.\n\n(pause — 3 seconds)\n\nTracker barked soft at the window.\n\nShe opened the door.\n\nSam was on the reading chair." },
+      { text: "(whisper)\nBenjamine held Sam tight that night.\n\nSam was home.\n\n(pause — 3 seconds)\n\n\"I'm all ears,\" said Benjamine.\n\n\"Me too,\" said Christopher.\n\n(trailing off)\nSam was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 56,
+    title: "The Lost Little Pup",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐶🏡🐾",
+    color: "from-violet-500 to-purple-600",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nA new pup was in the park.\n\nSmall. White. Curly.\n\n(pause — 2 seconds)\n\nShe had no collar.\n\nShe had no home.\n\nChristopher and Benjamine watched her run." },
+      { text: "(slowly)\nThe little pup got scared.\n\nShe ran under a bush.\n\n(pause — 2 seconds)\n\nThen into a drain pipe.\n\nThen behind a bin.\n\nShe was quick.\n\nToo quick for people." },
+      { text: "(softly)\n\"She needs fast feet,\" said Benjamine.\n\n\"Fast and soft.\"\n\n(pause — 3 seconds)\n\nChristopher nodded at him.\n\n\"You know who.\"\n\nBenjamine smiled." },
+      { text: "(excited)\nBenjamine pressed the pup button.\n\n\"Paw Patrol, a pup is lost.\"\n\n(pause — 2 seconds)\n\nLiberty came hopping up.\n\n\"Let's hop to it!\" she said.\n\n\"Where did she go?\"" },
+      { text: "(slowly)\nLiberty hopped to the drain pipe.\n\nShe sat down low.\n\n(pause — 3 seconds)\n\nShe made a soft sound.\n\nThe little pup peeked out.\n\nThen crept to Liberty." },
+      { text: "(warmly)\nBenjamine held the little pup.\n\nMummy called the shelter.\n\n(pause — 3 seconds)\n\n\"Let's hop to it!\" said Liberty.\n\n\"We'll find her a home.\"\n\nBenjamine stroked her curls." },
+      { text: "(whisper)\nThat night the little pup was safe.\n\nAt the shelter with kind people.\n\n(pause — 3 seconds)\n\n\"We found her a bed,\" said Benjamine.\n\n\"You called for help,\" said Christopher.\n\n(trailing off)\nThe pup was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 57,
+    title: "The Runaway Trolley",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🛒🚓🐾",
+    color: "from-blue-600 to-indigo-700",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nMummy pushed the shopping trolley.\n\nFull of food for dinner.\n\n(pause — 2 seconds)\n\nChristopher walked on one side.\n\nBenjamine walked on the other.\n\nThe car park was flat." },
+      { text: "(slowly)\nMummy turned to lock the car.\n\nThe trolley started to roll.\n\n(pause — 2 seconds)\n\nA small slope. No one saw.\n\nIt rolled faster.\n\nRight toward the road.\n\nBenjamine's heart jumped." },
+      { text: "(softly)\n\"It's going to the road!\" said Benjamine.\n\n(pause — 3 seconds)\n\nHe did not chase it.\n\nHe had a better plan.\n\nHe pulled out the pup button." },
+      { text: "(excited)\nBenjamine pressed the button.\n\n\"Paw Patrol, the trolley is rolling!\"\n\n(pause — 2 seconds)\n\nChase came around the corner.\n\n\"Chase is on the case!\" he said.\n\nHe was so fast." },
+      { text: "(slowly)\nChase caught the trolley handle.\n\nHe held it tight.\n\n(pause — 3 seconds)\n\nHis paws dug in.\n\nThe trolley stopped at the curb.\n\nJust in time." },
+      { text: "(warmly)\nMummy ran over.\n\nShe gave Chase a pat.\n\n(pause — 3 seconds)\n\n\"You saved our dinner,\" she said.\n\n\"Chase is on the case!\" said Chase.\n\nBenjamine grinned big." },
+      { text: "(whisper)\nThat night the dinner was hot.\n\nEveryone was safe.\n\n(pause — 3 seconds)\n\n\"I called for help,\" said Benjamine.\n\n\"Fast thinking,\" said Christopher.\n\n(trailing off)\nThe trolley was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 58,
+    title: "The Fallen Branch",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🌳🚜🍂",
+    color: "from-yellow-600 to-amber-700",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nIt was a windy morning.\n\nThe garden was full of leaves.\n\n(pause — 2 seconds)\n\nChristopher came out to play.\n\nBenjamine came out too.\n\nThey wore their boots." },
+      { text: "(slowly)\nA big branch had fallen down.\n\nRight across the path.\n\n(pause — 2 seconds)\n\nIt was thick. It was heavy.\n\nThe boys tried to move it.\n\nThey pushed. They pulled.\n\nIt did not budge." },
+      { text: "(softly)\n\"Too big for us,\" said Benjamine.\n\n\"Much too big.\"\n\n(pause — 3 seconds)\n\nChristopher looked tired.\n\nBenjamine looked at him.\n\n\"I know who can help.\"" },
+      { text: "(excited)\nBenjamine pressed the pup button.\n\n\"Paw Patrol, a branch is stuck.\"\n\n(pause — 2 seconds)\n\nRubble came with his digger.\n\n\"Rubble on the double!\" he said.\n\n\"Stand back, please.\"" },
+      { text: "(slowly)\nRubble's scoop lifted the branch.\n\nUp and over.\n\n(pause — 3 seconds)\n\nHe put it by the shed.\n\nFor firewood later.\n\nThe path was clear." },
+      { text: "(warmly)\n\"Rubble on the double!\" said Rubble.\n\nHe high-fived Benjamine with his paw.\n\n(pause — 3 seconds)\n\n\"Good call,\" said Rubble.\n\n\"Some jobs are too big for boys.\"\n\n\"But not for pups.\"" },
+      { text: "(whisper)\nThat night the wind stopped.\n\nThe garden was still.\n\n(pause — 3 seconds)\n\n\"You called Rubble,\" said Christopher.\n\n\"It was the right call,\" said Benjamine.\n\n(trailing off)\nThe path was clear. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 59,
+    title: "The Frog in the Pool",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐸💧🏊",
+    color: "from-orange-500 to-amber-600",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nIt was a hot day.\n\nThe backyard pool was blue.\n\n(pause — 2 seconds)\n\nChristopher and Benjamine had towels.\n\nSunhats too.\n\nDaddy sat by the edge." },
+      { text: "(slowly)\nBenjamine saw something move.\n\nA green frog.\n\n(pause — 2 seconds)\n\nIt was in the pool.\n\nSwimming. Tired.\n\nIts legs moved slow.\n\nIt could not get out." },
+      { text: "(softly)\n\"The walls are too high,\" said Benjamine.\n\n\"He can't climb out.\"\n\n(pause — 3 seconds)\n\nChristopher leaned down to see.\n\n\"He looks tired.\"\n\n\"We need water help,\" said Benjamine." },
+      { text: "(excited)\nBenjamine pressed the pup button.\n\n\"Paw Patrol, a frog is stuck.\"\n\n(pause — 2 seconds)\n\nZuma came on his board.\n\n\"Let's dive in!\" he said.\n\nHe jumped right in." },
+      { text: "(slowly)\nZuma paddled to the frog.\n\nSoft and slow.\n\n(pause — 3 seconds)\n\nHe held out his paw.\n\nThe frog climbed up.\n\nZuma paddled back." },
+      { text: "(warmly)\nZuma put the frog on the grass.\n\nThe frog hopped one hop.\n\n(pause — 3 seconds)\n\nThen two. Then three.\n\n\"Let's dive in!\" said Zuma.\n\nBenjamine waved the frog off." },
+      { text: "(whisper)\nThat night Benjamine thought of the frog.\n\nBack in the garden pond.\n\n(pause — 3 seconds)\n\n\"You saw him first,\" said Christopher.\n\n\"And I called,\" said Benjamine.\n\n(trailing off)\nThe frog was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 60,
+    title: "Blankie Hanging High",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🧸💙🐾",
+    color: "from-sky-500 to-red-500",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nBenjamine had a blue blankie.\n\nIt smelled like home.\n\n(pause — 2 seconds)\n\nHe took it to the park.\n\nHe dragged it on the grass.\n\nHe swung it in the air." },
+      { text: "(slowly)\nAfter the park they went home.\n\nBenjamine lay down for a nap.\n\n(pause — 2 seconds)\n\nHe reached for his blankie.\n\nNo blankie.\n\nHe checked his bed.\n\nThen the floor.\n\nNothing." },
+      { text: "(softly)\nBenjamine's face went still.\n\n\"My blankie is gone,\" he said.\n\n(pause — 3 seconds)\n\n\"I can't sleep.\"\n\nChristopher hugged his brother.\n\n\"Let's call for help.\"" },
+      { text: "(excited)\nBenjamine pressed the pup button.\n\n\"Paw Patrol, my blankie is lost.\"\n\n(pause — 2 seconds)\n\nRyder came with all the pups.\n\n\"No job is too big,\" said Ryder.\n\n\"No pup is too small.\"" },
+      { text: "(slowly)\nChase sniffed the grass at the park.\n\nSkye looked from above.\n\n(pause — 3 seconds)\n\nThen Tracker heard a sound.\n\nA flap in the wind.\n\nBehind the big tree." },
+      { text: "(warmly)\nThe blankie hung on a branch.\n\nWay up high.\n\n(pause — 3 seconds)\n\nSkye flew up to get it.\n\n\"No job is too big,\" said Ryder.\n\n\"No pup is too small.\"" },
+      { text: "(whisper)\nThat night the blankie was in his hand.\n\nSmelling of home again.\n\n(pause — 3 seconds)\n\n\"You called the whole team,\" said Christopher.\n\n\"Every pup came,\" said Benjamine.\n\n(trailing off)\nThe blankie was home. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
   }
 ];
