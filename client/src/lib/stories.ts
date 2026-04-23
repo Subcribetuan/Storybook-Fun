@@ -898,5 +898,195 @@ export const stories = [
       { text: "(softly)\nThe light was warm and soft.\n\nIt made yellow shapes on the wall.\n\n(pause — 3 seconds)\n\nLiberty lay down.\n\nHer eyes blinked slow.\n\nThen her eyes stayed closed." },
       { text: "(whisper)\nChristopher and Benjamine went home quiet.\n\nThe whole lookout was asleep now.\n\n(pause — 3 seconds)\n\n\"Sometimes new things are scary,\" said Benjamine.\n\n\"A little light helps,\" said Christopher.\n\n(trailing off)\nLiberty was sleeping. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
     ]
+  },
+  {
+    id: 41,
+    title: "The Kite in the Tree",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🪁🐕☁️",
+    color: "from-pink-400 to-fuchsia-500",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nThe sky was blue. The wind was good.\n\nChristopher held a red kite.\n\nBenjamine held the string.\n\n(pause — 2 seconds)\n\nThe kite went up. And up.\n\nThe string was long." },
+      { text: "(slowly)\nA big gust came.\n\nThe string went quick through Benjamine's hand.\n\n(pause — 2 seconds)\n\nThe kite flew off.\n\nIt sat high in a tall tree.\n\nBenjamine looked up.\n\nHis neck was sore." },
+      { text: "(softly)\n\"It is too high,\" said Benjamine.\n\n\"I can't reach it.\"\n\n(pause — 3 seconds)\n\nChristopher looked at the tree.\n\n\"We can get help,\" he said.\n\n\"I know who to call.\"" },
+      { text: "(excited)\nChristopher pressed the pup button.\n\nSkye came spinning down.\n\n\"Let's take to the sky!\" she said.\n\n(pause — 2 seconds)\n\n\"There is a red kite,\" said Benjamine.\n\n\"In the tall tree.\"\n\nSkye looked up. \"I see it.\"" },
+      { text: "(slowly)\nSkye flew up in her copter.\n\nShe used her little claw.\n\n(pause — 3 seconds)\n\nShe picked up the kite.\n\nThe string came with it.\n\nShe brought it down slow." },
+      { text: "(warmly)\nSkye put the kite in Benjamine's hand.\n\n\"There you go,\" she said.\n\n(pause — 3 seconds)\n\n\"Thank you, Skye,\" said Benjamine.\n\n\"Let's take to the sky!\" said Skye.\n\nShe flew back home." },
+      { text: "(whisper)\nThat night the kite sat in the room.\n\nBenjamine looked at it from bed.\n\n(pause — 3 seconds)\n\n\"The wind was strong,\" said Benjamine.\n\n\"But Skye was stronger,\" said Christopher.\n\n(trailing off)\nThe kite was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 42,
+    title: "The Small Flame",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🔥🚒🐾",
+    color: "from-red-500 to-orange-500",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nIt was a sunny day at the park.\n\nMummy made lunch on the grill.\n\n(pause — 2 seconds)\n\nChristopher sat on the grass.\n\nBenjamine sat close by.\n\nThe air smelled like toast." },
+      { text: "(slowly)\nA small spark jumped from the grill.\n\nIt fell on some dry grass.\n\n(pause — 2 seconds)\n\nA tiny flame started.\n\nJust a little one.\n\nBut the grass was dry.\n\nThe flame grew bigger." },
+      { text: "(softly)\nBenjamine saw it first.\n\n\"Look,\" he said. \"Fire.\"\n\n(pause — 3 seconds)\n\nChristopher saw it too.\n\nHe did not run.\n\nHe pressed the pup button." },
+      { text: "(excited)\nMarshall came with his truck.\n\n\"I'm fired up!\" he said.\n\n(pause — 2 seconds)\n\nHe aimed his hose.\n\nWater came out in a big spray.\n\nThe flame went down and stopped." },
+      { text: "(matter-of-fact)\nThe grass was safe now.\n\nWet but safe.\n\n(pause — 3 seconds)\n\n\"I'm fired up!\" said Marshall.\n\n\"Ready for a ruff ruff rescue.\"\n\nChristopher laughed. So did Benjamine." },
+      { text: "(warmly)\nMummy moved the grill to stone.\n\nNo more sparks on grass.\n\n(pause — 3 seconds)\n\n\"Thank you, Marshall,\" said Benjamine.\n\nMarshall wagged his tail.\n\nHe drove back home." },
+      { text: "(whisper)\nThat night Benjamine thought of the flame.\n\nIt was small at first.\n\n(pause — 3 seconds)\n\n\"Fires start small,\" said Christopher.\n\n\"But pups come fast,\" said Benjamine.\n\n(trailing off)\nThe grass was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 43,
+    title: "The Broken Wheel",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🔧🚛♻️",
+    color: "from-emerald-500 to-green-600",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nBenjamine had a little truck.\n\nIt was blue. He loved it.\n\n(pause — 2 seconds)\n\nIt rolled fast on the floor.\n\nChristopher pushed it too.\n\nThey both played for hours." },
+      { text: "(slowly)\nOne day a wheel came off.\n\nThen a second wheel came off.\n\n(pause — 2 seconds)\n\nThe truck would not roll.\n\nBenjamine held it in two hands.\n\nHis eyes went shiny.\n\n\"It's broken,\" he said." },
+      { text: "(softly)\n\"Don't cry yet,\" said Christopher.\n\n\"We can try to fix it.\"\n\n(pause — 3 seconds)\n\n\"Who fixes things?\" said Benjamine.\n\nChristopher smiled.\n\n\"Rocky fixes things.\"" },
+      { text: "(excited)\nChristopher pressed the pup button.\n\nRocky came with his green truck.\n\n\"Don't lose it, reuse it!\" he said.\n\n(pause — 2 seconds)\n\nHe looked at the truck.\n\nHe looked at the wheels.\n\n\"Easy fix,\" said Rocky." },
+      { text: "(slowly)\nRocky found two small screws.\n\nHe found a bit of glue.\n\n(pause — 3 seconds)\n\nHe put the wheels back on.\n\nHe held them tight.\n\nHe counted to ten." },
+      { text: "(warmly)\nThe truck rolled again.\n\nFast on the floor.\n\n(pause — 3 seconds)\n\n\"Good as new,\" said Rocky.\n\n\"Don't lose it, reuse it!\"\n\nBenjamine hugged the truck." },
+      { text: "(whisper)\nThat night the truck sat by the bed.\n\nAll four wheels on.\n\n(pause — 3 seconds)\n\n\"Broken things can get fixed,\" said Christopher.\n\n\"And pups can help,\" said Benjamine.\n\n(trailing off)\nThe truck was fixed. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 44,
+    title: "The Stuck Sled",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "❄️🛷🐾",
+    color: "from-cyan-400 to-blue-500",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nChristopher saw a new pup in town.\n\nShe was white and blue.\n\n(pause — 2 seconds)\n\nHer name was Everest.\n\nShe came from a cold place.\n\nBenjamine stood close to meet her." },
+      { text: "(slowly)\nEverest had a small sled.\n\nIt was stuck on a big rock.\n\n(pause — 2 seconds)\n\nThe rock was round and smooth.\n\nThe sled would not move.\n\nEverest pushed it. Then she pulled.\n\nNothing worked." },
+      { text: "(softly)\n\"Can we help?\" said Benjamine.\n\n\"Yes please,\" said Everest.\n\n(pause — 3 seconds)\n\nChristopher looked at the rock.\n\nHe looked at the sled.\n\n\"My brother is strong,\" he said." },
+      { text: "(excited)\nBenjamine got low.\n\nHe pushed with both hands.\n\n(pause — 2 seconds)\n\nChristopher pushed too.\n\nEverest pulled the rope.\n\n\"Ice or snow!\" she said.\n\n\"I'm ready to go!\"\n\nThe sled came free." },
+      { text: "(matter-of-fact)\nEverest smiled big.\n\n\"You helped me,\" she said.\n\n(pause — 3 seconds)\n\n\"My sled was stuck for hours.\"\n\nBenjamine felt tall.\n\nChristopher felt proud of him." },
+      { text: "(warmly)\nEverest gave them a ride.\n\nThe sled went down a small hill.\n\n(pause — 3 seconds)\n\nGrass not snow.\n\nBut still fast.\n\nThey all laughed." },
+      { text: "(whisper)\nThat night Benjamine closed his eyes.\n\nHe could still feel the wind.\n\n(pause — 3 seconds)\n\n\"Ice or snow!\" he said.\n\n\"I'm ready to go.\"\n\n\"That's a good one,\" said Christopher.\n\n(trailing off)\nThe sled was free. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 45,
+    title: "Two Paths",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🌳👂🐾",
+    color: "from-yellow-500 to-amber-600",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nThe boys walked on a new trail.\n\nTall trees stood on both sides.\n\n(pause — 2 seconds)\n\nMummy and Daddy were close behind.\n\nThe path had small stones.\n\nBenjamine kicked one as he walked." },
+      { text: "(slowly)\nThe trail went left. Then right.\n\nThen it went both ways.\n\n(pause — 2 seconds)\n\nTwo paths. One map.\n\nThey did not know the way.\n\nChristopher looked at one.\n\nBenjamine looked at the other." },
+      { text: "(softly)\n\"I don't know,\" said Christopher.\n\nThat was new.\n\n(pause — 3 seconds)\n\nBenjamine held his brother's hand.\n\n\"Let's ask a friend.\"\n\nChristopher pressed the pup button." },
+      { text: "(excited)\nTracker came through the trees.\n\nHis big ears stood up.\n\n\"I'm all ears!\" he said.\n\n(pause — 2 seconds)\n\n\"We are lost,\" said Christopher.\n\n\"Which way is home?\"\n\nTracker closed his eyes." },
+      { text: "(slowly)\nHe listened to the trees.\n\nHe listened to the wind.\n\n(pause — 3 seconds)\n\n\"I hear a car,\" he said.\n\n\"Cars mean roads.\"\n\n\"Roads mean home.\"\n\nHe pointed left." },
+      { text: "(warmly)\nThey walked the left path.\n\nSoon they saw the road.\n\n(pause — 3 seconds)\n\nMummy and Daddy smiled big.\n\n\"Good listening,\" said Daddy.\n\n\"I'm all ears!\" said Tracker." },
+      { text: "(whisper)\nThat night Benjamine lay still.\n\nHe listened hard.\n\n(pause — 3 seconds)\n\n\"I hear Mummy in the kitchen,\" he said.\n\n\"You are all ears too,\" said Christopher.\n\n(trailing off)\nThe path was done. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 46,
+    title: "The Rabbit Who Hopped Away",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐰🐾💨",
+    color: "from-violet-500 to-purple-600",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nThere was a pet shop in town.\n\nA small rabbit lived there.\n\n(pause — 2 seconds)\n\nChristopher went to say hi.\n\nBenjamine went with him.\n\nThe rabbit had long ears." },
+      { text: "(slowly)\nThe rabbit hopped out the door.\n\nIt went under a bench.\n\n(pause — 2 seconds)\n\nThen it hopped behind a bin.\n\nThen behind a car.\n\nThe shop man looked worried.\n\n\"I can't catch him,\" he said." },
+      { text: "(softly)\n\"Rabbits are fast,\" said Benjamine.\n\n\"We need a fast pup.\"\n\n(pause — 3 seconds)\n\nChristopher smiled.\n\n\"I know who.\"\n\nHe pressed the pup button." },
+      { text: "(excited)\nLiberty came hopping up.\n\nHer ears bounced.\n\n\"Let's hop to it!\" she said.\n\n(pause — 2 seconds)\n\n\"A rabbit got out,\" said Christopher.\n\n\"Let me try,\" said Liberty.\n\n\"I hop too.\"" },
+      { text: "(slowly)\nLiberty hopped after the rabbit.\n\nSoft steps. Small jumps.\n\n(pause — 3 seconds)\n\nShe did not chase.\n\nShe just hopped close.\n\nThe rabbit stopped to look." },
+      { text: "(warmly)\nLiberty sat down.\n\nThe rabbit hopped to her.\n\n(pause — 3 seconds)\n\nBenjamine held out his hands.\n\nThe shop man put the rabbit in.\n\n\"Let's hop to it!\" said Liberty." },
+      { text: "(whisper)\nThat night the rabbit was safe.\n\nBack in his little home.\n\n(pause — 3 seconds)\n\n\"Fast pups catch fast friends,\" said Benjamine.\n\n\"But only with soft steps,\" said Christopher.\n\n(trailing off)\nThe rabbit was home. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 47,
+    title: "The Goose on the Road",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🦢🚓🐾",
+    color: "from-blue-600 to-indigo-700",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nIt was a quiet morning.\n\nChristopher and Benjamine walked to the shop.\n\n(pause — 2 seconds)\n\nThe road was slow today.\n\nJust one or two cars.\n\nThe sun was up but soft." },
+      { text: "(slowly)\nA big goose stood in the road.\n\nIt did not move.\n\n(pause — 2 seconds)\n\nA car came close.\n\nThe car had to stop.\n\nThen a bike had to stop.\n\nThe goose just stood there." },
+      { text: "(softly)\n\"That goose could get hurt,\" said Benjamine.\n\n\"We have to help.\"\n\n(pause — 3 seconds)\n\nChristopher looked both ways.\n\n\"Not by us going out there.\"\n\n\"By a pup.\"" },
+      { text: "(excited)\nChristopher pressed the pup button.\n\nChase came with his police truck.\n\n\"Chase is on the case!\" he said.\n\n(pause — 2 seconds)\n\nHe put out small cones.\n\nHe waved the cars to stop.\n\n\"Stay on the path,\" he said." },
+      { text: "(slowly)\nChase walked to the goose.\n\nHe did not run.\n\n(pause — 3 seconds)\n\nHe made soft sounds.\n\nHe walked behind it.\n\nThe goose took one step. Then more." },
+      { text: "(warmly)\nThe goose went to the grass.\n\nSafe on the side.\n\n(pause — 3 seconds)\n\nCars started again.\n\n\"Chase is on the case!\" said Chase.\n\nBenjamine clapped." },
+      { text: "(whisper)\nThat night Benjamine thought of the goose.\n\nStanding so still in the road.\n\n(pause — 3 seconds)\n\n\"It didn't know the cars,\" said Christopher.\n\n\"But Chase did,\" said Benjamine.\n\n(trailing off)\nThe goose was safe. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 48,
+    title: "The Castle for a King",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🏰🏖️🚜",
+    color: "from-yellow-600 to-amber-700",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nThe beach was long and flat.\n\nLow tide today.\n\n(pause — 2 seconds)\n\nChristopher had two buckets.\n\nBenjamine had three.\n\nDaddy sat under a hat." },
+      { text: "(slowly)\nThey built a big sandcastle.\n\nBig walls. Tall towers.\n\n(pause — 2 seconds)\n\nThen they wanted a bigger one.\n\nA castle for a king.\n\nBut the sand was too heavy.\n\nThey could not lift it." },
+      { text: "(softly)\n\"We need a digger,\" said Benjamine.\n\n\"A small one.\"\n\n(pause — 3 seconds)\n\nChristopher thought for a moment.\n\n\"I know who has one.\"\n\nHe pressed the pup button." },
+      { text: "(excited)\nRubble came in his digger.\n\nBright and yellow.\n\n\"Rubble on the double!\" he said.\n\n(pause — 2 seconds)\n\n\"We want a big castle,\" said Benjamine.\n\n\"Bigger than last time.\"\n\n\"Let's dig,\" said Rubble." },
+      { text: "(matter-of-fact)\nRubble scooped wet sand.\n\nHe made one tall pile.\n\n(pause — 3 seconds)\n\nThe boys packed it down.\n\nThey shaped the walls.\n\nIt was bigger than them." },
+      { text: "(warmly)\nThe castle stood on the beach.\n\nEven Daddy stood up to see.\n\n(pause — 3 seconds)\n\n\"Rubble on the double!\" said Rubble.\n\nBenjamine put a shell on top.\n\nChristopher put two more." },
+      { text: "(whisper)\nThat night Benjamine's hands were sandy still.\n\nA little bit.\n\n(pause — 3 seconds)\n\n\"Big things need help,\" said Christopher.\n\n\"And pups come quick,\" said Benjamine.\n\n(trailing off)\nThe castle was done. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 49,
+    title: "The Boat in the Reeds",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "⛵🦆🌊",
+    color: "from-orange-500 to-amber-600",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nThere was a small pond near home.\n\nDucks lived there.\n\n(pause — 2 seconds)\n\nChristopher had a toy boat.\n\nRed with a white sail.\n\nBenjamine had the string." },
+      { text: "(slowly)\nThe wind blew the boat far.\n\nThen it went into the reeds.\n\n(pause — 2 seconds)\n\nThe string snapped.\n\nThe boat was stuck.\n\nToo far to reach.\n\nChristopher's face fell." },
+      { text: "(softly)\n\"Don't be sad,\" said Benjamine.\n\n\"A pup can help.\"\n\n(pause — 3 seconds)\n\nChristopher took a deep breath.\n\n\"Okay.\"\n\nHe pressed the pup button." },
+      { text: "(excited)\nZuma came on his board.\n\n\"Let's dive in!\" he said.\n\n(pause — 2 seconds)\n\n\"My boat is stuck,\" said Christopher.\n\n\"In the reeds.\"\n\n\"I see it,\" said Zuma." },
+      { text: "(slowly)\nZuma paddled out slow.\n\nThe reeds were tall.\n\n(pause — 3 seconds)\n\nHe pushed them back with one paw.\n\nHe grabbed the boat.\n\nThen he paddled back." },
+      { text: "(warmly)\nThe boat was in Christopher's hand again.\n\nStill dry.\n\n(pause — 3 seconds)\n\n\"Thank you, Zuma,\" said Christopher.\n\n\"Let's dive in!\" said Zuma.\n\nBenjamine cheered." },
+      { text: "(whisper)\nThat night the boat sat on the shelf.\n\nSail still up.\n\n(pause — 3 seconds)\n\n\"The reeds were thick,\" said Christopher.\n\n\"But Zuma was quick,\" said Benjamine.\n\n(trailing off)\nThe boat was home. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
+  },
+  {
+    id: 50,
+    title: "The Little Grey Kitten",
+    category: "adventure",
+    readTime: "3 min",
+    ageRange: "3-4",
+    emoji: "🐱🏠🐾",
+    color: "from-sky-500 to-red-500",
+    dateAdded: "2026-04-23",
+    pages: [
+      { text: "(warmly)\nMrs Goodway had a little kitten.\n\nVery small. Very grey.\n\n(pause — 2 seconds)\n\nChristopher and Benjamine went to see.\n\nThe kitten was new.\n\nHer eyes were round and big." },
+      { text: "(slowly)\nThe kitten ran off the porch.\n\nUnder the house she went.\n\n(pause — 2 seconds)\n\nThe hole was small.\n\nToo small for a grown-up.\n\nToo small for the big pups.\n\nMrs Goodway looked sad." },
+      { text: "(softly)\n\"She's too little,\" said Benjamine.\n\n\"We can't reach her.\"\n\n(pause — 3 seconds)\n\nChristopher looked at the hole.\n\n\"Small jobs need small help.\"\n\nHe pressed the pup button." },
+      { text: "(excited)\nRyder came fast with his ATV.\n\nAll the pups came too.\n\n(pause — 2 seconds)\n\n\"No job is too big,\" said Ryder.\n\n\"No pup is too small.\"\n\nHe looked at the hole.\n\n\"Skye, this is for you.\"" },
+      { text: "(matter-of-fact)\nSkye was the smallest pup.\n\nShe went in soft and slow.\n\n(pause — 3 seconds)\n\nThey heard a tiny meow.\n\nThen a bigger one.\n\nThen two sounds coming back." },
+      { text: "(warmly)\nSkye came out with the kitten.\n\nSafe in her soft mouth.\n\n(pause — 3 seconds)\n\nMrs Goodway held the kitten close.\n\n\"No job is too big,\" said Ryder.\n\n\"No pup is too small.\"" },
+      { text: "(whisper)\nThat night Benjamine thought of the kitten.\n\nBack on the porch with her bowl.\n\n(pause — 3 seconds)\n\n\"Small pups can help too,\" said Christopher.\n\n\"Everyone can,\" said Benjamine.\n\n(trailing off)\nThe kitten was home. The bed was warm.\n\nGoodnight.\n\n(pause — 5 seconds)" }
+    ]
   }
 ];
